@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pulse AI — Track3D</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --red:#C8102E;--red2:#a50d25;--red-glow:rgba(200,16,46,0.12);
+  --green:#1e7e34;--green-bg:#edf7f0;--green-border:#b8e0c2;
+  --blue:#1558a8;--blue-bg:#e8f1fb;--blue-border:#b8d0f0;
+  --amber:#8a5200;--amber-bg:#fff8e6;--amber-border:#f0d080;
+  --purple:#4a35a0;--purple-bg:#f0ecff;
+  --teal:#0a7a62;--teal-bg:#e2f5f1;
+  --coral:#b03518;--coral-bg:#fdf0ec;
+  --text:#0f172a;--text2:#475569;--text3:#94a3b8;
+  --border:#e2e8f0;--border2:#cbd5e1;
+  --bg:#f8fafc;--white:#fff;
+  --radius:14px;--radius-sm:9px;--radius-lg:20px;
+  --shadow:0 1px 4px rgba(15,23,42,0.06),0 1px 2px rgba(15,23,42,0.04);
+  --shadow-md:0 4px 16px rgba(15,23,42,0.1);
+  --shadow-lg:0 12px 40px rgba(15,23,42,0.14);
+}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* ── HERO HEADER ── */
+.hero{background:var(--white);border-bottom:1px solid var(--border);padding:2.5rem 2rem 2rem;}
+.hero-inner{max-width:1200px;margin:0 auto;}
+.hero-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem;flex-wrap:wrap;gap:12px;}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:var(--red);background:var(--red-glow);border:1px solid rgba(200,16,46,0.2);padding:5px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:0.07em;}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--red);}
+.hero-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.pill{font-size:11px;font-weight:500;padding:5px 12px;border-radius:20px;border:1px solid var(--border);background:var(--white);color:var(--text2);}
+.pill-amber{background:var(--amber-bg);border-color:var(--amber-border);color:var(--amber);}
+
+.hero-title{font-family:'Fraunces',serif;font-size:42px;font-weight:800;color:var(--text);letter-spacing:-1px;line-height:1;margin-bottom:6px;}
+.hero-title span{color:var(--red);}
+.hero-subtitle{font-size:14px;color:var(--text2);font-weight:400;}
+
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:1.75rem;}
+.stat-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;position:relative;overflow:hidden;transition:box-shadow 0.2s;}
+.stat-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;}
+.stat-card.s-purple::after{background:linear-gradient(90deg,#7c3aed,#a78bfa);}
+.stat-card.s-green::after{background:linear-gradient(90deg,#1e7e34,#4ade80);}
+.stat-card.s-blue::after{background:linear-gradient(90deg,#1558a8,#60a5fa);}
+.stat-card.s-gray::after{background:linear-gradient(90deg,#64748b,#cbd5e1);}
+.stat-label{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px;}
+.stat-num{font-size:30px;font-weight:800;font-family:'Fraunces',serif;line-height:1;margin-bottom:3px;}
+.stat-num.n-purple{color:#7c3aed;}
+.stat-num.n-green{color:var(--green);}
+.stat-num.n-blue{color:var(--blue);}
+.stat-num.n-gray{color:#64748b;}
+.stat-note{font-size:12px;color:var(--text3);}
+
+/* ── MAIN ── */
+.main{max-width:1200px;margin:0 auto;padding:1.75rem 2rem 4rem;}
+
+/* ── TABS ── */
+.tabs-wrap{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:10px;}
+.tabs{display:flex;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:4px;gap:3px;box-shadow:var(--shadow);}
+.tab{font-size:13px;font-weight:500;padding:7px 20px;border-radius:var(--radius-sm);border:none;background:none;color:var(--text2);cursor:pointer;transition:all 0.15s;}
+.tab.active{background:var(--red);color:white;font-weight:600;box-shadow:0 2px 8px rgba(200,16,46,0.35);}
+.tab:hover:not(.active){background:var(--bg);color:var(--text);}
+.tab-hint{font-size:12px;color:var(--text3);}
+
+/* ── REP CARDS ── */
+.rep-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px;}
+.rep-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem;cursor:pointer;transition:all 0.18s;box-shadow:var(--shadow);position:relative;overflow:hidden;}
+.rep-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;}
+.rep-card.rc-blue::before{background:linear-gradient(90deg,#1558a8,#60a5fa);}
+.rep-card.rc-teal::before{background:linear-gradient(90deg,#0a7a62,#34d399);}
+.rep-card.rc-purple::before{background:linear-gradient(90deg,#4a35a0,#a78bfa);}
+.rep-card.rc-coral::before{background:linear-gradient(90deg,#b03518,#fb923c);}
+.rep-card:hover{border-color:var(--border2);box-shadow:var(--shadow-md);transform:translateY(-2px);}
+.rep-card.selected{border-color:var(--red);box-shadow:0 0 0 3px var(--red-glow),var(--shadow-md);}
+
+.rep-top{display:flex;align-items:center;gap:11px;margin-bottom:14px;}
+.avatar{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;}
+.av-blue{background:var(--blue-bg);color:var(--blue);}
+.av-teal{background:var(--teal-bg);color:var(--teal);}
+.av-purple{background:var(--purple-bg);color:var(--purple);}
+.av-coral{background:var(--coral-bg);color:var(--coral);}
+.rep-info{flex:1;min-width:0;}
+.rep-name{font-size:14px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.rep-role{font-size:11px;color:var(--text3);margin-top:2px;}
+.pbadge{font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;flex-shrink:0;letter-spacing:0.03em;}
+.pb-green{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border);}
+.pb-amber{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-border);}
+.pb-gray{background:var(--bg);color:#64748b;border:1px solid var(--border);}
+
+.kpi-row{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-top:1px solid var(--border);}
+.kpi-label{font-size:12px;color:var(--text2);}
+.kpi-right{display:flex;align-items:center;gap:9px;}
+.pbar{width:72px;height:5px;background:#f1f5f9;border-radius:3px;overflow:hidden;}
+.pfill{height:100%;border-radius:3px;}
+.pf-green{background:linear-gradient(90deg,#1e7e34,#4ade80);}
+.pf-blue{background:linear-gradient(90deg,#1558a8,#60a5fa);}
+.pf-amber{background:linear-gradient(90deg,#8a5200,#f59e0b);}
+.kpi-val{font-size:13px;font-weight:700;color:var(--text);}
+.kpi-ramp{font-size:12px;font-weight:700;color:var(--blue);}
+.kpi-na{font-size:12px;color:var(--text3);}
+.rep-foot{font-size:11px;color:var(--text3);margin-top:10px;padding-top:9px;border-top:1px solid var(--border);display:flex;align-items:flex-start;gap:6px;}
+.rdot{width:5px;height:5px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:3px;}
+
+/* ── DETAIL PANEL ── */
+.detail-panel{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.75rem;margin-top:14px;box-shadow:var(--shadow-md);}
+.detail-head{display:flex;align-items:center;gap:14px;margin-bottom:1.5rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border);}
+.detail-av{width:50px;height:50px;border-radius:14px;font-size:15px;font-weight:700;}
+.detail-name{font-size:17px;font-weight:700;color:var(--text);}
+.detail-meta{font-size:12px;color:var(--text3);margin-top:2px;}
+.detail-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.sec-label{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.09em;margin-bottom:10px;}
+.sec-block{margin-bottom:1.5rem;}
+
+.loop-item{display:flex;gap:9px;padding:6px 0;border-bottom:1px solid var(--bg);align-items:flex-start;}
+.loop-item:last-child{border-bottom:none;}
+.loop-dot{width:6px;height:6px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:5px;}
+.loop-text{font-size:12px;color:var(--text);line-height:1.5;}
+
+.kra-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.kra-item{padding:9px 12px;background:var(--bg);border-radius:var(--radius-sm);border-left:3px solid var(--red);}
+.kra-title{font-size:12px;font-weight:600;color:var(--text);margin-bottom:2px;}
+.kra-desc{font-size:11px;color:var(--text2);line-height:1.4;}
+
+.kr-row{display:flex;align-items:flex-start;gap:9px;padding:7px 0;border-bottom:1px solid var(--bg);}
+.kr-row:last-child{border-bottom:none;}
+.kr-num{font-size:10px;font-weight:700;color:var(--text3);min-width:30px;background:var(--bg);padding:2px 6px;border-radius:5px;text-align:center;margin-top:1px;}
+.kr-text{font-size:12px;color:var(--text);flex:1;line-height:1.5;}
+.kr-stat{font-size:10px;font-weight:600;padding:2px 9px;border-radius:20px;flex-shrink:0;margin-top:2px;}
+.ks-on{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border);}
+.ks-ramp{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-border);}
+.ks-pend{background:var(--bg);color:#64748b;border:1px solid var(--border);}
+
+/* ── OKR TAB ── */
+.okr-obj{font-size:13px;font-weight:600;color:var(--purple);padding:10px 14px;background:var(--purple-bg);border-radius:var(--radius-sm);margin-bottom:10px;border-left:3px solid var(--purple);}
+.rep-section{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem;margin-bottom:14px;box-shadow:var(--shadow);}
+.rep-sec-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+.rep-sec-name{font-size:15px;font-weight:700;color:var(--text);}
+
+/* ── AGENDA TAB ── */
+.agenda-wrap{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);}
+.agenda-head{padding:1.25rem 1.5rem;background:linear-gradient(135deg,var(--red),var(--red2));color:white;}
+.agenda-head-title{font-size:15px;font-weight:700;margin-bottom:2px;}
+.agenda-head-sub{font-size:12px;opacity:0.8;}
+.agenda-item{display:flex;border-bottom:1px solid var(--border);}
+.agenda-item:last-child{border-bottom:none;}
+.agenda-num{width:48px;display:flex;align-items:center;justify-content:center;background:var(--bg);border-right:1px solid var(--border);flex-shrink:0;}
+.agenda-num-inner{width:26px;height:26px;border-radius:50%;background:var(--red);color:white;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.agenda-time-col{padding:14px 16px;min-width:100px;border-right:1px solid var(--border);display:flex;align-items:center;}
+.agenda-time{font-size:11px;font-weight:600;color:var(--text3);}
+.agenda-body{padding:14px 18px;flex:1;}
+.agenda-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px;}
+.agenda-detail{font-size:12px;color:var(--text2);line-height:1.5;}
+.hint-box{margin:14px;padding:12px 16px;background:var(--amber-bg);border:1px solid var(--amber-border);border-radius:var(--radius-sm);font-size:12px;color:var(--amber);font-weight:500;}
+
+/* ── FOOTER ── */
+.footer{background:var(--white);border-top:1px solid var(--border);padding:1.25rem 2rem;text-align:center;}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-brand{font-size:13px;font-weight:700;color:var(--text);}
+.footer-brand span{color:var(--red);}
+.footer-note{font-size:12px;color:var(--text3);}
+
+@media(max-width:768px){
+  .hero-stats{grid-template-columns:1fr 1fr;}
+  .detail-cols{grid-template-columns:1fr;}
+  .kra-grid{grid-template-columns:1fr;}
+  .main,.hero{padding-left:1rem;padding-right:1rem;}
+  .hero-title{font-size:32px;}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-top">
+      <div class="hero-badge"><div class="hero-badge-dot"></div>Live Dashboard</div>
+      <div class="hero-right">
+        <span class="pill">Track3D · SDR Team</span>
+        <span class="pill">Manager: Sachit</span>
+        <span class="pill pill-amber">Cycle: 26 Mar – 25 Apr · Month 1</span>
+      </div>
+    </div>
+    <div class="hero-title"><span>Pulse</span> AI</div>
+    <div class="hero-subtitle">SDR team performance, pulse checks, OKRs & KRAs — all in one place</div>
+    <div class="hero-stats">
+      <div class="stat-card s-purple">
+        <div class="stat-label">Team size</div>
+        <div class="stat-num n-purple">4</div>
+        <div class="stat-note">3 SDRs · 1 MRA</div>
+      </div>
+      <div class="stat-card s-green">
+        <div class="stat-label">On track</div>
+        <div class="stat-num n-green">2</div>
+        <div class="stat-note">Swagatika · BG</div>
+      </div>
+      <div class="stat-card s-blue">
+        <div class="stat-label">Ramp period</div>
+        <div class="stat-num n-blue">1</div>
+        <div class="stat-note">Vik · Month 1</div>
+      </div>
+      <div class="stat-card s-gray">
+        <div class="stat-label">Pulse checks done</div>
+        <div class="stat-num n-gray">0</div>
+        <div class="stat-note">First round pending</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main class="main">
+  <div class="tabs-wrap">
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('overview',this)">Overview</button>
+      <button class="tab" onclick="switchTab('okrs',this)">OKRs &amp; KRAs</button>
+      <button class="tab" onclick="switchTab('agenda',this)">Meeting agenda</button>
+    </div>
+    <span class="tab-hint">Last updated: 21 Apr 2026</span>
+  </div>
+
+  <div id="tab-overview">
+    <div class="rep-grid" id="repGrid"></div>
+    <div id="detailPanel" style="display:none;"></div>
+  </div>
+  <div id="tab-okrs" style="display:none;"></div>
+  <div id="tab-agenda" style="display:none;"></div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><span>Pulse</span> AI — Track3D</div>
+    <div class="footer-note">Confidential · For internal use only · Sachit Basina Venkata</div>
+  </div>
+</footer>
+
+<script>
+const reps=[
+  {id:'ss',name:'Swagatika Senapati',initials:'SS',role:'SDR',joined:'March 2026',av:'av-blue',rc:'rc-blue',pulse:'green',plabel:'On track',sql:8,target:8,ramp:false,
+   loops:['Introduce Q2 OKRs and get buy-in','Understand onboarding experience','Set feedback cadence'],
+   obj:'Establish a consistent, high-quality outbound motion at Track3D',
+   krs:[{n:'KR1',t:'8 SQLs/month (April). Scaling to 10 from May.',s:'on',l:'Achieved'},{n:'KR2',t:'100% of SQLs logged in HubSpot by 25th each month.',s:'pend',l:'In progress'},{n:'KR3',t:'Min. 40 outreach touches/week (calls + email + LinkedIn).',s:'pend',l:'In progress'},{n:'KR4',t:'Test 2 outreach angles/month. Share learnings with Sachit.',s:'pend',l:'In progress'},{n:'KR5',t:'1 pulse check/month — come with 1 ask + 1 observation.',s:'pend',l:'Pending'}],
+   kras:[{t:'Pipeline generation',d:'Own top of funnel. Generate SQLs from outbound & events.'},{t:'Outreach quality & CRM',d:'Maintain clean HubSpot records. Log all touches.'},{t:'ICP & product knowledge',d:'Deep understanding of AEC ICP and Track3D positioning.'},{t:'Self-driven learning',d:'Iterate on messaging. Seek feedback proactively.'},{t:'Collaboration & synergy',d:'Share learnings with team. Flag blockers early.'}]},
+  {id:'bg',name:'Bighnajeet Pati',initials:'BG',role:'SDR',joined:'March 2026',av:'av-teal',rc:'rc-teal',pulse:'green',plabel:'On track',sql:8,target:8,ramp:false,
+   loops:['Introduce Q2 OKRs and get buy-in','Understand onboarding experience','Set feedback cadence'],
+   obj:'Establish a consistent, high-quality outbound motion at Track3D',
+   krs:[{n:'KR1',t:'8 SQLs/month (April). Scaling to 10 from May.',s:'on',l:'Achieved'},{n:'KR2',t:'100% of SQLs logged in HubSpot by 25th each month.',s:'pend',l:'In progress'},{n:'KR3',t:'Min. 40 outreach touches/week (calls + email + LinkedIn).',s:'pend',l:'In progress'},{n:'KR4',t:'Test 2 outreach angles/month. Share learnings with Sachit.',s:'pend',l:'In progress'},{n:'KR5',t:'1 pulse check/month — come with 1 ask + 1 observation.',s:'pend',l:'Pending'}],
+   kras:[{t:'Pipeline generation',d:'Own top of funnel. Generate SQLs from outbound & events.'},{t:'Outreach quality & CRM',d:'Maintain clean HubSpot records. Log all touches.'},{t:'ICP & product knowledge',d:'Deep understanding of AEC ICP and Track3D positioning.'},{t:'Self-driven learning',d:'Iterate on messaging. Seek feedback proactively.'},{t:'Collaboration & synergy',d:'Share learnings with team. Flag blockers early.'}]},
+  {id:'vk',name:'Vikramaye Katoch',initials:'VK',role:'SDR · Ramp',joined:'March 2026',av:'av-purple',rc:'rc-purple',pulse:'amber',plabel:'Ramp · Month 1',sql:4,target:null,ramp:true,
+   loops:['Qualitative ramp review due end of Month 1','Introduce OKRs for Month 2','Understand early blockers'],
+   obj:'Complete ramp successfully and build outbound foundation',
+   krs:[{n:'KR1',t:'Month 1 (ramp): no SQL target. Events list outreach + meetings.',s:'ramp',l:'Ramp active'},{n:'KR2',t:'From Month 2: 8 SQLs/month. Scaling to 10 from May.',s:'pend',l:'Starts May'},{n:'KR3',t:'100% of SQLs logged in HubSpot by 25th each month.',s:'pend',l:'From Month 2'},{n:'KR4',t:'Min. 40 outreach touches/week from Month 2 onwards.',s:'pend',l:'From Month 2'},{n:'KR5',t:'1 pulse check/month — come with 1 ask + 1 observation.',s:'pend',l:'Pending'}],
+   kras:[{t:'Ramp completion',d:'Work events list systematically. Book discovery meetings.'},{t:'Pipeline generation',d:'Own top of funnel from Month 2. Generate SQLs via outbound.'},{t:'CRM discipline',d:'Log all outreach in HubSpot from day one.'},{t:'ICP & product knowledge',d:'Deep understanding of AEC ICP and Track3D positioning.'},{t:'Collaboration & synergy',d:'Learn from Swagatika and BG. Flag blockers early.'}]},
+  {id:'ps',name:'Pooja Sharma',initials:'PS',role:'MRA',joined:'March 2026',av:'av-coral',rc:'rc-coral',pulse:'gray',plabel:'KRAs pending',sql:null,target:null,ramp:false,
+   loops:['Define KRAs with Sachit','First pulse check to be scheduled separately'],
+   obj:'KRA framework to be defined — no KPI structure active',
+   krs:[{n:'KR1',t:'KRAs to be defined by Sachit. No KPI framework active currently.',s:'pend',l:'Coming soon'}],
+   kras:[{t:'To be defined',d:'KRA framework for MRA role to be built with Sachit.'}]}
+];
+
+const agenda=[
+  {title:'Open & set the tone',detail:'This is a safe space. No gotchas. Share your intent as a manager.',time:'0:00 – 2:00'},
+  {title:'Journey so far',detail:'How has Month 1 felt? What surprised you? Is the role what you expected?',time:'2:00 – 8:00'},
+  {title:'KRAs, OKRs & KPIs',detail:'Walk through the framework. Get their buy-in. Surface concerns about targets.',time:'8:00 – 14:00'},
+  {title:'Synergies',detail:'Do they feel supported? What would more support look like? What can you do better?',time:'14:00 – 20:00'},
+  {title:'Feedback exchange',detail:'Give one positive + one developmental. Ask: what feedback do you have for me?',time:'20:00 – 26:00'},
+  {title:'Next steps & close',detail:'Summarize 2–3 things you heard. Agree on mutual commitments. Confirm cadence.',time:'26:00 – 30:00'}
+];
+
+let sel=null;
+
+function pct(r){if(r.ramp)return 50;if(!r.target)return 0;return Math.min(100,Math.round((r.sql/r.target)*100));}
+function pfill(p){if(p>=100)return 'pf-green';if(p>=50)return 'pf-amber';return 'pf-blue';}
+
+function renderGrid(){
+  const g=document.getElementById('repGrid');
+  g.innerHTML=reps.map(r=>{
+    const p=pct(r);
+    const sqlLine=r.ramp
+      ?`<div class="kpi-row"><span class="kpi-label">SQLs this month</span><span class="kpi-ramp">4 · ramp period</span></div>`
+      :r.target===null
+      ?`<div class="kpi-row"><span class="kpi-label">KPIs</span><span class="kpi-na">KRAs only</span></div>`
+      :`<div class="kpi-row"><span class="kpi-label">SQLs · target 8</span><div class="kpi-right"><div class="pbar"><div class="pfill ${pfill(p)}" style="width:${p}%"></div></div><span class="kpi-val">${r.sql}/${r.target}</span></div></div>`;
+    return`<div class="rep-card ${r.rc}${sel===r.id?' selected':''}" onclick="selectRep('${r.id}')">
+      <div class="rep-top">
+        <div class="avatar ${r.av}">${r.initials}</div>
+        <div class="rep-info"><div class="rep-name">${r.name}</div><div class="rep-role">${r.role} · ${r.joined}</div></div>
+        <span class="pbadge pb-${r.pulse==='gray'?'gray':r.pulse==='amber'?'amber':'green'}">${r.plabel}</span>
+      </div>
+      ${sqlLine}
+      <div class="rep-foot"><div class="rdot"></div>${r.loops[0]}</div>
+    </div>`;
+  }).join('');
+}
+
+function selectRep(id){
+  if(sel===id){sel=null;document.getElementById('detailPanel').style.display='none';renderGrid();return;}
+  sel=id;renderGrid();
+  const r=reps.find(x=>x.id===id);
+  const dp=document.getElementById('detailPanel');
+  dp.style.display='block';
+  dp.innerHTML=`
+    <div class="detail-head">
+      <div class="avatar detail-av ${r.av}">${r.initials}</div>
+      <div><div class="detail-name">${r.name}</div><div class="detail-meta">${r.role} · Joined ${r.joined}</div></div>
+      <span class="pbadge pb-${r.pulse==='gray'?'gray':r.pulse==='amber'?'amber':'green'}" style="margin-left:auto;">${r.plabel}</span>
+    </div>
+    <div class="detail-cols">
+      <div>
+        <div class="sec-block">
+          <div class="sec-label">Open loops</div>
+          ${r.loops.map(l=>`<div class="loop-item"><div class="loop-dot"></div><div class="loop-text">${l}</div></div>`).join('')}
+        </div>
+        <div>
+          <div class="sec-label">KRAs</div>
+          <div class="kra-grid">${r.kras.map(k=>`<div class="kra-item"><div class="kra-title">${k.t}</div><div class="kra-desc">${k.d}</div></div>`).join('')}</div>
+        </div>
+      </div>
+      <div>
+        <div class="sec-label">Q2 OKR — key results</div>
+        ${r.krs.map(k=>`<div class="kr-row"><span class="kr-num">${k.n}</span><span class="kr-text">${k.t}</span><span class="kr-stat ks-${k.s==='on'?'on':k.s==='ramp'?'ramp':'pend'}">${k.l}</span></div>`).join('')}
+      </div>
+    </div>`;
+  setTimeout(()=>dp.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
+}
+
+function renderOKRs(){
+  document.getElementById('tab-okrs').innerHTML=reps.map(r=>`
+    <div class="rep-section">
+      <div class="rep-sec-header">
+        <div class="avatar ${r.av}" style="width:36px;height:36px;font-size:12px;">${r.initials}</div>
+        <div class="rep-sec-name">${r.name}</div>
+        <span class="pbadge pb-${r.pulse==='gray'?'gray':r.pulse==='amber'?'amber':'green'}">${r.role}</span>
+      </div>
+      <div class="okr-obj">${r.obj}</div>
+      ${r.krs.map(k=>`<div class="kr-row"><span class="kr-num">${k.n}</span><span class="kr-text">${k.t}</span><span class="kr-stat ks-${k.s==='on'?'on':k.s==='ramp'?'ramp':'pend'}">${k.l}</span></div>`).join('')}
+      <div style="margin-top:14px;"><div class="sec-label" style="margin-bottom:8px;">KRAs</div>
+      <div class="kra-grid">${r.kras.map(k=>`<div class="kra-item"><div class="kra-title">${k.t}</div><div class="kra-desc">${k.d}</div></div>`).join('')}</div></div>
+    </div>`).join('');
+}
+
+function renderAgenda(){
+  document.getElementById('tab-agenda').innerHTML=`
+    <div class="agenda-wrap">
+      <div class="agenda-head">
+        <div class="agenda-head-title">30-minute pulse check #1</div>
+        <div class="agenda-head-sub">Template for all three SDRs · Use this for every first meeting</div>
+      </div>
+      ${agenda.map((a,i)=>`<div class="agenda-item">
+        <div class="agenda-num"><div class="agenda-num-inner">${i+1}</div></div>
+        <div class="agenda-time-col"><div class="agenda-time">${a.time}</div></div>
+        <div class="agenda-body"><div class="agenda-title">${a.title}</div><div class="agenda-detail">${a.detail}</div></div>
+      </div>`).join('')}
+    </div>
+    <div class="hint-box">After each meeting, paste the transcript into Pulse AI to get the rep's pulse score, manager takeaways, and open loops automatically.</div>`;
+}
+
+function switchTab(tab,btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  ['overview','okrs','agenda'].forEach(t=>document.getElementById('tab-'+t).style.display='none');
+  document.getElementById('tab-'+tab).style.display='block';
+  if(tab==='okrs')renderOKRs();
+  if(tab==='agenda')renderAgenda();
+}
+
+renderGrid();
+</script>
+</body>
+</html>

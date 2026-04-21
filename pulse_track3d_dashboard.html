@@ -1,0 +1,359 @@
+
+<h2 class="sr-only">Pulse — Track3D SDR Team Dashboard showing OKRs, KPIs, KRAs and pulse status for each team member</h2>
+
+<style>
+  :root {
+    --pulse-green: #3B6D11;
+    --pulse-green-bg: #EAF3DE;
+    --pulse-yellow: #854F0B;
+    --pulse-yellow-bg: #FAEEDA;
+    --pulse-red: #A32D2D;
+    --pulse-red-bg: #FCEBEB;
+    --pulse-gray: #5F5E5A;
+    --pulse-gray-bg: #F1EFE8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .dash { padding: 1.5rem 0; font-family: var(--font-sans); }
+
+  .dash-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 8px; }
+  .dash-title { font-size: 18px; font-weight: 500; color: var(--color-text-primary); }
+  .dash-sub { font-size: 13px; color: var(--color-text-secondary); margin-top: 2px; }
+  .cycle-badge { font-size: 11px; padding: 4px 10px; border-radius: var(--border-radius-md); background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); color: var(--color-text-secondary); }
+
+  .tabs { display: flex; gap: 4px; margin-bottom: 1.25rem; border-bottom: 0.5px solid var(--color-border-tertiary); padding-bottom: 0; }
+  .tab { font-size: 13px; padding: 6px 14px; cursor: pointer; border: none; background: none; color: var(--color-text-secondary); border-bottom: 2px solid transparent; margin-bottom: -0.5px; transition: color 0.15s; }
+  .tab.active { color: var(--color-text-primary); border-bottom-color: var(--color-text-primary); font-weight: 500; }
+  .tab:hover:not(.active) { color: var(--color-text-primary); }
+
+  .overview-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+
+  .rep-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; cursor: pointer; transition: border-color 0.15s; }
+  .rep-card:hover { border-color: var(--color-border-secondary); }
+  .rep-card.selected { border: 1.5px solid var(--color-border-primary); }
+
+  .rep-top { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .avatar { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500; flex-shrink: 0; }
+  .avatar-blue { background: #E6F1FB; color: #0C447C; }
+  .avatar-teal { background: #E1F5EE; color: #085041; }
+  .avatar-purple { background: #EEEDFE; color: #3C3489; }
+  .avatar-coral { background: #FAECE7; color: #712B13; }
+
+  .rep-name { font-size: 14px; font-weight: 500; color: var(--color-text-primary); }
+  .rep-role { font-size: 12px; color: var(--color-text-secondary); margin-top: 1px; }
+
+  .pulse-badge { margin-left: auto; font-size: 11px; padding: 3px 9px; border-radius: var(--border-radius-md); font-weight: 500; flex-shrink: 0; }
+  .pulse-green { background: var(--pulse-green-bg); color: var(--pulse-green); }
+  .pulse-yellow { background: var(--pulse-yellow-bg); color: var(--pulse-yellow); }
+  .pulse-gray { background: var(--pulse-gray-bg); color: var(--pulse-gray); }
+
+  .kpi-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-top: 0.5px solid var(--color-border-tertiary); }
+  .kpi-label { font-size: 12px; color: var(--color-text-secondary); }
+  .kpi-val { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
+  .kpi-progress { display: flex; align-items: center; gap: 8px; }
+  .progress-bar { width: 80px; height: 4px; background: var(--color-background-secondary); border-radius: 2px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 2px; transition: width 0.4s; }
+  .fill-green { background: #639922; }
+  .fill-yellow { background: #BA7517; }
+  .fill-half { background: #378ADD; }
+
+  .last-met { font-size: 11px; color: var(--color-text-tertiary); margin-top: 8px; }
+
+  .detail-panel { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1.25rem; margin-top: 12px; }
+  .detail-hidden { display: none; }
+
+  .detail-header { display: flex; align-items: center; gap: 10px; margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .detail-name { font-size: 16px; font-weight: 500; color: var(--color-text-primary); }
+  .detail-meta { font-size: 12px; color: var(--color-text-secondary); }
+
+  .section-label { font-size: 11px; font-weight: 500; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+
+  .okr-block { margin-bottom: 1.25rem; }
+  .okr-objective { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 8px; padding: 8px 10px; background: var(--color-background-secondary); border-radius: var(--border-radius-md); }
+
+  .kr-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .kr-row:last-child { border-bottom: none; }
+  .kr-num { font-size: 11px; color: var(--color-text-tertiary); min-width: 28px; }
+  .kr-text { font-size: 12px; color: var(--color-text-primary); flex: 1; line-height: 1.5; }
+  .kr-status { font-size: 11px; padding: 2px 7px; border-radius: var(--border-radius-md); flex-shrink: 0; }
+  .status-on { background: #EAF3DE; color: #3B6D11; }
+  .status-ramp { background: #E6F1FB; color: #185FA5; }
+  .status-pending { background: #F1EFE8; color: #5F5E5A; }
+
+  .kra-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .kra-item { padding: 8px 10px; background: var(--color-background-secondary); border-radius: var(--border-radius-md); border-left: 2px solid var(--color-border-secondary); }
+  .kra-title { font-size: 12px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 2px; }
+  .kra-desc { font-size: 11px; color: var(--color-text-secondary); line-height: 1.4; }
+
+  .agenda-list { list-style: none; }
+  .agenda-item { display: flex; gap: 10px; padding: 8px 0; border-bottom: 0.5px solid var(--color-border-tertiary); align-items: flex-start; }
+  .agenda-item:last-child { border-bottom: none; }
+  .agenda-time { font-size: 11px; color: var(--color-text-tertiary); min-width: 52px; flex-shrink: 0; margin-top: 1px; }
+  .agenda-text { font-size: 12px; color: var(--color-text-primary); line-height: 1.5; }
+
+  .section-gap { margin-bottom: 1.25rem; }
+
+  .detail-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .pulse-btn { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; padding: 6px 12px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-secondary); background: none; cursor: pointer; color: var(--color-text-secondary); margin-top: 12px; transition: background 0.12s; }
+  .pulse-btn:hover { background: var(--color-background-secondary); color: var(--color-text-primary); }
+
+  .open-loops { }
+  .loop-item { display: flex; gap: 8px; align-items: flex-start; padding: 6px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .loop-item:last-child { border-bottom: none; }
+  .loop-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--color-border-primary); flex-shrink: 0; margin-top: 5px; }
+  .loop-text { font-size: 12px; color: var(--color-text-primary); line-height: 1.5; }
+
+  .no-meeting { font-size: 12px; color: var(--color-text-secondary); font-style: italic; }
+
+  @media (max-width: 500px) {
+    .kra-grid { grid-template-columns: 1fr; }
+    .detail-cols { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="dash">
+  <div class="dash-header">
+    <div>
+      <div class="dash-title">Pulse — Track3D SDR Team</div>
+      <div class="dash-sub">Manager: Sachit · April 2026 · Cycle: 26 Mar – 25 Apr</div>
+    </div>
+    <div class="cycle-badge">Month 1 · Ramp Active</div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('overview')">Overview</button>
+    <button class="tab" onclick="switchTab('okrs')">OKRs & KRAs</button>
+    <button class="tab" onclick="switchTab('agenda')">Meeting agenda</button>
+  </div>
+
+  <div id="tab-overview">
+    <div class="overview-grid" id="repGrid"></div>
+    <div class="detail-panel detail-hidden" id="detailPanel"></div>
+  </div>
+
+  <div id="tab-okrs" style="display:none;">
+    <div id="okrContent"></div>
+  </div>
+
+  <div id="tab-agenda" style="display:none;">
+    <div id="agendaContent"></div>
+  </div>
+</div>
+
+<script>
+const reps = [
+  {
+    id: 'ss', name: 'Swagatika Senapati', initials: 'SS', role: 'SDR', joined: 'March 2026',
+    avatar: 'avatar-blue', pulse: 'green', pulseLabel: 'On track',
+    sqlCurrent: 8, sqlTarget: 8, ramp: false,
+    lastMeeting: null, nextMeeting: 'First pulse check pending',
+    openLoops: ['Introduce Q2 OKRs and get buy-in', 'Understand onboarding experience', 'Set feedback cadence'],
+    objective: 'Establish a consistent, high-quality outbound motion at Track3D',
+    krs: [
+      { num: 'KR1', text: '8 SQLs per month (April). Scaling to 10 from May.', status: 'on', label: 'Achieved' },
+      { num: 'KR2', text: '100% of SQLs logged in HubSpot by the 25th each month.', status: 'pending', label: 'In progress' },
+      { num: 'KR3', text: 'Minimum 40 outreach touches per week (calls + email + LinkedIn).', status: 'pending', label: 'In progress' },
+      { num: 'KR4', text: 'Test at least 2 outreach angles per month and share learnings.', status: 'pending', label: 'In progress' },
+      { num: 'KR5', text: '1 pulse check per month with Sachit — come with 1 ask + 1 observation.', status: 'pending', label: 'Pending' },
+    ],
+    kras: [
+      { title: 'Pipeline generation', desc: 'Own top of funnel. Generate SQLs from outbound & events.' },
+      { title: 'Outreach quality & CRM', desc: 'Maintain clean HubSpot records. Log all touches.' },
+      { title: 'ICP & product knowledge', desc: 'Deep understanding of AEC ICP and Track3D positioning.' },
+      { title: 'Self-driven learning', desc: 'Iterate on messaging. Seek feedback proactively.' },
+      { title: 'Collaboration & synergy', desc: 'Share learnings with team. Flag blockers early.' },
+    ]
+  },
+  {
+    id: 'bg', name: 'Bighnajeet Pati', initials: 'BG', role: 'SDR', joined: 'March 2026',
+    avatar: 'avatar-teal', pulse: 'green', pulseLabel: 'On track',
+    sqlCurrent: 8, sqlTarget: 8, ramp: false,
+    lastMeeting: null, nextMeeting: 'First pulse check pending',
+    openLoops: ['Introduce Q2 OKRs and get buy-in', 'Understand onboarding experience', 'Set feedback cadence'],
+    objective: 'Establish a consistent, high-quality outbound motion at Track3D',
+    krs: [
+      { num: 'KR1', text: '8 SQLs per month (April). Scaling to 10 from May.', status: 'on', label: 'Achieved' },
+      { num: 'KR2', text: '100% of SQLs logged in HubSpot by the 25th each month.', status: 'pending', label: 'In progress' },
+      { num: 'KR3', text: 'Minimum 40 outreach touches per week (calls + email + LinkedIn).', status: 'pending', label: 'In progress' },
+      { num: 'KR4', text: 'Test at least 2 outreach angles per month and share learnings.', status: 'pending', label: 'In progress' },
+      { num: 'KR5', text: '1 pulse check per month with Sachit — come with 1 ask + 1 observation.', status: 'pending', label: 'Pending' },
+    ],
+    kras: [
+      { title: 'Pipeline generation', desc: 'Own top of funnel. Generate SQLs from outbound & events.' },
+      { title: 'Outreach quality & CRM', desc: 'Maintain clean HubSpot records. Log all touches.' },
+      { title: 'ICP & product knowledge', desc: 'Deep understanding of AEC ICP and Track3D positioning.' },
+      { title: 'Self-driven learning', desc: 'Iterate on messaging. Seek feedback proactively.' },
+      { title: 'Collaboration & synergy', desc: 'Share learnings with team. Flag blockers early.' },
+    ]
+  },
+  {
+    id: 'vk', name: 'Vikramaye Katoch', initials: 'VK', role: 'SDR · Ramp period', joined: 'March 2026',
+    avatar: 'avatar-purple', pulse: 'yellow', pulseLabel: 'Ramp · Month 1',
+    sqlCurrent: 4, sqlTarget: null, ramp: true,
+    lastMeeting: null, nextMeeting: 'First pulse check pending',
+    openLoops: ['Qualitative ramp review due end of Month 1', 'Introduce Q2 OKRs for Month 2', 'Understand early blockers'],
+    objective: 'Complete ramp successfully and build outbound foundation',
+    krs: [
+      { num: 'KR1', text: 'Month 1 (ramp): no SQL target. Events list outreach + meeting bookings.', status: 'ramp', label: 'Ramp active' },
+      { num: 'KR2', text: 'From Month 2: 8 SQLs per month. Scaling to 10 from May.', status: 'pending', label: 'Starts May' },
+      { num: 'KR3', text: '100% of SQLs logged in HubSpot by the 25th each month.', status: 'pending', label: 'From Month 2' },
+      { num: 'KR4', text: 'Minimum 40 outreach touches per week from Month 2 onwards.', status: 'pending', label: 'From Month 2' },
+      { num: 'KR5', text: '1 pulse check per month with Sachit — come with 1 ask + 1 observation.', status: 'pending', label: 'Pending' },
+    ],
+    kras: [
+      { title: 'Ramp completion', desc: 'Work events list systematically. Book discovery meetings.' },
+      { title: 'Pipeline generation', desc: 'Own top of funnel from Month 2. Generate SQLs via outbound.' },
+      { title: 'CRM discipline', desc: 'Log all outreach in HubSpot from day one.' },
+      { title: 'ICP & product knowledge', desc: 'Deep understanding of AEC ICP and Track3D positioning.' },
+      { title: 'Collaboration & synergy', desc: 'Learn from Swagatika and BG. Flag blockers early.' },
+    ]
+  },
+  {
+    id: 'ps', name: 'Pooja Sharma', initials: 'PS', role: 'MRA', joined: 'March 2026',
+    avatar: 'avatar-coral', pulse: 'gray', pulseLabel: 'KRAs only',
+    sqlCurrent: null, sqlTarget: null, ramp: false,
+    lastMeeting: null, nextMeeting: 'To be scheduled',
+    openLoops: ['Define KRAs with Sachit', 'First pulse check to be scheduled separately'],
+    objective: 'To be defined — KRAs framework in progress',
+    krs: [
+      { num: 'KR1', text: 'KRAs to be defined by Sachit. No KPI framework active currently.', status: 'pending', label: 'Coming soon' },
+    ],
+    kras: [
+      { title: 'To be defined', desc: 'KRA framework for MRA role to be built with Sachit.' },
+    ]
+  }
+];
+
+const agendaItems = [
+  { time: '0:00 – 2:00', title: 'Open & set the tone', detail: 'This is a safe space. No gotchas. Share your intent as a manager.' },
+  { time: '2:00 – 8:00', title: 'Journey so far', detail: 'How has Month 1 felt? What surprised you? Is the role what you expected?' },
+  { time: '8:00 – 14:00', title: 'KRAs, OKRs & KPIs', detail: 'Walk through the framework. Get their buy-in. Surface any concerns about targets.' },
+  { time: '14:00 – 20:00', title: 'Synergies', detail: 'Do they feel supported? What would more support look like? What can you do better?' },
+  { time: '20:00 – 26:00', title: 'Feedback exchange', detail: 'You give one positive + one developmental. Ask: what feedback do you have for me?' },
+  { time: '26:00 – 30:00', title: 'Next steps & close', detail: 'Summarize 2–3 things you heard. Agree on mutual commitments. Confirm cadence.' },
+];
+
+let selectedRep = null;
+
+function getProgressWidth(rep) {
+  if (rep.ramp) return 50;
+  if (rep.sqlTarget === null) return 0;
+  return Math.min(100, Math.round((rep.sqlCurrent / rep.sqlTarget) * 100));
+}
+
+function getFillClass(pct) {
+  if (pct >= 100) return 'fill-green';
+  if (pct >= 50) return 'fill-yellow';
+  return 'fill-half';
+}
+
+function renderOverview() {
+  const grid = document.getElementById('repGrid');
+  grid.innerHTML = reps.map(r => {
+    const pct = getProgressWidth(r);
+    const fillClass = getFillClass(pct);
+    const sqlLine = r.ramp
+      ? `<div class="kpi-row"><span class="kpi-label">SQLs this month</span><span class="kpi-val" style="color:#185FA5;">4 · ramp period</span></div>`
+      : r.sqlTarget === null
+      ? `<div class="kpi-row"><span class="kpi-label">KPIs</span><span class="kpi-val" style="color:var(--color-text-secondary);">KRAs only</span></div>`
+      : `<div class="kpi-row"><span class="kpi-label">SQLs · target 8</span><div class="kpi-progress"><div class="progress-bar"><div class="progress-fill ${fillClass}" style="width:${pct}%"></div></div><span class="kpi-val">${r.sqlCurrent}/${r.sqlTarget}</span></div></div>`;
+    return `<div class="rep-card${selectedRep === r.id ? ' selected' : ''}" onclick="selectRep('${r.id}')">
+      <div class="rep-top">
+        <div class="avatar ${r.avatar}">${r.initials}</div>
+        <div><div class="rep-name">${r.name}</div><div class="rep-role">${r.role} · Joined ${r.joined}</div></div>
+        <span class="pulse-badge pulse-${r.pulse === 'gray' ? 'gray' : r.pulse}">${r.pulseLabel}</span>
+      </div>
+      ${sqlLine}
+      <div class="last-met">${r.lastMeeting ? 'Last met: ' + r.lastMeeting : r.nextMeeting}</div>
+    </div>`;
+  }).join('');
+}
+
+function selectRep(id) {
+  if (selectedRep === id) { selectedRep = null; document.getElementById('detailPanel').classList.add('detail-hidden'); renderOverview(); return; }
+  selectedRep = id;
+  renderOverview();
+  const r = reps.find(x => x.id === id);
+  const panel = document.getElementById('detailPanel');
+  panel.classList.remove('detail-hidden');
+  panel.innerHTML = `
+    <div class="detail-header">
+      <div class="avatar ${r.avatar}" style="width:42px;height:42px;font-size:14px;">${r.initials}</div>
+      <div><div class="detail-name">${r.name}</div><div class="detail-meta">${r.role} · Joined ${r.joined}</div></div>
+      <span class="pulse-badge pulse-${r.pulse === 'gray' ? 'gray' : r.pulse}" style="margin-left:auto;">${r.pulseLabel}</span>
+    </div>
+    <div class="detail-cols">
+      <div>
+        <div class="section-gap">
+          <div class="section-label">Open loops</div>
+          <div class="open-loops">${r.openLoops.map(l => `<div class="loop-item"><div class="loop-dot"></div><div class="loop-text">${l}</div></div>`).join('')}</div>
+        </div>
+        <div>
+          <div class="section-label">KRAs</div>
+          <div class="kra-grid">${r.kras.map(k => `<div class="kra-item"><div class="kra-title">${k.title}</div><div class="kra-desc">${k.desc}</div></div>`).join('')}</div>
+        </div>
+      </div>
+      <div>
+        <div class="section-label">Q2 OKR — key results</div>
+        <div>${r.krs.map(k => `<div class="kr-row"><span class="kr-num">${k.num}</span><span class="kr-text">${k.text}</span><span class="kr-status status-${k.status === 'on' ? 'on' : k.status === 'ramp' ? 'ramp' : 'pending'}">${k.label}</span></div>`).join('')}</div>
+      </div>
+    </div>
+    <button class="pulse-btn" onclick="sendPrompt('Prep me for my first pulse check with ${r.name}')">Prep me for ${r.name.split(' ')[0]}'s meeting ↗</button>
+  `;
+  setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+}
+
+function renderOKRs() {
+  const el = document.getElementById('okrContent');
+  el.innerHTML = reps.map(r => `
+    <div style="margin-bottom:1.5rem;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+        <div class="avatar ${r.avatar}" style="width:32px;height:32px;font-size:12px;">${r.initials}</div>
+        <div style="font-size:14px;font-weight:500;color:var(--color-text-primary);">${r.name}</div>
+        <span class="pulse-badge pulse-${r.pulse === 'gray' ? 'gray' : r.pulse}">${r.role}</span>
+      </div>
+      <div class="okr-block">
+        <div class="okr-objective">${r.objective}</div>
+        ${r.krs.map(k => `<div class="kr-row"><span class="kr-num">${k.num}</span><span class="kr-text">${k.text}</span><span class="kr-status status-${k.status === 'on' ? 'on' : k.status === 'ramp' ? 'ramp' : 'pending'}">${k.label}</span></div>`).join('')}
+      </div>
+      <div style="margin-top:10px;">
+        <div class="section-label" style="margin-bottom:6px;">KRAs</div>
+        <div class="kra-grid">${r.kras.map(k => `<div class="kra-item"><div class="kra-title">${k.title}</div><div class="kra-desc">${k.desc}</div></div>`).join('')}</div>
+      </div>
+    </div>
+  `).join('<hr style="border:none;border-top:0.5px solid var(--color-border-tertiary);margin-bottom:1.5rem;">');
+}
+
+function renderAgenda() {
+  const el = document.getElementById('agendaContent');
+  el.innerHTML = `
+    <div style="margin-bottom:1rem;">
+      <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:1rem;">30-minute pulse check #1 · Template for all three SDRs</div>
+      <ul class="agenda-list">
+        ${agendaItems.map(a => `<li class="agenda-item">
+          <span class="agenda-time">${a.time}</span>
+          <div><div style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:2px;">${a.title}</div><div class="agenda-text">${a.detail}</div></div>
+        </li>`).join('')}
+      </ul>
+    </div>
+    <div style="margin-top:1rem;padding:10px 12px;background:var(--color-background-secondary);border-radius:var(--border-radius-md);font-size:12px;color:var(--color-text-secondary);">
+      After the meeting, paste the transcript into Pulse AI to get the rep's pulse score, manager takeaways, and open loops automatically.
+    </div>
+    <button class="pulse-btn" onclick="sendPrompt('Generate a pre-meeting prep brief for my first SDR pulse checks this week')">Generate pre-meeting brief for all reps ↗</button>
+  `;
+}
+
+function switchTab(tab) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('tab-overview').style.display = tab === 'overview' ? '' : 'none';
+  document.getElementById('tab-okrs').style.display = tab === 'okrs' ? '' : 'none';
+  document.getElementById('tab-agenda').style.display = tab === 'agenda' ? '' : 'none';
+  if (tab === 'okrs') renderOKRs();
+  if (tab === 'agenda') renderAgenda();
+}
+
+renderOverview();
+</script>

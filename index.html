@@ -371,17 +371,114 @@ function renderOKRs(){
     </div>`).join('');
 }
 
+const nextAgendas={
+  ss:{
+    name:'Swagatika Senapati',role:'SDR · Session 2',score:'9/10',sqls:'10/8',
+    focus:'Leadership path + time zone resolution',
+    av:'avb',hdr:'background:linear-gradient(135deg,#1558a8,#60a5fa)',
+    context:'She hit 10/8 SQLs and rated 9/10. The time zone issue was left unresolved in Session 1. She asked for a concrete leadership path — she came to Track3D specifically because of you. Deliver, don\'t just vision.',
+    items:[
+      {t:'0:00–3:00',title:'Open with the time zone answer',detail:'You owe her a concrete resolution. Lead with it — don\'t wait for her to raise it.',q:'"I looked into the calling hours situation you mentioned. Here\'s what we can do..."',badge:'Must open here',bc:'#fee2e2',btc:'#991b1b'},
+      {t:'3:00–8:00',title:'SQL performance — above target',detail:'She\'s at 10/8. Acknowledge it specifically. Ask what\'s working so she can articulate and repeat it.',q:'"You hit 10 SQLs — what changed from week 1 to week 3? What\'s clicking?"',badge:'',bc:'',btc:''},
+      {t:'8:00–14:00',title:'Leadership path — first concrete step',detail:'Don\'t give more vision — give her one specific action. Ask her to lead new hire onboarding or own the AI agent project.',q:'"Here is the first real leadership task I want you to own this month."',badge:'Deliver this',bc:'#fee2e2',btc:'#991b1b'},
+      {t:'14:00–20:00',title:'Nooks coaching structure',detail:'She asked you not to drop into live calls. Agree on a structured Nooks debrief format together.',q:'"How do you want our call coaching to work? Let\'s set a format you\'re comfortable with."',badge:'Agree a format',bc:'#fff8e6',btc:'#854F0B'},
+      {t:'20:00–26:00',title:'Channel ideas brainstorm',detail:'You asked the team to bring top-of-funnel ideas. Ask her what she\'s been thinking beyond GPT account research.',q:'"What\'s one channel idea you think we haven\'t tried yet? Even rough."',badge:'',bc:'',btc:''},
+      {t:'26:00–30:00',title:'Pulse re-score & close',detail:'Ask for a re-score. Did the time zone answer move the needle? Agree on one mutual commitment each.',q:'"Last time you were a 9. Where are you now? What would make it a 10?"',badge:'',bc:'',btc:''},
+    ]
+  },
+  bg:{
+    name:'Bighnajeet Pati',role:'SDR · Session 2',score:'9/10',sqls:'8/8',
+    focus:'Junior hire + concrete management first step',
+    av:'avt',hdr:'background:linear-gradient(135deg,#0a7a62,#34d399)',
+    context:'He hit 8/8 and rated 9/10. He heard the junior hire commitment clearly — he\'s been waiting on it. Torn between AE and Manager path. Needs a tangible first step, not more theory.',
+    items:[
+      {t:'0:00–3:00',title:'Open with the junior hire update',detail:'He\'s been tracking this since you mentioned it. Give a concrete timeline — when is the hire joining and what will his role be.',q:'"The new hire is joining [month]. Here\'s specifically what I want you to own in their first 2 weeks."',badge:'He is tracking this',bc:'#fee2e2',btc:'#991b1b'},
+      {t:'3:00–8:00',title:'SQL performance review',detail:'On target at 8/8. Ask him what worked and what felt like a grind — he\'s analytical and will have thought about it.',q:'"You hit 8 clean. Which SQLs came easiest and which felt forced? What does that tell you?"',badge:'',bc:'',btc:''},
+      {t:'8:00–14:00',title:'AE vs Manager — push for a lean',detail:'You said take your time in Session 1. Now nudge him. He doesn\'t need a final answer but should start forming a lean.',q:'"After a month of watching how things work here — are you leaning anywhere yet, even slightly?"',badge:'Start the clock',bc:'#fff8e6',btc:'#854F0B'},
+      {t:'14:00–16:00',title:'Kiran connect — confirm the date',detail:'You committed to a monthly Kiran session. BG values leadership exposure. Lock in a date.',q:'"Kiran connect is happening in May. I want you to come with one question for him."',badge:'Confirm date',bc:'#fff8e6',btc:'#854F0B'},
+      {t:'16:00–22:00',title:'Channel ideas brainstorm',detail:'You asked the team to maintain a sheet of top-of-funnel ideas. Ask for one idea right now.',q:'"Tell me one channel or signal source you think we haven\'t explored. Even a rough idea."',badge:'',bc:'',btc:''},
+      {t:'22:00–27:00',title:'Feedback exchange',detail:'BG had no negative feedback in Session 1. He\'s more settled now — there may be more. Ask again with more specificity.',q:'"A month in and hitting numbers — is there anything about how we work together you\'d want to change?"',badge:'',bc:'',btc:''},
+      {t:'27:00–30:00',title:'Pulse re-score & close',detail:'Re-score and agree on one commitment each.',q:'"You were a 9 last time. Still a 9, or has anything shifted?"',badge:'',bc:'',btc:''},
+    ]
+  },
+  vk:{
+    name:'Vikramaye Katoch',role:'SDR · Session 2 · Month 2 target active',score:'10/10',sqls:'6 (ramp)',
+    focus:'GC conversations + cross-functional exposure',
+    av:'avp',hdr:'background:linear-gradient(135deg,#4a35a0,#a78bfa)',
+    context:'He rated 10/10 — the only perfect score. 6 SQLs in ramp mostly from TPs. Month 2 target of 8 SQLs is now live. GC conversations are the next unlock. He asked directly for cross-functional exposure.',
+    items:[
+      {t:'0:00–3:00',title:'Acknowledge the ramp performance',detail:'6 SQLs in ramp with no target is exceptional. He\'s been boasting to his family about conversions — hear it from you too.',q:'"6 SQLs in ramp is a strong start. What do you think made the difference?"',badge:'',bc:'',btc:''},
+      {t:'3:00–10:00',title:'GC conversations — targeted coaching',detail:'His Month 1 SQLs came mainly from TPs. GCs speak differently. Go deep on objection handling and what language resonates.',q:'"Your TP conversion is strong. Where does the GC conversation stall? What are you hearing from them?"',badge:'Key Month 2 unlock',bc:'#fee2e2',btc:'#991b1b'},
+      {t:'10:00–16:00',title:'Month 2 target — 8 SQLs plan',detail:'Target is now live. Ask him to walk through his weekly plan. Probe on GCs specifically.',q:'"You have 8 SQLs to hit by the 25th. Walk me through how you\'re thinking about the month."',badge:'Target now active',bc:'#fff8e6',btc:'#854F0B'},
+      {t:'16:00–20:00',title:'Cross-functional exposure — deliver something',detail:'He asked directly to be put in different shoes. Tell him what you\'re looping him into this month.',q:'"You asked for exposure beyond SDR work. Here\'s what I\'m bringing you into this month: [Highperformr / campaign / strategy]."',badge:'He asked for this',bc:'#fee2e2',btc:'#991b1b'},
+      {t:'20:00–25:00',title:'AI agent — formalise the research',detail:'He used GPT to extract AGC Chicago project data. Can that become a weekly signal pull?',q:'"The AGC Chicago research — can we turn that into something you run every week? What would that look like?"',badge:'',bc:'',btc:''},
+      {t:'25:00–30:00',title:'Pulse re-score & close',detail:'He gave a 10/10. Listen carefully for anything that surfaces now that Month 2 pressure is real.',q:'"You were a 10 last time. Still feeling it? Anything different now that the target is live?"',badge:'',bc:'',btc:''},
+    ]
+  },
+  ps:{
+    name:'Pooja Sharma',role:'MRA · Session 2',score:'7.5/10',sqls:'KRAs only',
+    focus:'The 2.5 gap + task briefing habit',
+    av:'avc',hdr:'background:linear-gradient(135deg,#b03518,#fb923c)',
+    context:'Lowest pulse score at 7.5/10. The 2.5 gap was left unexplored in Session 1. She flagged task briefing as friction. This session should be more listening than talking — resist the urge to fill silence.',
+    items:[
+      {t:'0:00–2:00',title:'Open with the 2.5 gap — directly',detail:'Don\'t ease into it. She knows you\'ll ask. Leading with it shows you listened and took it seriously.',q:'"Last time you said 7.5 but couldn\'t name the 2.5 yet. Have you thought about it? What\'s missing?"',badge:'Open here — no exceptions',bc:'#fee2e2',btc:'#991b1b'},
+      {t:'2:00–10:00',title:'Listen — do not fill the silence',detail:'Whatever she says — let her finish completely before responding. Do not explain, justify, or fix immediately. This is the most important instruction for this session.',q:'[Stay silent after her answer. Let her expand. Then ask: "Is there anything else behind that?"]',badge:'Listen more than you talk',bc:'#fee2e2',btc:'#991b1b'},
+      {t:'10:00–16:00',title:'Task briefing — show the habit has changed',detail:'She gave direct feedback that tasks arrived without context. Come with a specific example of something you briefed properly since last session.',q:'"You mentioned the briefing gap. Has it felt different this past month? Where am I still falling short?"',badge:'Prove it with an example',bc:'#fff8e6',btc:'#854F0B'},
+      {t:'16:00–20:00',title:'HubSpot progress check',detail:'Her 6-month goal is to be the go-to HubSpot person. Ask what she\'s built and where she\'s still finding gaps.',q:'"Walk me through what you\'ve set up in HubSpot this month. What are you most confident in? What\'s still murky?"',badge:'',bc:'',btc:''},
+      {t:'20:00–24:00',title:'New MRA hire — update her',detail:'She\'s waiting on this. Give an honest timeline and tell her what her role in onboarding will be.',q:'"The new hire — here\'s where we are on that. Here\'s what I want you to own when they join."',badge:'She is waiting',bc:'#fff8e6',btc:'#854F0B'},
+      {t:'24:00–28:00',title:'Market research — has it started?',detail:'Sachit said market research work would begin the following week. Has it? If not, why not?',q:'"We said market research starts this month. Where are you on that?"',badge:'',bc:'',btc:''},
+      {t:'28:00–30:00',title:'Pulse re-score & close',detail:'Ask for a re-score. Goal is to move her from 7.5 toward 8–9 by making her feel genuinely heard.',q:'"You were at 7.5 last time. Where are you now? What moved — if anything?"',badge:'',bc:'',btc:''},
+    ]
+  }
+};
+
+let agSel='ss';
+
 function renderAgenda(){
-  document.getElementById('tab-agenda').innerHTML=`
-    <div class="ag-wrap">
-      <div class="ag-head"><div class="ag-ht">30-minute pulse check template</div><div class="ag-hs">Use for all recurring sessions · adapt per rep based on open loops</div></div>
-      ${agenda.map((a,i)=>`<div class="ag-item">
-        <div class="ag-num"><div class="ag-ni">${i+1}</div></div>
-        <div class="ag-tc"><div class="ag-time">${a.time}</div></div>
-        <div class="ag-body"><div class="ag-title">${a.title}</div><div class="ag-detail">${a.detail}</div></div>
-      </div>`).join('')}
+  const el=document.getElementById('tab-agenda');
+  el.innerHTML=`
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;">
+      ${Object.entries(nextAgendas).map(([id,d])=>`
+        <button onclick="selectAgenda('${id}')" id="agbtn-${id}" style="display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:var(--rlg);border:1.5px solid ${id===agSel?'var(--red)':'var(--border)'};background:${id===agSel?'#fff1f2':'var(--white)'};cursor:pointer;font-family:inherit;transition:all 0.15s;">
+          <div class="av ${d.av}" style="width:28px;height:28px;font-size:10px;">${d.name.split(' ').map(w=>w[0]).join('').slice(0,2)}</div>
+          <div style="text-align:left;"><div style="font-size:12px;font-weight:600;color:var(--text);">${d.name.split(' ')[0]}</div><div style="font-size:10px;color:var(--text3);">${d.sqls}</div></div>
+        </button>`).join('')}
     </div>
-    <div class="hint">After each meeting paste the transcript into Pulse AI to get the rep's pulse score, manager takeaways, and open loops automatically updated.</div>`;
+    <div id="agendaDetail"></div>`;
+  renderAgendaDetail();
+}
+
+function selectAgenda(id){
+  agSel=id;
+  renderAgenda();
+}
+
+function renderAgendaDetail(){
+  const d=nextAgendas[agSel];
+  document.getElementById('agendaDetail').innerHTML=`
+    <div style="border-radius:var(--rlg);overflow:hidden;border:1px solid var(--border);box-shadow:var(--sh);">
+      <div style="${d.hdr};padding:1.25rem 1.5rem;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+          <div class="av ${d.av}" style="width:38px;height:38px;font-size:13px;">${d.name.split(' ').map(w=>w[0]).join('').slice(0,2)}</div>
+          <div><div style="font-size:15px;font-weight:700;color:white;">${d.name}</div><div style="font-size:12px;color:rgba(255,255,255,0.7);">${d.role} · Pulse: ${d.score}</div></div>
+          <div style="margin-left:auto;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:600;color:white;">Focus: ${d.focus}</div>
+        </div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.8);line-height:1.5;background:rgba(0,0,0,0.2);padding:8px 12px;border-radius:var(--rsm);">${d.context}</div>
+      </div>
+      ${d.items.map((item,i)=>`
+        <div style="display:flex;border-bottom:1px solid var(--border);background:var(--white);">
+          <div style="padding:12px 10px;min-width:80px;border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--bg);">
+            <div style="width:22px;height:22px;border-radius:50%;${d.hdr};display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:white;margin-bottom:4px;">${i+1}</div>
+            <div style="font-size:10px;font-weight:500;color:var(--text3);text-align:center;line-height:1.3;">${item.t}</div>
+          </div>
+          <div style="padding:11px 15px;flex:1;">
+            <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px;">${item.title}${item.badge?`<span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;margin-left:7px;background:${item.bc};color:${item.btc};">${item.badge}</span>`:''}</div>
+            <div style="font-size:12px;color:var(--text2);line-height:1.5;margin-bottom:4px;">${item.detail}</div>
+            <div style="font-size:11px;color:var(--text3);font-style:italic;line-height:1.4;">${item.q}</div>
+          </div>
+        </div>`).join('')}
+    </div>
+    <div class="hint" style="margin-top:12px;">After each meeting paste the transcript into Pulse AI to get the updated pulse score, manager takeaways and open loops.</div>`;
 }
 
 function switchTab(tab,btn){
@@ -391,7 +488,7 @@ function switchTab(tab,btn){
   document.getElementById('tab-'+tab).style.display='block';
   if(tab==='manager')renderManager();
   if(tab==='okrs')renderOKRs();
-  if(tab==='agenda')renderAgenda();
+  if(tab==='agenda'){agSel='ss';renderAgenda();}
 }
 
 renderGrid();

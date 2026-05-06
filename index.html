@@ -4,174 +4,218 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SDR Pulse AI — Track3D</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fraunces:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:wght@700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --red:#C8102E;--red2:#a50d25;--red-glow:rgba(200,16,46,0.1);
-  --green:#1e7e34;--green-bg:#edf7f0;--green-bd:#b8e0c2;
-  --blue:#1558a8;--blue-bg:#e8f1fb;--blue-bd:#b8d0f0;
-  --amber:#8a5200;--amber-bg:#fff8e6;--amber-bd:#f0d080;
-  --purple:#4a35a0;--purple-bg:#f0ecff;--purple-bd:#c8c0f0;
-  --teal:#0a7a62;--teal-bg:#e2f5f1;
-  --coral:#b03518;--coral-bg:#fdf0ec;
-  --text:#0f172a;--text2:#475569;--text3:#94a3b8;
-  --border:#e2e8f0;--border2:#cbd5e1;
-  --bg:#f8fafc;--white:#fff;
-  --r:14px;--rsm:9px;--rlg:20px;
-  --sh:0 1px 4px rgba(15,23,42,0.06),0 1px 2px rgba(15,23,42,0.04);
-  --shmd:0 4px 16px rgba(15,23,42,0.1);
+--bg:#0a0a0f;--bg2:#13131f;--bg3:#1a1a2e;
+--purple:#6B2FD9;--purple2:#8B5CF6;--purple-dim:rgba(107,47,217,0.15);--purple-border:rgba(107,47,217,0.3);
+--red:#C8102E;--red-dim:rgba(200,16,46,0.15);
+--green:#22c55e;--green-dim:rgba(34,197,94,0.12);--green-border:rgba(34,197,94,0.3);
+--amber:#f59e0b;--amber-dim:rgba(245,158,11,0.12);--amber-border:rgba(245,158,11,0.3);
+--danger:#ef4444;--danger-dim:rgba(239,68,68,0.12);--danger-border:rgba(239,68,68,0.3);
+--text:#ffffff;--text2:#94a3b8;--text3:#475569;
+--border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.15);
+--r:12px;--rsm:8px;--rlg:16px;
 }
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
 
-.hero{background:linear-gradient(135deg,#0f172a 0%,#1e1b4b 40%,#C8102E 100%);border-bottom:1px solid var(--border);padding:2rem 2rem 1.75rem;}
-.hero-inner{max-width:1200px;margin:0 auto;}
-.hero-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:10px;}
-.live-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:#fca5a5;background:rgba(252,165,165,0.15);border:1px solid rgba(252,165,165,0.3);padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:0.07em;}
-.live-dot{width:6px;height:6px;border-radius:50%;background:#fca5a5;}
+/* HERO */
+.hero{background:linear-gradient(135deg,#0a0a0f 0%,#13131f 50%,#1a0a2e 100%);border-bottom:1px solid var(--border);padding:2rem 2rem 1.75rem;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-50%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(107,47,217,0.15) 0%,transparent 70%);pointer-events:none;}
+.hero-inner{max-width:1280px;margin:0 auto;position:relative;}
+.hero-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:8px;}
+.live-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:var(--purple2);background:var(--purple-dim);border:1px solid var(--purple-border);padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:0.07em;}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--purple2);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
 .pills{display:flex;gap:6px;flex-wrap:wrap;}
-.pill{font-size:11px;font-weight:500;padding:4px 12px;border-radius:20px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.85);}
-.pill-amber{background:rgba(250,174,122,0.2);border-color:rgba(250,174,122,0.4);color:#fcd9a0;}
-.pill-green{background:rgba(100,220,130,0.15);border-color:rgba(100,220,130,0.3);color:#86efac;}
-.hero-title{font-family:'Fraunces',serif;font-size:40px;font-weight:800;color:#ffffff;letter-spacing:-1px;line-height:1;margin-bottom:5px;}
-.hero-title span{color:#fca5a5;}
-.hero-sub{font-size:13px;color:rgba(255,255,255,0.7);}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:1.5rem;}
-.sc{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:var(--r);padding:1rem 1.25rem;position:relative;overflow:hidden;backdrop-filter:blur(10px);}
-.sc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;}
-.sc.sp::after{background:linear-gradient(90deg,#7c3aed,#a78bfa);}
-.sc.sg::after{background:linear-gradient(90deg,#1e7e34,#4ade80);}
+.pill{font-size:11px;padding:4px 12px;border-radius:20px;border:1px solid var(--border2);background:rgba(255,255,255,0.05);color:var(--text2);}
+.pill-p{background:var(--purple-dim);border-color:var(--purple-border);color:var(--purple2);}
+.hero-title{font-family:'Fraunces',serif;font-size:38px;font-weight:800;color:var(--text);letter-spacing:-1px;line-height:1;margin-bottom:4px;}
+.hero-title span{background:linear-gradient(135deg,var(--purple2),var(--red));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:13px;color:var(--text2);margin-bottom:1.5rem;}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+.sc{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.25rem;position:relative;overflow:hidden;transition:border-color 0.2s;}
+.sc:hover{border-color:var(--border2);}
+.sc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;}
+.sc.sp::after{background:linear-gradient(90deg,var(--purple),var(--purple2));}
+.sc.sg::after{background:linear-gradient(90deg,#16a34a,var(--green));}
 .sc.sb::after{background:linear-gradient(90deg,#1558a8,#60a5fa);}
-.sc.sa::after{background:linear-gradient(90deg,#8a5200,#f59e0b);}
-.sl{font-size:11px;font-weight:600;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:5px;}
-.sn{font-size:28px;font-weight:800;font-family:'Fraunces',serif;line-height:1;margin-bottom:2px;}
-.sn.np{color:#c4b5fd;}.sn.ng{color:#86efac;}.sn.nb{color:#93c5fd;}.sn.na{color:#fcd9a0;}
-.snote{font-size:11px;color:rgba(255,255,255,0.5);}
+.sc.sa::after{background:linear-gradient(90deg,var(--amber),#fcd34d);}
+.sc.sr::after{background:linear-gradient(90deg,var(--red),#f87171);}
+.sl{font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:5px;}
+.sn{font-size:26px;font-weight:800;font-family:'Fraunces',serif;line-height:1;margin-bottom:2px;}
+.sn.np{color:var(--purple2);}
+.sn.ng{color:var(--green);}
+.sn.nb{color:#60a5fa;}
+.sn.na{color:var(--amber);}
+.sn.nr{color:#f87171;}
+.snote{font-size:11px;color:var(--text3);}
 
-.main{max-width:1200px;margin:0 auto;padding:1.5rem 2rem 4rem;}
+/* MAIN */
+.main{max-width:1280px;margin:0 auto;padding:1.5rem 2rem 4rem;}
 .tabs-wrap{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:10px;}
-.tabs{display:flex;background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:4px;gap:3px;box-shadow:var(--sh);}
-.tab{font-size:13px;font-weight:500;padding:7px 18px;border-radius:var(--rsm);border:none;background:none;color:var(--text2);cursor:pointer;transition:all 0.15s;}
-.tab.active{background:var(--red);color:white;font-weight:600;box-shadow:0 2px 8px rgba(200,16,46,0.3);}
-.tab:hover:not(.active){background:var(--bg);color:var(--text);}
-.updated{font-size:12px;color:var(--text3);}
+.tabs{display:flex;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:3px;gap:3px;}
+.tab{font-size:12px;font-weight:500;padding:7px 16px;border-radius:var(--rsm);border:none;background:none;color:var(--text2);cursor:pointer;transition:all 0.15s;font-family:'Inter',sans-serif;}
+.tab.active{background:linear-gradient(135deg,var(--purple),var(--purple2));color:white;font-weight:600;}
+.tab:hover:not(.active){background:rgba(255,255,255,0.05);color:var(--text);}
+.updated{font-size:11px;color:var(--text3);}
 
-.rep-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px;}
-.rc{background:var(--white);border:1.5px solid var(--border);border-radius:var(--rlg);padding:1.25rem;cursor:pointer;transition:all 0.18s;box-shadow:var(--sh);position:relative;overflow:hidden;}
-.rc::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;}
-.rc.c-blue::before{background:linear-gradient(90deg,#1558a8,#60a5fa);}
-.rc.c-teal::before{background:linear-gradient(90deg,#0a7a62,#34d399);}
-.rc.c-purple::before{background:linear-gradient(90deg,#4a35a0,#a78bfa);}
-.rc.c-coral::before{background:linear-gradient(90deg,#b03518,#fb923c);}
-.rc:hover{border-color:var(--border2);box-shadow:var(--shmd);transform:translateY(-2px);}
-.rc.sel{border-color:var(--red);box-shadow:0 0 0 3px var(--red-glow),var(--shmd);}
-
-.rtop{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
-.av{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;}
-.avb{background:var(--blue-bg);color:var(--blue);}
-.avt{background:var(--teal-bg);color:var(--teal);}
-.avp{background:var(--purple-bg);color:var(--purple);}
-.avc{background:var(--coral-bg);color:var(--coral);}
+/* REP CARDS */
+.rep-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+.rc{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rlg);padding:1.25rem;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden;}
+.rc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.rc.cb::before{background:linear-gradient(90deg,#1558a8,#60a5fa);}
+.rc.ct::before{background:linear-gradient(90deg,#0a7a62,#34d399);}
+.rc.cp::before{background:linear-gradient(90deg,var(--purple),var(--purple2));}
+.rc.cc::before{background:linear-gradient(90deg,var(--red),#f87171);}
+.rc:hover{border-color:var(--border2);background:var(--bg3);}
+.rc.sel{border-color:var(--purple);box-shadow:0 0 0 1px var(--purple-border),0 0 20px var(--purple-dim);}
+.rtop{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.av{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;}
+.avb{background:rgba(21,88,168,0.2);color:#60a5fa;}
+.avt{background:rgba(10,122,98,0.2);color:#34d399;}
+.avp{background:var(--purple-dim);color:var(--purple2);}
+.avc{background:var(--red-dim);color:#f87171;}
 .rname{font-size:14px;font-weight:700;color:var(--text);}
 .rrole{font-size:11px;color:var(--text3);margin-top:1px;}
-.pb{font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;margin-left:auto;flex-shrink:0;}
-.pbg{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd);}
-.pba{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-bd);}
-.pbgr{background:var(--bg);color:#64748b;border:1px solid var(--border);}
+.pb{font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;margin-left:auto;flex-shrink:0;}
+.pbg{background:var(--green-dim);color:var(--green);border:1px solid var(--green-border);}
+.pba{background:var(--amber-dim);color:var(--amber);border:1px solid var(--amber-border);}
+.pbr{background:var(--danger-dim);color:var(--danger);border:1px solid var(--danger-border);}
+.pbgr{background:rgba(255,255,255,0.05);color:var(--text3);border:1px solid var(--border);}
 
-.krow{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-top:1px solid var(--border);}
-.klabel{font-size:12px;color:var(--text2);}
-.kright{display:flex;align-items:center;gap:8px;}
-.pbar{width:70px;height:4px;background:#f1f5f9;border-radius:2px;overflow:hidden;}
-.pf{height:100%;border-radius:2px;}
-.pfg{background:linear-gradient(90deg,#1e7e34,#4ade80);}
-.pfb{background:linear-gradient(90deg,#1558a8,#60a5fa);}
-.pfa{background:linear-gradient(90deg,#8a5200,#f59e0b);}
-.kval{font-size:13px;font-weight:700;color:var(--text);}
-.kramp{font-size:12px;font-weight:700;color:var(--blue);}
-.kna{font-size:12px;color:var(--text3);}
+/* METRICS ROWS */
+.metrics-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px;}
+.metric-box{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:var(--rsm);padding:8px 10px;}
+.metric-label{font-size:10px;color:var(--text3);margin-bottom:3px;}
+.metric-val{font-size:16px;font-weight:700;color:var(--text);}
+.metric-sub{font-size:10px;color:var(--text3);margin-top:1px;}
 
-.pscore-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-top:1px solid var(--border);}
-.pscore-label{font-size:12px;color:var(--text2);}
-.pscore-val{font-size:16px;font-weight:800;font-family:'Fraunces',serif;}
-.pscore-10{color:#1e7e34;}.pscore-9{color:#2d7a3a;}.pscore-75{color:#8a5200;}
+/* FUNNEL BAR */
+.funnel-row{margin-bottom:10px;}
+.funnel-label{font-size:10px;color:var(--text3);margin-bottom:5px;display:flex;justify-content:space-between;}
+.funnel-bars{display:flex;gap:3px;height:6px;}
+.fb-tofu{background:var(--purple2);border-radius:3px 0 0 3px;flex-shrink:0;}
+.fb-mofu{background:var(--amber);flex-shrink:0;}
+.fb-bofu{background:var(--green);border-radius:0 3px 3px 0;flex-shrink:0;}
+.fb-empty{background:rgba(255,255,255,0.06);border-radius:3px;flex:1;}
+.funnel-legend{display:flex;gap:10px;margin-top:4px;}
+.fl-item{font-size:10px;color:var(--text3);display:flex;align-items:center;gap:4px;}
+.fl-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
 
-.rfoot{font-size:11px;color:var(--text3);margin-top:9px;padding-top:8px;border-top:1px solid var(--border);display:flex;gap:6px;align-items:flex-start;}
-.rdot{width:5px;height:5px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:3px;}
+/* PROMOTION */
+.promo-row{display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:var(--rsm);}
+.promo-label{font-size:11px;color:var(--text2);flex:1;}
+.promo-score{font-size:13px;font-weight:700;}
+.promo-bar-wrap{width:80px;height:4px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;}
+.promo-bar{height:100%;border-radius:2px;transition:width 0.5s;}
 
-.dp{background:var(--white);border:1px solid var(--border);border-radius:var(--rlg);padding:1.5rem;margin-top:14px;box-shadow:var(--shmd);}
+/* COACHING TAG */
+.coaching-tag{background:rgba(245,158,11,0.08);border:1px solid var(--amber-border);border-radius:var(--rsm);padding:6px 10px;font-size:11px;color:var(--amber);margin-bottom:8px;display:flex;gap:6px;align-items:flex-start;}
+.coaching-icon{flex-shrink:0;margin-top:1px;}
+
+/* PULSE SCORE */
+.psrow{display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-top:1px solid var(--border);}
+.pslabel{font-size:12px;color:var(--text2);}
+.psval{font-size:15px;font-weight:800;font-family:'Fraunces',serif;}
+.ps10{color:var(--green);}
+.ps9{color:#4ade80;}
+.ps75{color:var(--amber);}
+.ps-warn{color:var(--danger);}
+
+.rfoot{font-size:11px;color:var(--text3);margin-top:8px;padding-top:8px;border-top:1px solid var(--border);display:flex;gap:5px;align-items:flex-start;}
+.rdot{width:4px;height:4px;border-radius:50%;background:var(--purple2);flex-shrink:0;margin-top:4px;}
+
+/* DETAIL PANEL */
+.dp{background:var(--bg2);border:1px solid var(--purple-border);border-radius:var(--rlg);padding:1.5rem;margin-top:14px;box-shadow:0 0 30px var(--purple-dim);}
 .dhead{display:flex;align-items:center;gap:12px;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid var(--border);}
-.dname{font-size:17px;font-weight:700;color:var(--text);}
-.dmeta{font-size:12px;color:var(--text3);margin-top:2px;}
+.dname{font-size:16px;font-weight:700;color:var(--text);}
+.dmeta{font-size:11px;color:var(--text3);margin-top:2px;}
 .dcols{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
 .slabel{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.09em;margin-bottom:8px;}
 .sblock{margin-bottom:1.25rem;}
-.irow{display:flex;gap:8px;padding:5px 0;border-bottom:1px solid var(--bg);align-items:flex-start;}
+.irow{display:flex;gap:7px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);align-items:flex-start;}
 .irow:last-child{border-bottom:none;}
-.idot{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:5px;}
-.dg{background:#639922;}.da{background:#BA7517;}.db{background:#378ADD;}.dp2{background:#7F77DD;}
-.itext{font-size:12px;color:var(--text);line-height:1.5;}
-.tbox{background:var(--bg);border-radius:var(--rsm);padding:9px 12px;margin-bottom:7px;}
+.idot{width:4px;height:4px;border-radius:50%;flex-shrink:0;margin-top:5px;background:var(--purple2);}
+.itext{font-size:12px;color:var(--text2);line-height:1.5;}
+.tbox{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:var(--rsm);padding:8px 10px;margin-bottom:6px;font-size:12px;color:var(--text2);line-height:1.5;}
 .tbox:last-child{margin-bottom:0;}
-.ttitle{font-size:12px;font-weight:600;color:var(--text);margin-bottom:2px;}
-.ttext{font-size:12px;color:var(--text2);line-height:1.5;}
-.arow{display:flex;align-items:flex-start;gap:9px;padding:7px 0;border-bottom:1px solid var(--bg);}
-.arow:last-child{border-bottom:none;}
-.awho{font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;flex-shrink:0;margin-top:1px;}
-.aws{background:var(--blue-bg);color:var(--blue);}
-.awr{background:var(--green-bg);color:var(--green);}
-.atext{font-size:12px;color:var(--text);line-height:1.5;}
-.onetag{background:var(--amber-bg);border:1px solid var(--amber-bd);border-radius:var(--rsm);padding:10px 14px;font-size:12px;color:var(--amber);line-height:1.6;margin-top:10px;font-weight:500;}
-
-.okr-sec{background:var(--white);border:1px solid var(--border);border-radius:var(--rlg);padding:1.5rem;margin-bottom:12px;box-shadow:var(--sh);}
-.okr-sh{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--border);}
-.okr-name{font-size:15px;font-weight:700;color:var(--text);}
-.okr-obj{font-size:13px;font-weight:600;color:var(--purple);padding:9px 12px;background:var(--purple-bg);border-radius:var(--rsm);margin-bottom:10px;border-left:3px solid var(--purple);}
-.krrow{display:flex;align-items:flex-start;gap:8px;padding:6px 0;border-bottom:1px solid var(--bg);}
+.tbox-red{border-left:2px solid var(--red);}
+.tbox-purple{border-left:2px solid var(--purple2);}
+.krrow{display:flex;align-items:flex-start;gap:7px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
 .krrow:last-child{border-bottom:none;}
-.krn{font-size:10px;font-weight:700;color:var(--text3);min-width:28px;background:var(--bg);padding:2px 5px;border-radius:4px;text-align:center;margin-top:1px;}
-.krt{font-size:12px;color:var(--text);flex:1;line-height:1.5;}
+.krn{font-size:10px;font-weight:700;color:var(--text3);min-width:28px;background:rgba(255,255,255,0.05);padding:2px 5px;border-radius:4px;text-align:center;margin-top:1px;}
+.krt{font-size:12px;color:var(--text2);flex:1;line-height:1.5;}
 .krs{font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;flex-shrink:0;margin-top:1px;}
-.ks-on{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd);}
-.ks-ramp{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-bd);}
-.ks-pend{background:var(--bg);color:#64748b;border:1px solid var(--border);}
+.ks-on{background:var(--green-dim);color:var(--green);border:1px solid var(--green-border);}
+.ks-ramp{background:rgba(96,165,250,0.1);color:#60a5fa;border:1px solid rgba(96,165,250,0.3);}
+.ks-pend{background:rgba(255,255,255,0.05);color:var(--text3);border:1px solid var(--border);}
+.onetag{background:var(--amber-dim);border:1px solid var(--amber-border);border-radius:var(--rsm);padding:10px 14px;font-size:12px;color:var(--amber);line-height:1.5;margin-top:10px;font-weight:500;}
+
+/* MANAGER INSIGHTS */
+.insights-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+.insight-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rlg);padding:1.25rem;}
+.insight-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
+.insight-icon{width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;}
+.coaching-item{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);align-items:flex-start;}
+.coaching-item:last-child{border-bottom:none;}
+.coaching-rep{font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;flex-shrink:0;margin-top:1px;}
+.coaching-text{font-size:12px;color:var(--text2);line-height:1.5;flex:1;}
+.promo-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.promo-item:last-child{border-bottom:none;}
+.promo-name{font-size:12px;font-weight:600;color:var(--text);min-width:80px;}
+.promo-score-big{font-size:18px;font-weight:800;font-family:'Fraunces',serif;min-width:40px;}
+.promo-label-tag{font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;flex-shrink:0;}
+.pl-ready{background:var(--green-dim);color:var(--green);border:1px solid var(--green-border);}
+.pl-track{background:rgba(96,165,250,0.1);color:#60a5fa;border:1px solid rgba(96,165,250,0.3);}
+.pl-dev{background:var(--amber-dim);color:var(--amber);border:1px solid var(--amber-border);}
+.pl-inter{background:var(--danger-dim);color:var(--danger);border:1px solid var(--danger-border);}
+.promo-bar-outer{flex:1;height:4px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;}
+.promo-bar-inner{height:100%;border-radius:2px;}
+
+/* OKR TAB */
+.okr-sec{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rlg);padding:1.25rem;margin-bottom:12px;}
+.okr-obj{font-size:12px;font-weight:600;color:var(--purple2);padding:8px 12px;background:var(--purple-dim);border-radius:var(--rsm);margin-bottom:10px;border-left:2px solid var(--purple);}
 .kra-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px;}
-.kra-item{padding:8px 10px;background:var(--bg);border-radius:var(--rsm);border-left:3px solid var(--red);}
+.kra-item{padding:8px 10px;background:rgba(255,255,255,0.03);border-radius:var(--rsm);border-left:2px solid var(--purple2);}
 .kra-t{font-size:12px;font-weight:600;color:var(--text);margin-bottom:2px;}
 .kra-d{font-size:11px;color:var(--text2);line-height:1.4;}
 
-.ag-wrap{background:var(--white);border:1px solid var(--border);border-radius:var(--rlg);overflow:hidden;box-shadow:var(--sh);}
-.ag-head{padding:1.25rem 1.5rem;background:linear-gradient(135deg,var(--red),var(--red2));color:white;}
-.ag-ht{font-size:15px;font-weight:700;margin-bottom:2px;}
-.ag-hs{font-size:12px;opacity:0.8;}
-.ag-item{display:flex;border-bottom:1px solid var(--border);}
+/* AGENDA TAB */
+.ag-rep-sel{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px;}
+.agbtn{display:flex;align-items:center;gap:8px;padding:7px 14px;border-radius:var(--rlg);border:1px solid var(--border);background:var(--bg2);cursor:pointer;transition:all 0.15s;font-family:'Inter',sans-serif;}
+.agbtn:hover{border-color:var(--border2);}
+.agbtn.agsel{border-color:var(--purple);background:var(--purple-dim);}
+.agbtn-name{font-size:12px;font-weight:600;color:var(--text);}
+.agbtn-role{font-size:10px;color:var(--text3);}
+.ag-card{border:1px solid var(--border);border-radius:var(--rlg);overflow:hidden;}
+.ag-hdr{padding:1.1rem 1.25rem;}
+.ag-item{display:flex;border-bottom:1px solid var(--border);background:var(--bg2);}
 .ag-item:last-child{border-bottom:none;}
-.ag-num{width:44px;display:flex;align-items:center;justify-content:center;background:var(--bg);border-right:1px solid var(--border);flex-shrink:0;}
-.ag-ni{width:24px;height:24px;border-radius:50%;background:var(--red);color:white;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;}
-.ag-tc{padding:12px 14px;min-width:96px;border-right:1px solid var(--border);display:flex;align-items:center;}
-.ag-time{font-size:11px;font-weight:600;color:var(--text3);}
-.ag-body{padding:12px 16px;flex:1;}
-.ag-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px;}
-.ag-detail{font-size:12px;color:var(--text2);line-height:1.5;}
-.hint{margin:12px;padding:11px 14px;background:var(--amber-bg);border:1px solid var(--amber-bd);border-radius:var(--rsm);font-size:12px;color:var(--amber);font-weight:500;}
+.ag-left{padding:10px 8px;min-width:74px;border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--bg);}
+.ag-n{width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--purple2));display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white;margin-bottom:3px;}
+.ag-time{font-size:10px;color:var(--text3);text-align:center;line-height:1.3;}
+.ag-body{padding:10px 14px;flex:1;}
+.ag-title{font-size:12px;font-weight:600;color:var(--text);margin-bottom:2px;}
+.ag-detail{font-size:11px;color:var(--text2);line-height:1.5;margin-bottom:3px;}
+.ag-q{font-size:11px;color:var(--text3);font-style:italic;line-height:1.4;}
+.badge-r{font-size:10px;font-weight:600;padding:1px 7px;border-radius:20px;margin-left:6px;background:var(--danger-dim);color:var(--danger);}
+.badge-a{font-size:10px;font-weight:600;padding:1px 7px;border-radius:20px;margin-left:6px;background:var(--amber-dim);color:var(--amber);}
+.hint{background:var(--amber-dim);border:1px solid var(--amber-border);border-radius:var(--rsm);padding:9px 12px;font-size:11px;color:var(--amber);font-weight:500;margin-top:10px;}
 
-.mgr-summary{background:var(--white);border:1px solid var(--border);border-radius:var(--rlg);padding:1.5rem;margin-bottom:14px;box-shadow:var(--sh);}
-.mgr-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:1rem;padding-bottom:0.875rem;border-bottom:1px solid var(--border);}
-.mgr-pattern{background:var(--bg);border-radius:var(--rsm);padding:10px 12px;margin-bottom:8px;border-left:3px solid var(--red);}
-.mgr-pt{font-size:12px;font-weight:600;color:var(--text);margin-bottom:2px;}
-.mgr-pd{font-size:12px;color:var(--text2);line-height:1.5;}
-
-.footer{background:var(--white);border-top:1px solid var(--border);padding:1rem 2rem;}
-.footer-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
-.fb{font-size:13px;font-weight:700;color:var(--text);}
-.fb span{color:var(--red);}
-.fn{font-size:12px;color:var(--text3);}
+/* FOOTER */
+.footer{border-top:1px solid var(--border);padding:1rem 2rem;margin-top:2rem;}
+.footer-inner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+.fb{font-size:12px;font-weight:700;color:var(--text);}
+.fb span{background:linear-gradient(135deg,var(--purple2),var(--red));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.fn{font-size:11px;color:var(--text3);}
 
 @media(max-width:768px){
-  .stats,.dcols{grid-template-columns:1fr 1fr;}
-  .kra-grid{grid-template-columns:1fr;}
+  .stats{grid-template-columns:1fr 1fr;}
+  .rep-grid,.dcols,.insights-grid,.kra-grid{grid-template-columns:1fr;}
   .main,.hero{padding-left:1rem;padding-right:1rem;}
-  .hero-title{font-size:30px;}
+  .hero-title{font-size:28px;}
 }
 </style>
 </head>
@@ -180,21 +224,21 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 <header class="hero">
   <div class="hero-inner">
     <div class="hero-top">
-      <div class="live-badge"><div class="live-dot"></div>Live dashboard</div>
+      <div class="live-badge"><div class="live-dot"></div>Live · Auto-updating</div>
       <div class="pills">
         <span class="pill">Track3D · SDR Team</span>
         <span class="pill">Manager: Sachit</span>
-        <span class="pill pill-green">Round 1 complete — 24 Apr 2026</span>
-        <span class="pill pill-amber">Cycle: 26 Mar – 25 Apr · Month 1</span>
+        <span class="pill pill-p">FY 2026</span>
       </div>
     </div>
     <div class="hero-title"><span>SDR Pulse</span> AI</div>
-    <div class="hero-sub">SDR team performance, pulse checks, OKRs & KRAs — all in one place</div>
+    <div class="hero-sub">Full-year SDR performance intelligence — pulse, pipeline, promotion readiness</div>
     <div class="stats">
       <div class="sc sp"><div class="sl">Team size</div><div class="sn np">4</div><div class="snote">3 SDRs · 1 MRA</div></div>
-      <div class="sc sg"><div class="sl">Avg pulse score</div><div class="sn ng">9.1</div><div class="snote">Across all 4 reps</div></div>
-      <div class="sc sb"><div class="sl">SQLs this month</div><div class="sn nb">24</div><div class="snote">SS 10 · BG 8 · Vik 6 (ramp)</div></div>
-      <div class="sc sa"><div class="sl">Pulse checks done</div><div class="sn na">4</div><div class="snote">First round complete</div></div>
+      <div class="sc sg"><div class="sl">Avg pulse</div><div class="sn ng" id="s-pulse">9.1</div><div class="snote">Across all reps</div></div>
+      <div class="sc sb"><div class="sl">SQLs this cycle</div><div class="sn nb" id="s-sqls">24</div><div class="snote" id="s-sqls-note">SS 10 · BG 8 · Vik 6</div></div>
+      <div class="sc sa"><div class="sl">Avg YTD SQL %</div><div class="sn na" id="s-ytd">108%</div><div class="snote">vs monthly target</div></div>
+      <div class="sc sr"><div class="sl">Coaching flags</div><div class="sn nr" id="s-flags">3</div><div class="snote">Active this week</div></div>
     </div>
   </div>
 </header>
@@ -203,18 +247,18 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
   <div class="tabs-wrap">
     <div class="tabs">
       <button class="tab active" onclick="switchTab('overview',this)">Overview</button>
-      <button class="tab" onclick="switchTab('manager',this)">Manager health</button>
+      <button class="tab" onclick="switchTab('insights',this)">Manager insights</button>
       <button class="tab" onclick="switchTab('okrs',this)">OKRs & KRAs</button>
-      <button class="tab" onclick="switchTab('agenda',this)">Meeting agenda</button>
+      <button class="tab" onclick="switchTab('agenda',this)">Next agendas</button>
     </div>
-    <span class="updated">Last updated: 24 Apr 2026</span>
+    <span class="updated" id="lastUpdated">Last updated: 06 May 2026</span>
   </div>
 
   <div id="tab-overview">
     <div class="rep-grid" id="repGrid"></div>
-    <div id="detailPanel" style="display:none;"></div>
+    <div id="detailPanel"></div>
   </div>
-  <div id="tab-manager" style="display:none;"></div>
+  <div id="tab-insights" style="display:none;"></div>
   <div id="tab-okrs" style="display:none;"></div>
   <div id="tab-agenda" style="display:none;"></div>
 </main>
@@ -228,265 +272,311 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 
 <script>
 const reps=[
-  {id:'ss',name:'Swagatika Senapati',initials:'SS',role:'SDR',joined:'March 2026',av:'avb',rc:'c-blue',pulse:'green',plabel:'On track',sql:10,target:8,ramp:false,score:'9',scoreClass:'pscore-9',
-   lastMet:'24 Apr 2026',nextMet:'May 2026',
-   loops:['Resolve US calling hours / time zone schedule','Share DemandGen sprint doc with team','Begin Nooks structured coaching — stop ad-hoc call drop-ins','Help build HubSpot account research agent'],
-   obj:'Establish consistent, high-quality outbound motion + build toward leadership',
-   krs:[{n:'KR1',t:'8 SQLs/month (April achieved). Scaling to 10 from May.',s:'on',l:'Achieved'},{n:'KR2',t:'100% of SQLs logged in HubSpot by 25th each month.',s:'pend',l:'In progress'},{n:'KR3',t:'Min. 40 outreach touches/week (calls + email + LinkedIn).',s:'pend',l:'In progress'},{n:'KR4',t:'Test 2 outreach angles/month. Share learnings with Sachit.',s:'pend',l:'In progress'},{n:'KR5',t:'1 pulse check/month — come with 1 ask + 1 observation.',s:'on',l:'Done'}],
-   kras:[{t:'Pipeline generation',d:'Own top of funnel. Generate SQLs from outbound & events.'},{t:'Outreach quality & CRM',d:'Maintain clean HubSpot records. Log all touches.'},{t:'ICP & product knowledge',d:'Deep understanding of AEC ICP and Track3D positioning.'},{t:'Self-driven learning',d:'Iterate on messaging. Seek feedback proactively.'},{t:'Collaboration & synergy',d:'Share learnings with team. Flag blockers early.'}],
-   needsfrom:['Fix the time zone / calling hours schedule — she flagged it once and moved on. Don\'t let it fester.','Deliver on the leadership path she asked for — she came to Track3D specifically because of Sachit.','Use Nooks for coaching — she directly asked not to be dropped in on during live calls.','Share the DemandGen sprint doc — she wants to think like a funnel owner, not just an executor.'],
-   takeaways:['You talked more than she did — flip the ratio next session. Ask one question, stay silent longer.','Time zone issue was left unresolved — give her a concrete answer before the next check-in.','She made a deliberate bet on you as a manager. The leadership path is the return on that bet.'],
-   onetag:'Give her a concrete update on the time zone / calling hours situation before the next session.'
+  {id:'ss',name:'Swagatika Senapati',initials:'SS',role:'SDR',joined:'March 2026',av:'avb',rc:'cb',
+   pulse:9,plabel:'Above target',pstatus:'green',
+   sql:10,sqlTarget:8,ytdPct:125,
+   tofu:45,mofu:18,bofu:7,
+   subSql:'N/A',subName:null,
+   promoScore:72,promoLabel:'On track',
+   coaching:'Nooks coaching structure not yet agreed — call drop-ins risk trust erosion',
+   loop:'Resolve US calling hours / time zone schedule',
+   lastMet:'24 Apr 2026',
+   needsfrom:['Fix the time zone / calling hours — she flagged it and moved on','Deliver the leadership path — she came to Track3D specifically because of you','Use Nooks for coaching — she asked not to be dropped into live calls','Share the DemandGen sprint — she wants to think like a funnel owner'],
+   takeaways:['You talked more than she did — flip the ratio next session','Time zone issue was left unresolved — give her a concrete answer','She made a deliberate bet on you as a manager — the leadership path is the return'],
+   onetag:'Give her a concrete update on the time zone situation before next session.',
+   obj:'Establish consistent outbound motion + build toward leadership',
+   krs:[{n:'KR1',t:'8 SQLs/month (April: 10 — above target). Scaling to 10 from May.',s:'on',l:'Above target'},{n:'KR2',t:'ToFU→MoFU conversion ≥ 35%. MoFU→BoFU ≥ 35%.',s:'pend',l:'Tracking'},{n:'KR3',t:'Lead junior SDR onboarding when hired — sub hits 80% SQL target in Month 1.',s:'pend',l:'Pending hire'},{n:'KR4',t:'100% HubSpot logging compliance by 25th each cycle.',s:'pend',l:'In progress'},{n:'KR5',t:'Pulse score trend — maintain or improve each session.',s:'on',l:'9/10'}],
+   kras:[{t:'SQL target achievement',d:'Monthly + YTD SQL attainment vs target.'},{t:'Funnel conversion',d:'ToFU→MoFU→BoFU conversion rates monthly.'},{t:'Leadership effectiveness',d:'Sub\'s SQL attainment + training quality once hired.'},{t:'Outreach quality & CRM',d:'HubSpot hygiene + signal research before outreach.'},{t:'Pulse & professional growth',d:'Pulse trend + career path clarity + idea contribution.'}]
   },
-  {id:'bg',name:'Bighnajeet Pati',initials:'BG',role:'SDR',joined:'March 2026',av:'avt',rc:'c-teal',pulse:'green',plabel:'On track',sql:8,target:8,ramp:false,score:'9',scoreClass:'pscore-9',
-   lastMet:'24 Apr 2026',nextMet:'May 2026',
-   loops:['Deploy incoming junior hire to BG — he is ready','Set up monthly Kiran connect starting May','Create shared brainstorm sheet for channel ideas','Revisit AE vs Manager decision by Month 4–5'],
+  {id:'bg',name:'Bighnajeet Pati',initials:'BG',role:'SDR',joined:'March 2026',av:'avt',rc:'ct',
+   pulse:9,plabel:'On track',pstatus:'green',
+   sql:8,sqlTarget:8,ytdPct:100,
+   tofu:38,mofu:14,bofu:5,
+   subSql:'N/A',subName:null,
+   promoScore:65,promoLabel:'On track',
+   coaching:'AE vs Manager path still undecided — needs a nudge before Month 4 window closes',
+   loop:'Deploy junior hire to BG — he is ready and tracking this',
+   lastMet:'24 Apr 2026',
+   needsfrom:['Assign junior hire — he\'s thinking about proving management through it','Kiran exposure — cross-leadership visibility matters to him','Structured brainstorm format — needs a sheet and cadence to contribute','Help make the AE vs Manager call by Month 4–5'],
+   takeaways:['BG is your quietest rep — don\'t mistake that for no needs','You explained management theory but left no concrete first step','The junior hire commitment was heard clearly — track and deliver'],
+   onetag:'Give BG one concrete first management action — not more philosophy.',
    obj:'Establish consistent outbound motion + decide and prepare for career path',
-   krs:[{n:'KR1',t:'8 SQLs/month (April achieved). Scaling to 10 from May.',s:'on',l:'Achieved'},{n:'KR2',t:'100% of SQLs logged in HubSpot by 25th each month.',s:'pend',l:'In progress'},{n:'KR3',t:'Min. 40 outreach touches/week (calls + email + LinkedIn).',s:'pend',l:'In progress'},{n:'KR4',t:'Test 2 outreach angles/month. Share learnings with team.',s:'pend',l:'In progress'},{n:'KR5',t:'1 pulse check/month — come with 1 ask + 1 observation.',s:'on',l:'Done'}],
-   kras:[{t:'Pipeline generation',d:'Own top of funnel. Generate SQLs from outbound & events.'},{t:'Outreach quality & CRM',d:'Maintain clean HubSpot records. Log all touches.'},{t:'ICP & product knowledge',d:'Deep understanding of AEC ICP and Track3D positioning.'},{t:'Self-driven learning',d:'Iterate on messaging. Seek feedback proactively.'},{t:'Collaboration & synergy',d:'Share learnings with team. Flag blockers early.'}],
-   needsfrom:['Assign incoming junior to him — he\'s already thinking about how to prove management ability through it.','Exposure to Kiran — cross-leadership visibility is something he values and doesn\'t have yet.','A structured brainstorm format — he\'s receptive but needs a sheet and a cadence to contribute ideas.','Help making the AE vs Manager call by Month 4–5 — preparation needs runway.'],
-   takeaways:['BG is your quietest rep — don\'t mistake that for having no needs. Probe more in next session.','You explained management theory well but left him without a concrete first step. Give him one specific action.','The junior hire is a commitment he heard clearly — track it and deliver.'],
-   onetag:'Give BG a concrete first step toward management — not more philosophy. Example: "You\'re onboarding the new hire next month. Let\'s debrief after week 1."'
+   krs:[{n:'KR1',t:'8 SQLs/month (April: 8 — on target). Scaling to 10 from May.',s:'on',l:'Achieved'},{n:'KR2',t:'ToFU→MoFU conversion ≥ 35%. MoFU→BoFU ≥ 35%.',s:'pend',l:'Tracking'},{n:'KR3',t:'Lead junior SDR onboarding when hired — sub hits 80% SQL target in Month 1.',s:'pend',l:'Pending hire'},{n:'KR4',t:'100% HubSpot logging compliance by 25th each cycle.',s:'pend',l:'In progress'},{n:'KR5',t:'Decide AE vs Manager path by Month 4. Begin preparing 3 months ahead.',s:'pend',l:'Decision pending'}],
+   kras:[{t:'SQL target achievement',d:'Monthly + YTD SQL attainment vs target.'},{t:'Funnel conversion',d:'ToFU→MoFU→BoFU conversion rates monthly.'},{t:'Leadership effectiveness',d:'Sub\'s SQL attainment + training quality once hired.'},{t:'Outreach quality & CRM',d:'HubSpot hygiene + signal research before outreach.'},{t:'Pulse & professional growth',d:'Career path decision + pulse trend + idea contribution.'}]
   },
-  {id:'vk',name:'Vikramaye Katoch',initials:'VK',role:'SDR · Month 2',joined:'March 2026',av:'avp',rc:'c-purple',pulse:'green',plabel:'Ramp complete',sql:6,target:8,ramp:false,score:'10',scoreClass:'pscore-10',
-   lastMet:'24 Apr 2026',nextMet:'May 2026',
-   loops:['GC coaching sessions — his Month 1 SQLs were mostly TPs','Assign junior hire as buddy — he is planning for it','Give cross-functional exposure — even 30 min outside SDR work monthly','Monitor pulse at Month 3–4 — 10/10 is Month 1 energy'],
+  {id:'vk',name:'Vikramaye Katoch',initials:'VK',role:'SDR · Month 2',joined:'March 2026',av:'avp',rc:'cp',
+   pulse:10,plabel:'Ramp complete',pstatus:'green',
+   sql:6,sqlTarget:8,ytdPct:75,
+   tofu:30,mofu:10,bofu:3,
+   subSql:'N/A',subName:null,
+   promoScore:60,promoLabel:'On track',
+   coaching:'GC conversations — Month 1 SQLs mostly from TPs. GC unlock is Month 2 priority',
+   loop:'GC coaching sessions needed urgently — Month 2 target is live',
+   lastMet:'24 Apr 2026',
+   needsfrom:['Targeted GC coaching — TP conversion strong, GC is the next unlock','Cross-functional exposure — he asked directly to be put in different shoes','Junior hire assigned as buddy — planning his management approach around it','Don\'t neglect because he\'s low-maintenance'],
+   takeaways:['Vik is your highest-ceiling rep — self-directed, GTM-thinking, aspires to your seat','The 10/10 is real but it\'s Month 1 energy — track at Month 3–4','He asked for cross-functional exposure. Small ask, high impact.'],
+   onetag:'Find one moment this week to expose Vik to something outside SDR work.',
    obj:'Scale from ramp to full quota + build toward demand gen management',
-   krs:[{n:'KR1',t:'Month 1 ramp complete. 4 SQLs generated. Month 2 target: 8 SQLs.',s:'ramp',l:'Month 2 starts'},{n:'KR2',t:'Crack GC conversations — Month 1 SQLs were mostly TPs.',s:'pend',l:'Priority'},{n:'KR3',t:'100% of SQLs logged in HubSpot by 25th each month.',s:'pend',l:'From Month 2'},{n:'KR4',t:'Build on GPT-assisted research — evolve into repeatable signal process.',s:'pend',l:'In progress'},{n:'KR5',t:'1 pulse check/month — come with 1 ask + 1 observation.',s:'on',l:'Done'}],
-   kras:[{t:'Ramp to quota',d:'Move from 4 ramp SQLs to 8 full target in Month 2.'},{t:'GC conversion',d:'Learn GC language and objection handling — key Month 2 unlock.'},{t:'Pipeline generation',d:'Own top of funnel from Month 2. Generate SQLs via outbound.'},{t:'AI & signal building',d:'Use GPT to build repeatable account research processes.'},{t:'Collaboration & synergy',d:'Lead junior buddy. Contribute to team channel brainstorms.'}],
-   needsfrom:['Targeted GC coaching — his TP conversion is strong, GC is the next unlock.','Cross-functional exposure — even one non-SDR marketing touchpoint per month.','Junior hire assigned as buddy — he is planning his management approach around it.','Don\'t neglect him because he\'s low-maintenance — schedule intentional development time.'],
-   takeaways:['Vik is your highest-ceiling rep — self-directed, GTM-thinking, aspires to your seat. Don\'t underfund his development.','The 10/10 is real but it\'s also Month 1 energy — track whether it holds at Month 3-4.','He asked for cross-functional exposure directly. It\'s a small ask that costs almost nothing to deliver.'],
-   onetag:'Find one moment this week to expose Vik to something outside SDR work — a campaign brief, strategy call, or Highperformr onboarding. He asked for it directly.'
+   krs:[{n:'KR1',t:'Month 2 target: 8 SQLs. Crack GC conversations — Month 1 mostly TPs.',s:'ramp',l:'Month 2 live'},{n:'KR2',t:'ToFU→MoFU conversion ≥ 30% (ramp adjustment). MoFU→BoFU ≥ 30%.',s:'pend',l:'Tracking'},{n:'KR3',t:'Lead junior SDR onboarding when hired — sub hits 80% SQL target in Month 1.',s:'pend',l:'Pending hire'},{n:'KR4',t:'Build GPT research into repeatable weekly signal process.',s:'pend',l:'In progress'},{n:'KR5',t:'Pulse score — maintain 10/10 through Month 3. Flag if drops.',s:'on',l:'10/10'}],
+   kras:[{t:'SQL target achievement',d:'Monthly + YTD SQL attainment vs target.'},{t:'Funnel conversion',d:'ToFU→MoFU→BoFU conversion rates monthly.'},{t:'Leadership effectiveness',d:'Sub\'s SQL attainment + training quality once hired.'},{t:'AI & signal building',d:'Build repeatable GPT-assisted account research.'},{t:'Pulse & professional growth',d:'Pulse trend + cross-functional growth + idea contribution.'}]
   },
-  {id:'ps',name:'Pooja Sharma',initials:'PS',role:'MRA',joined:'March 2026',av:'avc',rc:'c-coral',pulse:'amber',plabel:'7.5 — watch',sql:null,target:null,ramp:false,score:'7.5',scoreClass:'pscore-75',
-   lastMet:'24 Apr 2026',nextMet:'May 2026',
-   loops:['Revisit the 2.5 gap — she couldn\'t name it in session 1','Brief Pooja on the "why" behind every task going forward','Include her in Highperformr first check (confirm she attended)','Progress the new MRA hire — she is waiting on this'],
+  {id:'ps',name:'Pooja Sharma',initials:'PS',role:'MRA',joined:'March 2026',av:'avc',rc:'cc',
+   pulse:7.5,plabel:'7.5 — watch',pstatus:'amber',
+   sql:null,sqlTarget:null,ytdPct:null,
+   tofu:null,mofu:null,bofu:null,
+   subSql:null,subName:null,
+   promoScore:null,promoLabel:null,
+   coaching:'2.5 gap still unexplored — must open Session 2 with this question',
+   loop:'Revisit the 2.5 gap — she couldn\'t name it in Session 1',
+   lastMet:'24 Apr 2026',
+   needsfrom:['Task briefing with context — she directly asked for the why behind tasks','Inclusion in broader conversations — makes her feel like a contributor','New MRA hire timeline — capacity need and morale signal','Revisit 2.5 gap in Session 2 — don\'t let it go unanswered again'],
+   takeaways:['You talked more than Pooja — flip it. She has more to share.','The 2.5 gap was left unexplored — make it the first question in Session 2','Task dumping without context slows her down. Simple habit change, high ROI.'],
+   onetag:'Ask her: "Last time you said 7.5 but couldn\'t name the 2.5. Have you figured it out?" Then stay silent.',
    obj:'Own HubSpot across all departments + build toward RevOps / GTM Ops',
-   krs:[{n:'KR1',t:'Become the go-to HubSpot person across CS, Sales, Marketing by Month 6.',s:'pend',l:'In progress'},{n:'KR2',t:'Begin market research work from next week onwards.',s:'pend',l:'Starting'},{n:'KR3',t:'Maintain HubSpot integrity and sanity with incoming MRA hire.',s:'pend',l:'Pending hire'},{n:'KR4',t:'Contribute to Highperformr onboarding and signal enrichment.',s:'pend',l:'In progress'},{n:'KR5',t:'1 pulse check/month — come with 1 ask + 1 observation.',s:'on',l:'Done'}],
-   kras:[{t:'HubSpot ownership',d:'Own setup, maintenance, and integrity across all departments.'},{t:'Market research',d:'Support lead enrichment and signal gathering alongside new hire.'},{t:'Cross-dept collaboration',d:'Be the face of HubSpot for CS, Sales, and Marketing.'},{t:'RevOps aspiration',d:'Build toward GTM Ops / RevOps role over 6–12 months.'},{t:'Tool evaluation',d:'Evaluate and onboard new tools like Highperformr.'}],
-   needsfrom:['Task briefing with context — she directly asked for the "why" behind tasks, not just the what.','Inclusion in broader conversations — being looped in makes her feel like a contributor.','Progress on new MRA hire — it\'s both a capacity need and a morale signal.','Revisit the 2.5 gap in next session — don\'t let it go unanswered a second time.'],
-   takeaways:['You talked significantly more than Pooja did — flip the ratio. She has more to share than she showed.','The 2.5 gap was left unexplored — she said "too soon." Accept that for Session 1, but make it the first thing you ask in Session 2.','Task dumping without context is slowing her down. This is a simple habit change with high ROI.'],
-   onetag:'Ask her directly in the next session: "Last time you said 7.5 but couldn\'t name the 2.5 yet. Have you figured it out?" Stay silent after asking.'
+   krs:[{n:'KR1',t:'Become go-to HubSpot person across CS, Sales, Marketing by Month 6.',s:'pend',l:'In progress'},{n:'KR2',t:'Begin market research work from next week.',s:'pend',l:'Starting'},{n:'KR3',t:'Maintain HubSpot integrity with incoming MRA hire.',s:'pend',l:'Pending hire'},{n:'KR4',t:'Contribute to Highperformr onboarding and signal enrichment.',s:'pend',l:'In progress'},{n:'KR5',t:'Resolve 2.5 pulse gap — name it and work on it in Session 2.',s:'pend',l:'Urgent'}],
+   kras:[{t:'HubSpot ownership',d:'Own setup and integrity across all departments.'},{t:'Market research',d:'Support lead enrichment and signal gathering.'},{t:'Cross-dept collaboration',d:'Be the HubSpot face for CS, Sales and Marketing.'},{t:'RevOps aspiration',d:'Build toward GTM Ops / RevOps over 6–12 months.'},{t:'Tool evaluation',d:'Evaluate and onboard new tools like Highperformr.'}]
   }
 ];
 
-const agenda=[
-  {title:'Open & set the tone',detail:'This is a safe space. No gotchas. Share your intent as a manager.',time:'0:00–2:00'},
-  {title:'Journey so far',detail:'How has the month felt? What surprised you? Is the role what you expected?',time:'2:00–8:00'},
-  {title:'KRAs, OKRs & KPIs',detail:'Walk through the framework. Get buy-in. Surface concerns about targets.',time:'8:00–14:00'},
-  {title:'Synergies',detail:'Do they feel supported? What would more support look like? What can you do better?',time:'14:00–20:00'},
-  {title:'Feedback exchange',detail:'Give one positive + one developmental. Ask: what feedback do you have for me?',time:'20:00–26:00'},
-  {title:'Next steps & close',detail:'Summarize 2–3 things you heard. Agree on mutual commitments. Confirm cadence.',time:'26:00–30:00'}
-];
+const nextAg={
+  ss:{name:'Swagatika',role:'SDR · Session 2',score:'9/10',sqls:'10/8',focus:'Leadership + time zone resolution',hdr:'linear-gradient(135deg,#1558a8,#3b82f6)',av:'avb',
+    ctx:'She hit 10/8 and rated 9/10. Time zone issue unresolved. She came to Track3D specifically because of you — the leadership path is the return on that bet.',
+    items:[
+      {t:'0:00–3:00',title:'Open with the time zone answer',detail:'You owe her a concrete resolution. Lead with it.',q:'"I looked into the calling hours situation. Here\'s what we can do..."',badge:'Must open here',bc:'badge-r'},
+      {t:'3:00–8:00',title:'SQL + funnel performance',detail:'10/8 SQLs — acknowledge specifically. Ask what\'s driving ToFU→MoFU conversion.',q:'"You hit 10 SQLs. Looking at your funnel — where are leads stalling between stages?"',badge:'',bc:''},
+      {t:'8:00–14:00',title:'Leadership path — first concrete step',detail:'Don\'t give more vision — give one specific action.',q:'"Here is the first real leadership task I want you to own this month."',badge:'Deliver this',bc:'badge-r'},
+      {t:'14:00–20:00',title:'Nooks coaching structure',detail:'She asked you not to drop into live calls. Agree on a format.',q:'"How do you want our call coaching to work? Let\'s set a format you\'re comfortable with."',badge:'Agree a format',bc:'badge-a'},
+      {t:'20:00–26:00',title:'Channel + funnel ideas',detail:'Ask what she\'s thinking for improving MoFU→BoFU conversion.',q:'"Where do you think prospects are falling off after Discovery? What can we do differently?"',badge:'',bc:''},
+      {t:'26:00–30:00',title:'Pulse re-score & close',detail:'Did the time zone answer move the needle?',q:'"Last time you were a 9. Where are you now? What would make it a 10?"',badge:'',bc:''}]},
+  bg:{name:'BG',role:'SDR · Session 2',score:'9/10',sqls:'8/8',focus:'Junior hire + management first step',hdr:'linear-gradient(135deg,#0a7a62,#34d399)',av:'avt',
+    ctx:'Hit 8/8 and rated 9/10. Heard the junior hire commitment clearly — he\'s been waiting. Needs a tangible first step, not more theory.',
+    items:[
+      {t:'0:00–3:00',title:'Open with the junior hire update',detail:'Give a concrete timeline — when is the hire joining?',q:'"The new hire is joining [month]. Here\'s specifically what I want you to own."',badge:'He is tracking this',bc:'badge-r'},
+      {t:'3:00–8:00',title:'SQL + funnel review',detail:'On target at 8/8. Ask about funnel conversion quality.',q:'"You hit 8 clean. Where are ToFU leads dropping off? What\'s the pattern?"',badge:'',bc:''},
+      {t:'8:00–14:00',title:'AE vs Manager — push for a lean',detail:'He doesn\'t need a final answer but should start forming a preference.',q:'"After a month watching things here — are you leaning anywhere yet?"',badge:'Start the clock',bc:'badge-a'},
+      {t:'14:00–16:00',title:'Kiran connect — confirm the date',detail:'You committed to a monthly Kiran session. Lock in a date.',q:'"Kiran connect is happening in May. Come with one question for him."',badge:'Confirm date',bc:'badge-a'},
+      {t:'16:00–22:00',title:'Funnel improvement ideas',detail:'Ask for one idea on improving pipeline quality.',q:'"If you could change one thing about how we qualify leads, what would it be?"',badge:'',bc:''},
+      {t:'22:00–30:00',title:'Feedback exchange & close',detail:'He had no negative feedback in Session 1. He\'s more settled now.',q:'"Is there anything about how we work together you\'d want to change?"',badge:'',bc:''}]},
+  vk:{name:'Vik',role:'SDR · Session 2 · Month 2 live',score:'10/10',sqls:'6 (ramp)',focus:'GC unlock + cross-functional exposure',hdr:'linear-gradient(135deg,#4a35a0,#8b5cf6)',av:'avp',
+    ctx:'Rated 10/10. Month 2 target of 8 SQLs is now live. GC conversations are the next unlock. He asked directly for cross-functional exposure.',
+    items:[
+      {t:'0:00–3:00',title:'Acknowledge the ramp performance',detail:'6 SQLs in ramp with no target is exceptional.',q:'"6 SQLs in ramp is a strong start. What do you think made the difference?"',badge:'',bc:''},
+      {t:'3:00–10:00',title:'GC conversations — targeted coaching',detail:'Month 1 SQLs mainly from TPs. Go deep on GC objection handling.',q:'"Your TP conversion is strong. Where does the GC conversation stall?"',badge:'Key Month 2 unlock',bc:'badge-r'},
+      {t:'10:00–16:00',title:'Month 2 target + funnel plan',detail:'Target is live. How is he thinking about ToFU→MoFU conversion?',q:'"Walk me through your month. How are you thinking about moving leads through the funnel?"',badge:'Target now active',bc:'badge-a'},
+      {t:'16:00–20:00',title:'Cross-functional exposure — deliver something',detail:'He asked directly. Tell him what you\'re looping him into.',q:'"You asked for exposure beyond SDR work. Here\'s what I\'m bringing you into this month."',badge:'He asked for this',bc:'badge-r'},
+      {t:'20:00–25:00',title:'AI agent — formalise the research',detail:'He used GPT to extract AGC Chicago data. Can it become weekly?',q:'"The AGC Chicago research — can we turn that into a weekly signal pull?"',badge:'',bc:''},
+      {t:'25:00–30:00',title:'Pulse re-score & close',detail:'He gave 10/10. Listen for anything now that Month 2 pressure is real.',q:'"You were a 10. Still feeling it now that the target is live?"',badge:'',bc:''}]},
+  ps:{name:'Pooja',role:'MRA · Session 2',score:'7.5/10',sqls:'KRAs only',focus:'The 2.5 gap + task briefing',hdr:'linear-gradient(135deg,#b03518,#f87171)',av:'avc',
+    ctx:'Lowest pulse at 7.5/10. The 2.5 gap was left unexplored. She flagged task briefing as friction. This session: listen more than you talk.',
+    items:[
+      {t:'0:00–2:00',title:'Open with the 2.5 gap — directly',detail:'Don\'t ease into it. Leading with it shows you listened.',q:'"Last time you said 7.5 but couldn\'t name the 2.5. Have you figured it out?"',badge:'Open here — no exceptions',bc:'badge-r'},
+      {t:'2:00–10:00',title:'Listen — do not fill the silence',detail:'Let her finish completely before responding.',q:'[Stay silent. Then ask: "Is there anything else behind that?"]',badge:'Listen more than talk',bc:'badge-r'},
+      {t:'10:00–16:00',title:'Task briefing — show the habit has changed',detail:'Come with a specific example of something you briefed properly.',q:'"You mentioned the briefing gap. Has it felt different this month?"',badge:'Prove it',bc:'badge-a'},
+      {t:'16:00–20:00',title:'HubSpot progress check',detail:'Her 6-month goal is to be the go-to HubSpot person.',q:'"Walk me through what you\'ve set up in HubSpot this month."',badge:'',bc:''},
+      {t:'20:00–24:00',title:'New MRA hire — update her',detail:'She\'s waiting. Give an honest timeline.',q:'"The new hire — here\'s where we are and what I want you to own."',badge:'She is waiting',bc:'badge-a'},
+      {t:'24:00–30:00',title:'Market research + pulse re-score',detail:'Has market research started? Then ask for a re-score.',q:'"We said market research starts this month. Where are you? And — where\'s your pulse now?"',badge:'',bc:''}]}
+};
 
 let sel=null;
+let agSel='ss';
 
-function pct(r){if(r.ramp)return 50;if(!r.target)return 0;return Math.min(100,Math.round((r.sql/r.target)*100));}
-function pfill(p){if(p>=100)return 'pfg';if(p>=50)return 'pfa';return 'pfb';}
+function promoColor(score){
+  if(score>=80)return{bar:'var(--green)',cls:'pl-ready'};
+  if(score>=60)return{bar:'#60a5fa',cls:'pl-track'};
+  if(score>=40)return{bar:'var(--amber)',cls:'pl-dev'};
+  return{bar:'var(--danger)',cls:'pl-inter'};
+}
+
+function pulseClass(p){
+  if(p>=10)return 'ps10';
+  if(p>=9)return 'ps9';
+  if(p>=7)return 'ps75';
+  return 'ps-warn';
+}
+
+function pbClass(status){
+  if(status==='green')return 'pbg';
+  if(status==='amber')return 'pba';
+  if(status==='danger')return 'pbr';
+  return 'pbgr';
+}
+
+function funnelBar(r){
+  if(!r.tofu)return '';
+  const total=r.tofu;
+  const mPct=Math.round((r.mofu/total)*100);
+  const bPct=Math.round((r.bofu/total)*100);
+  const tmConv=Math.round((r.mofu/r.tofu)*100);
+  const mbConv=r.mofu>0?Math.round((r.bofu/r.mofu)*100):0;
+  return`<div class="funnel-row">
+    <div class="funnel-label"><span>Funnel conversion</span><span>ToFU→MoFU: ${tmConv}% · MoFU→BoFU: ${mbConv}%</span></div>
+    <div class="funnel-bars">
+      <div class="fb-tofu" style="width:${100-mPct-bPct}%"></div>
+      <div class="fb-mofu" style="width:${mPct}%"></div>
+      <div class="fb-bofu" style="width:${bPct}%"></div>
+    </div>
+    <div class="funnel-legend">
+      <span class="fl-item"><span class="fl-dot" style="background:var(--purple2)"></span>ToFU ${r.tofu}</span>
+      <span class="fl-item"><span class="fl-dot" style="background:var(--amber)"></span>MoFU ${r.mofu}</span>
+      <span class="fl-item"><span class="fl-dot" style="background:var(--green)"></span>BoFU ${r.bofu}</span>
+    </div>
+  </div>`;
+}
 
 function renderGrid(){
   const g=document.getElementById('repGrid');
   g.innerHTML=reps.map(r=>{
-    const p=pct(r);
-    const sqlLine=r.target===null
-      ?`<div class="krow"><span class="klabel">KPIs</span><span class="kna">KRAs only</span></div>`
-      :`<div class="krow"><span class="klabel">SQLs · target ${r.target}</span><div class="kright"><div class="pbar"><div class="pf ${pfill(p)}" style="width:${p}%"></div></div><span class="kval">${r.sql}/${r.target}</span></div></div>`;
-    return`<div class="rc ${r.rc}${sel===r.id?' sel':''}" onclick="selectRep('${r.id}')">
+    const pc=r.promoScore?promoColor(r.promoScore):null;
+    return`<div class="rc ${r.rc}${sel===r.id?' sel':''}" onclick="selRep('${r.id}')">
       <div class="rtop">
         <div class="av ${r.av}">${r.initials}</div>
         <div><div class="rname">${r.name}</div><div class="rrole">${r.role} · ${r.joined}</div></div>
-        <span class="pb ${r.pulse==='amber'?'pba':'pbg'}">${r.plabel}</span>
+        <span class="pb ${pbClass(r.pstatus)}">${r.plabel}</span>
       </div>
-      ${sqlLine}
-      <div class="pscore-row"><span class="pscore-label">Pulse score</span><span class="pscore-val ${r.scoreClass}">${r.score}/10</span></div>
-      <div class="rfoot"><div class="rdot"></div>${r.loops[0]}</div>
+      <div class="metrics-row">
+        <div class="metric-box"><div class="metric-label">SQLs this cycle</div><div class="metric-val">${r.sql!==null?r.sql+'/'+r.sqlTarget:'KRAs only'}</div></div>
+        <div class="metric-box"><div class="metric-label">YTD SQL %</div><div class="metric-val">${r.ytdPct!==null?r.ytdPct+'%':'—'}</div></div>
+        <div class="metric-box"><div class="metric-label">Pulse score</div><div class="metric-val ${pulseClass(r.pulse)}">${r.pulse}/10</div></div>
+      </div>
+      ${r.tofu?funnelBar(r):''}
+      ${r.coaching?`<div class="coaching-tag"><span class="coaching-icon">⚠</span>${r.coaching}</div>`:''}
+      ${pc?`<div class="promo-row"><span class="promo-label">Promotion readiness</span><div class="promo-bar-wrap"><div class="promo-bar" style="width:${r.promoScore}%;background:${pc.bar}"></div></div><span class="promo-score" style="color:${pc.bar}">${r.promoScore}</span></div>`:''}
+      <div class="rfoot"><div class="rdot"></div>${r.loop}</div>
     </div>`;
   }).join('');
+  if(sel)renderDetail();else document.getElementById('detailPanel').innerHTML='';
 }
 
-function selectRep(id){
-  if(sel===id){sel=null;document.getElementById('detailPanel').style.display='none';renderGrid();return;}
-  sel=id;renderGrid();
-  const r=reps.find(x=>x.id===id);
-  const dp=document.getElementById('detailPanel');
-  dp.style.display='block';
-  dp.innerHTML=`
-    <div class="dp">
-      <div class="dhead">
-        <div class="av ${r.av}" style="width:48px;height:48px;font-size:14px;">${r.initials}</div>
-        <div><div class="dname">${r.name}</div><div class="dmeta">${r.role} · Last met: ${r.lastMet} · Next: ${r.nextMet}</div></div>
-        <span class="pb ${r.pulse==='amber'?'pba':'pbg'}" style="margin-left:auto;font-size:11px;padding:5px 12px;">${r.score}/10 · ${r.plabel}</span>
+function selRep(id){sel=sel===id?null:id;renderGrid();}
+
+function renderDetail(){
+  const r=reps.find(x=>x.id===sel);
+  if(!r){document.getElementById('detailPanel').innerHTML='';return;}
+  const pc=r.promoScore?promoColor(r.promoScore):null;
+  document.getElementById('detailPanel').innerHTML=`<div class="dp">
+    <div class="dhead">
+      <div class="av ${r.av}" style="width:46px;height:46px;">${r.initials}</div>
+      <div><div class="dname">${r.name}</div><div class="dmeta">${r.role} · Last met: ${r.lastMet}</div></div>
+      <span class="pb ${pbClass(r.pstatus)}" style="margin-left:auto;">${r.pulse}/10 · ${r.plabel}</span>
+    </div>
+    <div class="dcols">
+      <div>
+        <div class="sblock"><div class="slabel">Open loops</div>${r.loop?`<div class="irow"><div class="idot"></div><div class="itext">${r.loop}</div></div>`:''}</div>
+        <div class="sblock"><div class="slabel">What ${r.name.split(' ')[0]} needs from Sachit</div>${r.needsfrom.map(n=>`<div class="tbox">${n}</div>`).join('')}</div>
+        ${r.promoScore?`<div class="sblock"><div class="slabel">Promotion readiness</div><div class="promo-row"><span class="promo-label">${r.promoLabel}</span><div class="promo-bar-wrap" style="width:120px"><div class="promo-bar" style="width:${r.promoScore}%;background:${pc.bar}"></div></div><span class="promo-score" style="color:${pc.bar};font-size:18px;font-weight:800;">${r.promoScore}/100</span></div></div>`:''}
       </div>
-      <div class="dcols">
-        <div>
-          <div class="sblock">
-            <div class="slabel">Open loops</div>
-            ${r.loops.map(l=>`<div class="irow"><div class="idot da"></div><div class="itext">${l}</div></div>`).join('')}
-          </div>
-          <div class="sblock">
-            <div class="slabel">What ${r.name.split(' ')[0]} needs from Sachit</div>
-            ${r.needsfrom.map(n=>`<div class="tbox"><div class="ttext">${n}</div></div>`).join('')}
-          </div>
-        </div>
-        <div>
-          <div class="sblock">
-            <div class="slabel">Manager takeaways</div>
-            ${r.takeaways.map(t=>`<div class="tbox" style="border-left:2px solid var(--red);border-radius:0 var(--rsm) var(--rsm) 0;"><div class="ttext">${t}</div></div>`).join('')}
-          </div>
-          <div>
-            <div class="slabel">Q2 Key results</div>
-            ${r.krs.map(k=>`<div class="krrow"><span class="krn">${k.n}</span><span class="krt">${k.t}</span><span class="krs ${k.s==='on'?'ks-on':k.s==='ramp'?'ks-ramp':'ks-pend'}">${k.l}</span></div>`).join('')}
-          </div>
-        </div>
+      <div>
+        <div class="sblock"><div class="slabel">Manager takeaways</div>${r.takeaways.map(t=>`<div class="tbox tbox-red">${t}</div>`).join('')}</div>
+        <div><div class="slabel">Key results</div>${r.krs.map(k=>`<div class="krrow"><span class="krn">${k.n}</span><span class="krt">${k.t}</span><span class="krs ${k.s==='on'?'ks-on':k.s==='ramp'?'ks-ramp':'ks-pend'}">${k.l}</span></div>`).join('')}</div>
       </div>
-      <div class="onetag">One thing before next session with ${r.name.split(' ')[0]}: ${r.onetag}</div>
-    </div>`;
-  setTimeout(()=>dp.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
+    </div>
+    <div class="onetag">One thing before next session with ${r.name.split(' ')[0]}: ${r.onetag}</div>
+  </div>`;
+  setTimeout(()=>document.getElementById('detailPanel').scrollIntoView({behavior:'smooth',block:'nearest'}),50);
 }
 
-function renderManager(){
-  document.getElementById('tab-manager').innerHTML=`
-    <div class="mgr-summary">
-      <div class="mgr-title">Manager health check — patterns across all 4 sessions · 24 Apr 2026</div>
-      <div class="mgr-pattern"><div class="mgr-pt">You talked more than your reps in every single session</div><div class="mgr-pd">Across all four transcripts, Sachit spoke significantly more than the rep. All four reps gave short but meaningful answers and had more to share. Next round: ask one question, then hold silence longer than feels comfortable. You will hear things you didn't hear today.</div></div>
-      <div class="mgr-pattern"><div class="mgr-pt">You made the same 3 commitments to all reps — track them</div><div class="mgr-pd">Junior hire assignment, monthly Kiran connect, and DemandGen sprint sharing were mentioned in almost every session. All three reps are tracking these even if they don't say it. If they don't materialise, trust erodes quietly.</div></div>
-      <div class="mgr-pattern"><div class="mgr-pt">Your vision communication is strong — your tactical follow-through is the test</div><div class="mgr-pd">You gave everyone a compelling 6-month picture — leadership paths, RevOps direction, AI agent building, funnel strategy. They all bought in. Now the question is execution. Each next session will be a checkpoint on whether the vision became reality.</div></div>
-      <div class="mgr-pattern"><div class="mgr-pt">Team culture is genuinely strong — protect it actively</div><div class="mgr-pd">All four reps mentioned collaboration, psychological safety, and mutual trust as highlights. Swagatika mentioned healthy competition without ego. BG noted cross-departmental exposure. Vik boasts to his family. This culture is an asset — don't let process or pressure erode it.</div></div>
-      <div class="mgr-pattern"><div class="mgr-pt">Pooja is the one to watch — 7.5 vs 9–10 for the SDRs</div><div class="mgr-pd">The 2.5 gap she couldn't name is the only unresolved thread in the entire first round. It's not urgent but it's worth taking seriously. Make sure Session 2 with her opens with that question before anything else.</div></div>
+function renderInsights(){
+  const sdrs=reps.filter(r=>r.id!=='ps');
+  document.getElementById('tab-insights').innerHTML=`
+    <div class="insights-grid">
+      <div class="insight-card">
+        <div class="insight-title"><div class="insight-icon" style="background:var(--amber-dim);color:var(--amber);">⚠</div>Coaching needs this week</div>
+        ${reps.map(r=>`<div class="coaching-item">
+          <span class="coaching-rep" style="background:var(--purple-dim);color:var(--purple2);">${r.initials}</span>
+          <span class="coaching-text">${r.coaching}</span>
+        </div>`).join('')}
+      </div>
+      <div class="insight-card">
+        <div class="insight-title"><div class="insight-icon" style="background:var(--green-dim);color:var(--green);">↑</div>Promotion readiness tracker</div>
+        ${sdrs.map(r=>{const pc=promoColor(r.promoScore);return`<div class="promo-item">
+          <span class="promo-name">${r.name.split(' ')[0]}</span>
+          <span class="promo-score-big" style="color:${pc.bar}">${r.promoScore}</span>
+          <div class="promo-bar-outer"><div class="promo-bar-inner" style="width:${r.promoScore}%;background:${pc.bar}"></div></div>
+          <span class="promo-label-tag ${pc.cls}">${r.promoLabel}</span>
+        </div>`;}).join('')}
+      </div>
+    </div>
+    <div class="insight-card" style="margin-bottom:14px;">
+      <div class="insight-title"><div class="insight-icon" style="background:var(--purple-dim);color:var(--purple2);">▲</div>Funnel conversion overview</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:4px;">
+        ${sdrs.map(r=>`<div>
+          <div style="font-size:12px;font-weight:600;color:var(--text);margin-bottom:8px;">${r.name.split(' ')[0]}</div>
+          ${funnelBar(r)}
+        </div>`).join('')}
+      </div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-title"><div class="insight-icon" style="background:var(--red-dim);color:#f87171;">★</div>Manager health check — patterns across all sessions</div>
+      ${[
+        ['You talked more than your reps in every session','All four transcripts show Sachit speaking significantly more. Next round: ask one question, hold silence longer. You will hear things you didn\'t hear today.'],
+        ['Three commitments made to all reps — track them','Junior hire, Kiran connect, DemandGen sprint. All three reps are quietly tracking these. If they don\'t materialise, trust erodes.'],
+        ['Pooja\'s 2.5 gap is the only unresolved thread','7.5 vs 9–10 for the SDRs. Session 2 must open with that question before anything else.'],
+        ['Team culture is genuinely strong — protect it','Psychological safety, healthy competition, mutual trust all mentioned. Vik boasts to his family. This is an asset — don\'t let pressure erode it.'],
+      ].map(([t,d])=>`<div class="tbox tbox-purple" style="margin-bottom:8px;"><strong style="display:block;margin-bottom:3px;color:var(--text);font-size:12px;">${t}</strong><span style="font-size:12px;color:var(--text2);">${d}</span></div>`).join('')}
     </div>`;
 }
 
 function renderOKRs(){
-  document.getElementById('tab-okrs').innerHTML=reps.map(r=>`
-    <div class="okr-sec">
-      <div class="okr-sh">
-        <div class="av ${r.av}" style="width:34px;height:34px;font-size:11px;">${r.initials}</div>
-        <div class="okr-name">${r.name}</div>
-        <span class="pb ${r.pulse==='amber'?'pba':'pbg'}">${r.role}</span>
-      </div>
-      <div class="okr-obj">${r.obj}</div>
-      ${r.krs.map(k=>`<div class="krrow"><span class="krn">${k.n}</span><span class="krt">${k.t}</span><span class="krs ${k.s==='on'?'ks-on':k.s==='ramp'?'ks-ramp':'ks-pend'}">${k.l}</span></div>`).join('')}
-      <div class="slabel" style="margin-top:12px;margin-bottom:6px;">KRAs</div>
-      <div class="kra-grid">${r.kras.map(k=>`<div class="kra-item"><div class="kra-t">${k.t}</div><div class="kra-d">${k.d}</div></div>`).join('')}</div>
-    </div>`).join('');
+  document.getElementById('tab-okrs').innerHTML=reps.map(r=>`<div class="okr-sec">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border);">
+      <div class="av ${r.av}" style="width:32px;height:32px;font-size:11px;">${r.initials}</div>
+      <span style="font-size:14px;font-weight:700;color:var(--text);">${r.name}</span>
+      <span class="pb ${pbClass(r.pstatus)}">${r.role}</span>
+    </div>
+    <div class="okr-obj">${r.obj}</div>
+    ${r.krs.map(k=>`<div class="krrow"><span class="krn">${k.n}</span><span class="krt">${k.t}</span><span class="krs ${k.s==='on'?'ks-on':k.s==='ramp'?'ks-ramp':'ks-pend'}">${k.l}</span></div>`).join('')}
+    <div class="slabel" style="margin-top:10px;margin-bottom:6px;">KRAs</div>
+    <div class="kra-grid">${r.kras.map(k=>`<div class="kra-item"><div class="kra-t">${k.t}</div><div class="kra-d">${k.d}</div></div>`).join('')}</div>
+  </div>`).join('');
 }
-
-const nextAgendas={
-  ss:{
-    name:'Swagatika Senapati',role:'SDR · Session 2',score:'9/10',sqls:'10/8',
-    focus:'Leadership path + time zone resolution',
-    av:'avb',hdr:'background:linear-gradient(135deg,#1558a8,#60a5fa)',
-    context:'She hit 10/8 SQLs and rated 9/10. The time zone issue was left unresolved in Session 1. She asked for a concrete leadership path — she came to Track3D specifically because of you. Deliver, don\'t just vision.',
-    items:[
-      {t:'0:00–3:00',title:'Open with the time zone answer',detail:'You owe her a concrete resolution. Lead with it — don\'t wait for her to raise it.',q:'"I looked into the calling hours situation you mentioned. Here\'s what we can do..."',badge:'Must open here',bc:'#fee2e2',btc:'#991b1b'},
-      {t:'3:00–8:00',title:'SQL performance — above target',detail:'She\'s at 10/8. Acknowledge it specifically. Ask what\'s working so she can articulate and repeat it.',q:'"You hit 10 SQLs — what changed from week 1 to week 3? What\'s clicking?"',badge:'',bc:'',btc:''},
-      {t:'8:00–14:00',title:'Leadership path — first concrete step',detail:'Don\'t give more vision — give her one specific action. Ask her to lead new hire onboarding or own the AI agent project.',q:'"Here is the first real leadership task I want you to own this month."',badge:'Deliver this',bc:'#fee2e2',btc:'#991b1b'},
-      {t:'14:00–20:00',title:'Nooks coaching structure',detail:'She asked you not to drop into live calls. Agree on a structured Nooks debrief format together.',q:'"How do you want our call coaching to work? Let\'s set a format you\'re comfortable with."',badge:'Agree a format',bc:'#fff8e6',btc:'#854F0B'},
-      {t:'20:00–26:00',title:'Channel ideas brainstorm',detail:'You asked the team to bring top-of-funnel ideas. Ask her what she\'s been thinking beyond GPT account research.',q:'"What\'s one channel idea you think we haven\'t tried yet? Even rough."',badge:'',bc:'',btc:''},
-      {t:'26:00–30:00',title:'Pulse re-score & close',detail:'Ask for a re-score. Did the time zone answer move the needle? Agree on one mutual commitment each.',q:'"Last time you were a 9. Where are you now? What would make it a 10?"',badge:'',bc:'',btc:''},
-    ]
-  },
-  bg:{
-    name:'Bighnajeet Pati',role:'SDR · Session 2',score:'9/10',sqls:'8/8',
-    focus:'Junior hire + concrete management first step',
-    av:'avt',hdr:'background:linear-gradient(135deg,#0a7a62,#34d399)',
-    context:'He hit 8/8 and rated 9/10. He heard the junior hire commitment clearly — he\'s been waiting on it. Torn between AE and Manager path. Needs a tangible first step, not more theory.',
-    items:[
-      {t:'0:00–3:00',title:'Open with the junior hire update',detail:'He\'s been tracking this since you mentioned it. Give a concrete timeline — when is the hire joining and what will his role be.',q:'"The new hire is joining [month]. Here\'s specifically what I want you to own in their first 2 weeks."',badge:'He is tracking this',bc:'#fee2e2',btc:'#991b1b'},
-      {t:'3:00–8:00',title:'SQL performance review',detail:'On target at 8/8. Ask him what worked and what felt like a grind — he\'s analytical and will have thought about it.',q:'"You hit 8 clean. Which SQLs came easiest and which felt forced? What does that tell you?"',badge:'',bc:'',btc:''},
-      {t:'8:00–14:00',title:'AE vs Manager — push for a lean',detail:'You said take your time in Session 1. Now nudge him. He doesn\'t need a final answer but should start forming a lean.',q:'"After a month of watching how things work here — are you leaning anywhere yet, even slightly?"',badge:'Start the clock',bc:'#fff8e6',btc:'#854F0B'},
-      {t:'14:00–16:00',title:'Kiran connect — confirm the date',detail:'You committed to a monthly Kiran session. BG values leadership exposure. Lock in a date.',q:'"Kiran connect is happening in May. I want you to come with one question for him."',badge:'Confirm date',bc:'#fff8e6',btc:'#854F0B'},
-      {t:'16:00–22:00',title:'Channel ideas brainstorm',detail:'You asked the team to maintain a sheet of top-of-funnel ideas. Ask for one idea right now.',q:'"Tell me one channel or signal source you think we haven\'t explored. Even a rough idea."',badge:'',bc:'',btc:''},
-      {t:'22:00–27:00',title:'Feedback exchange',detail:'BG had no negative feedback in Session 1. He\'s more settled now — there may be more. Ask again with more specificity.',q:'"A month in and hitting numbers — is there anything about how we work together you\'d want to change?"',badge:'',bc:'',btc:''},
-      {t:'27:00–30:00',title:'Pulse re-score & close',detail:'Re-score and agree on one commitment each.',q:'"You were a 9 last time. Still a 9, or has anything shifted?"',badge:'',bc:'',btc:''},
-    ]
-  },
-  vk:{
-    name:'Vikramaye Katoch',role:'SDR · Session 2 · Month 2 target active',score:'10/10',sqls:'6 (ramp)',
-    focus:'GC conversations + cross-functional exposure',
-    av:'avp',hdr:'background:linear-gradient(135deg,#4a35a0,#a78bfa)',
-    context:'He rated 10/10 — the only perfect score. 6 SQLs in ramp mostly from TPs. Month 2 target of 8 SQLs is now live. GC conversations are the next unlock. He asked directly for cross-functional exposure.',
-    items:[
-      {t:'0:00–3:00',title:'Acknowledge the ramp performance',detail:'6 SQLs in ramp with no target is exceptional. He\'s been boasting to his family about conversions — hear it from you too.',q:'"6 SQLs in ramp is a strong start. What do you think made the difference?"',badge:'',bc:'',btc:''},
-      {t:'3:00–10:00',title:'GC conversations — targeted coaching',detail:'His Month 1 SQLs came mainly from TPs. GCs speak differently. Go deep on objection handling and what language resonates.',q:'"Your TP conversion is strong. Where does the GC conversation stall? What are you hearing from them?"',badge:'Key Month 2 unlock',bc:'#fee2e2',btc:'#991b1b'},
-      {t:'10:00–16:00',title:'Month 2 target — 8 SQLs plan',detail:'Target is now live. Ask him to walk through his weekly plan. Probe on GCs specifically.',q:'"You have 8 SQLs to hit by the 25th. Walk me through how you\'re thinking about the month."',badge:'Target now active',bc:'#fff8e6',btc:'#854F0B'},
-      {t:'16:00–20:00',title:'Cross-functional exposure — deliver something',detail:'He asked directly to be put in different shoes. Tell him what you\'re looping him into this month.',q:'"You asked for exposure beyond SDR work. Here\'s what I\'m bringing you into this month: [Highperformr / campaign / strategy]."',badge:'He asked for this',bc:'#fee2e2',btc:'#991b1b'},
-      {t:'20:00–25:00',title:'AI agent — formalise the research',detail:'He used GPT to extract AGC Chicago project data. Can that become a weekly signal pull?',q:'"The AGC Chicago research — can we turn that into something you run every week? What would that look like?"',badge:'',bc:'',btc:''},
-      {t:'25:00–30:00',title:'Pulse re-score & close',detail:'He gave a 10/10. Listen carefully for anything that surfaces now that Month 2 pressure is real.',q:'"You were a 10 last time. Still feeling it? Anything different now that the target is live?"',badge:'',bc:'',btc:''},
-    ]
-  },
-  ps:{
-    name:'Pooja Sharma',role:'MRA · Session 2',score:'7.5/10',sqls:'KRAs only',
-    focus:'The 2.5 gap + task briefing habit',
-    av:'avc',hdr:'background:linear-gradient(135deg,#b03518,#fb923c)',
-    context:'Lowest pulse score at 7.5/10. The 2.5 gap was left unexplored in Session 1. She flagged task briefing as friction. This session should be more listening than talking — resist the urge to fill silence.',
-    items:[
-      {t:'0:00–2:00',title:'Open with the 2.5 gap — directly',detail:'Don\'t ease into it. She knows you\'ll ask. Leading with it shows you listened and took it seriously.',q:'"Last time you said 7.5 but couldn\'t name the 2.5 yet. Have you thought about it? What\'s missing?"',badge:'Open here — no exceptions',bc:'#fee2e2',btc:'#991b1b'},
-      {t:'2:00–10:00',title:'Listen — do not fill the silence',detail:'Whatever she says — let her finish completely before responding. Do not explain, justify, or fix immediately. This is the most important instruction for this session.',q:'[Stay silent after her answer. Let her expand. Then ask: "Is there anything else behind that?"]',badge:'Listen more than you talk',bc:'#fee2e2',btc:'#991b1b'},
-      {t:'10:00–16:00',title:'Task briefing — show the habit has changed',detail:'She gave direct feedback that tasks arrived without context. Come with a specific example of something you briefed properly since last session.',q:'"You mentioned the briefing gap. Has it felt different this past month? Where am I still falling short?"',badge:'Prove it with an example',bc:'#fff8e6',btc:'#854F0B'},
-      {t:'16:00–20:00',title:'HubSpot progress check',detail:'Her 6-month goal is to be the go-to HubSpot person. Ask what she\'s built and where she\'s still finding gaps.',q:'"Walk me through what you\'ve set up in HubSpot this month. What are you most confident in? What\'s still murky?"',badge:'',bc:'',btc:''},
-      {t:'20:00–24:00',title:'New MRA hire — update her',detail:'She\'s waiting on this. Give an honest timeline and tell her what her role in onboarding will be.',q:'"The new hire — here\'s where we are on that. Here\'s what I want you to own when they join."',badge:'She is waiting',bc:'#fff8e6',btc:'#854F0B'},
-      {t:'24:00–28:00',title:'Market research — has it started?',detail:'Sachit said market research work would begin the following week. Has it? If not, why not?',q:'"We said market research starts this month. Where are you on that?"',badge:'',bc:'',btc:''},
-      {t:'28:00–30:00',title:'Pulse re-score & close',detail:'Ask for a re-score. Goal is to move her from 7.5 toward 8–9 by making her feel genuinely heard.',q:'"You were at 7.5 last time. Where are you now? What moved — if anything?"',badge:'',bc:'',btc:''},
-    ]
-  }
-};
-
-let agSel='ss';
 
 function renderAgenda(){
-  const el=document.getElementById('tab-agenda');
-  el.innerHTML=`
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;">
-      ${Object.entries(nextAgendas).map(([id,d])=>`
-        <button onclick="selectAgenda('${id}')" id="agbtn-${id}" style="display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:var(--rlg);border:1.5px solid ${id===agSel?'var(--red)':'var(--border)'};background:${id===agSel?'#fff1f2':'var(--white)'};cursor:pointer;font-family:inherit;transition:all 0.15s;">
-          <div class="av ${d.av}" style="width:28px;height:28px;font-size:10px;">${d.name.split(' ').map(w=>w[0]).join('').slice(0,2)}</div>
-          <div style="text-align:left;"><div style="font-size:12px;font-weight:600;color:var(--text);">${d.name.split(' ')[0]}</div><div style="font-size:10px;color:var(--text3);">${d.sqls}</div></div>
-        </button>`).join('')}
+  document.getElementById('tab-agenda').innerHTML=`
+    <div class="ag-rep-sel">${Object.entries(nextAg).map(([id,d])=>`
+      <button class="agbtn${agSel===id?' agsel':''}" onclick="selAg('${id}')">
+        <div class="av ${d.av}" style="width:28px;height:28px;font-size:10px;">${d.name.slice(0,2).toUpperCase()}</div>
+        <div><div class="agbtn-name">${d.name}</div><div class="agbtn-role">${d.sqls} · Pulse ${d.score}</div></div>
+      </button>`).join('')}
     </div>
-    <div id="agendaDetail"></div>`;
-  renderAgendaDetail();
+    <div id="agDetail"></div>`;
+  renderAgDetail();
 }
 
-function selectAgenda(id){
-  agSel=id;
-  renderAgenda();
-}
+function selAg(id){agSel=id;renderAgenda();}
 
-function renderAgendaDetail(){
-  const d=nextAgendas[agSel];
-  document.getElementById('agendaDetail').innerHTML=`
-    <div style="border-radius:var(--rlg);overflow:hidden;border:1px solid var(--border);box-shadow:var(--sh);">
-      <div style="${d.hdr};padding:1.25rem 1.5rem;">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-          <div class="av ${d.av}" style="width:38px;height:38px;font-size:13px;">${d.name.split(' ').map(w=>w[0]).join('').slice(0,2)}</div>
-          <div><div style="font-size:15px;font-weight:700;color:white;">${d.name}</div><div style="font-size:12px;color:rgba(255,255,255,0.7);">${d.role} · Pulse: ${d.score}</div></div>
-          <div style="margin-left:auto;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:600;color:white;">Focus: ${d.focus}</div>
+function renderAgDetail(){
+  const d=nextAg[agSel];
+  document.getElementById('agDetail').innerHTML=`
+    <div class="ag-card">
+      <div class="ag-hdr" style="background:${d.hdr};">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:7px;">
+          <div class="av ${d.av}" style="width:34px;height:34px;font-size:12px;">${d.name.slice(0,2).toUpperCase()}</div>
+          <div><div style="font-size:14px;font-weight:700;color:#fff;">${d.name}</div><div style="font-size:11px;color:rgba(255,255,255,0.7);">${d.role} · Pulse: ${d.score}</div></div>
+          <div style="margin-left:auto;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:20px;padding:3px 11px;font-size:11px;font-weight:600;color:#fff;">${d.focus}</div>
         </div>
-        <div style="font-size:12px;color:rgba(255,255,255,0.8);line-height:1.5;background:rgba(0,0,0,0.2);padding:8px 12px;border-radius:var(--rsm);">${d.context}</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.8);line-height:1.5;background:rgba(0,0,0,0.2);padding:7px 10px;border-radius:var(--rsm);">${d.ctx}</div>
       </div>
-      ${d.items.map((item,i)=>`
-        <div style="display:flex;border-bottom:1px solid var(--border);background:var(--white);">
-          <div style="padding:12px 10px;min-width:80px;border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--bg);">
-            <div style="width:22px;height:22px;border-radius:50%;${d.hdr};display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:white;margin-bottom:4px;">${i+1}</div>
-            <div style="font-size:10px;font-weight:500;color:var(--text3);text-align:center;line-height:1.3;">${item.t}</div>
-          </div>
-          <div style="padding:11px 15px;flex:1;">
-            <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px;">${item.title}${item.badge?`<span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;margin-left:7px;background:${item.bc};color:${item.btc};">${item.badge}</span>`:''}</div>
-            <div style="font-size:12px;color:var(--text2);line-height:1.5;margin-bottom:4px;">${item.detail}</div>
-            <div style="font-size:11px;color:var(--text3);font-style:italic;line-height:1.4;">${item.q}</div>
-          </div>
-        </div>`).join('')}
+      ${d.items.map((item,i)=>`<div class="ag-item">
+        <div class="ag-left">
+          <div class="ag-n">${i+1}</div>
+          <div class="ag-time">${item.t}</div>
+        </div>
+        <div class="ag-body">
+          <div class="ag-title">${item.title}${item.badge?`<span class="${item.bc}">${item.badge}</span>`:''}</div>
+          <div class="ag-detail">${item.detail}</div>
+          <div class="ag-q">${item.q}</div>
+        </div>
+      </div>`).join('')}
     </div>
-    <div class="hint" style="margin-top:12px;">After each meeting paste the transcript into Pulse AI to get the updated pulse score, manager takeaways and open loops.</div>`;
+    <div class="hint">After each meeting paste the transcript into Pulse AI Project to get updated pulse scores, manager takeaways, coaching flags and promotion readiness updates.</div>`;
 }
 
 function switchTab(tab,btn){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   btn.classList.add('active');
-  ['overview','manager','okrs','agenda'].forEach(t=>document.getElementById('tab-'+t).style.display='none');
+  ['overview','insights','okrs','agenda'].forEach(t=>document.getElementById('tab-'+t).style.display='none');
   document.getElementById('tab-'+tab).style.display='block';
-  if(tab==='manager')renderManager();
+  if(tab==='insights')renderInsights();
   if(tab==='okrs')renderOKRs();
   if(tab==='agenda'){agSel='ss';renderAgenda();}
 }
@@ -496,61 +586,37 @@ async function loadData(){
     const res=await fetch('data.json?t='+Date.now());
     if(res.ok){
       const d=await res.json();
-      const statusToPlabel={
-        'Above target':'Above target','On track':'On track',
-        'At risk':'At risk','Watch':'Watch'
+      const statusMap={'Above target':'green','On track':'green','At risk':'amber','Watch':'amber'};
+      const updateRep=(rep,data)=>{
+        if(!data)return;
+        if(data.sql!==undefined)rep.sql=parseInt(data.sql)||rep.sql;
+        if(data.sql_target!==undefined)rep.sqlTarget=parseInt(data.sql_target)||rep.sqlTarget;
+        if(data.ytd_pct!==undefined)rep.ytdPct=parseFloat(data.ytd_pct)||rep.ytdPct;
+        if(data.tofu!==undefined)rep.tofu=parseInt(data.tofu)||rep.tofu;
+        if(data.mofu!==undefined)rep.mofu=parseInt(data.mofu)||rep.mofu;
+        if(data.bofu!==undefined)rep.bofu=parseInt(data.bofu)||rep.bofu;
+        if(data.pulse!==undefined)rep.pulse=parseFloat(data.pulse)||rep.pulse;
+        if(data.status)rep.pstatus=statusMap[data.status]||rep.pstatus;
+        if(data.status)rep.plabel=data.status;
+        if(data.loop)rep.loop=data.loop;
+        if(data.coaching)rep.coaching=data.coaching;
+        if(data.promotion!==undefined)rep.promoScore=parseInt(data.promotion)||rep.promoScore;
+        if(data.promotion_label)rep.promoLabel=data.promotion_label;
       };
-      const statusToPulse={
-        'Above target':'green','On track':'green',
-        'At risk':'amber','Watch':'amber'
-      };
-      const scoreToClass=s=>{
-        const n=parseFloat(s);
-        if(n>=10)return 'pscore-10';
-        if(n>=9)return 'pscore-9';
-        return 'pscore-75';
-      };
-      const ss=reps.find(r=>r.id==='ss');
-      if(ss&&d.ss){
-        ss.sql=parseInt(d.ss.sql)||ss.sql;
-        ss.score=String(d.ss.pulse)||ss.score;
-        ss.scoreClass=scoreToClass(d.ss.pulse);
-        ss.plabel=statusToPlabel[d.ss.status]||ss.plabel;
-        ss.pulse=statusToPulse[d.ss.status]||ss.pulse;
-        if(d.ss.loop)ss.loops[0]=d.ss.loop;
-      }
-      const bg=reps.find(r=>r.id==='bg');
-      if(bg&&d.bg){
-        bg.sql=parseInt(d.bg.sql)||bg.sql;
-        bg.score=String(d.bg.pulse)||bg.score;
-        bg.scoreClass=scoreToClass(d.bg.pulse);
-        bg.plabel=statusToPlabel[d.bg.status]||bg.plabel;
-        bg.pulse=statusToPulse[d.bg.status]||bg.pulse;
-        if(d.bg.loop)bg.loops[0]=d.bg.loop;
-      }
-      const vk=reps.find(r=>r.id==='vk');
-      if(vk&&d.vik){
-        vk.sql=parseInt(d.vik.sql)||vk.sql;
-        vk.score=String(d.vik.pulse)||vk.score;
-        vk.scoreClass=scoreToClass(d.vik.pulse);
-        vk.plabel=statusToPlabel[d.vik.status]||vk.plabel;
-        vk.pulse=statusToPulse[d.vik.status]||vk.pulse;
-        if(d.vik.loop)vk.loops[0]=d.vik.loop;
-      }
-      const ps=reps.find(r=>r.id==='ps');
-      if(ps&&d.pooja){
-        ps.score=String(d.pooja.pulse)||ps.score;
-        ps.scoreClass=scoreToClass(d.pooja.pulse);
-        ps.plabel=statusToPlabel[d.pooja.status]||ps.plabel;
-        ps.pulse=statusToPulse[d.pooja.status]||ps.pulse;
-        if(d.pooja.loop)ps.loops[0]=d.pooja.loop;
-      }
-      const totalSQL=reps.reduce((a,r)=>a+(r.sql||0),0);
-      const avgPulse=(reps.reduce((a,r)=>a+parseFloat(r.score),0)/reps.length).toFixed(1);
-      document.getElementById('s-sqls').textContent=totalSQL;
-      document.getElementById('s-pulse').textContent=avgPulse;
+      updateRep(reps.find(r=>r.id==='ss'),d.ss);
+      updateRep(reps.find(r=>r.id==='bg'),d.bg);
+      updateRep(reps.find(r=>r.id==='vk'),d.vik);
+      updateRep(reps.find(r=>r.id==='ps'),d.pooja);
+      const total=reps.reduce((a,r)=>a+(r.sql||0),0);
+      const avg=(reps.reduce((a,r)=>a+r.pulse,0)/reps.length).toFixed(1);
+      const ytdAvg=reps.filter(r=>r.ytdPct).reduce((a,r,_,arr)=>a+r.ytdPct/arr.length,0).toFixed(0);
+      const flags=reps.filter(r=>r.coaching).length;
+      document.getElementById('s-sqls').textContent=total;
+      document.getElementById('s-pulse').textContent=avg;
       document.getElementById('s-sqls-note').textContent=reps.filter(r=>r.sql!==null).map(r=>`${r.initials} ${r.sql}`).join(' · ');
-      if(d.last_updated)document.querySelector('.updated').textContent='Last updated: '+d.last_updated;
+      document.getElementById('s-ytd').textContent=ytdAvg+'%';
+      document.getElementById('s-flags').textContent=flags;
+      if(d.last_updated)document.getElementById('lastUpdated').textContent='Last updated: '+d.last_updated;
     }
   }catch(e){console.log('Using default data',e);}
   renderGrid();

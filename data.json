@@ -1,7 +1,60 @@
 {
-  "last_updated": "06 May 2026",
-  "ss": {"sql":10,"sql_target":8,"ytd_pct":125,"tofu":45,"mofu":18,"bofu":7,"pulse":9,"status":"Above target","loop":"Resolve US calling hours / time zone schedule","coaching":"Nooks coaching structure not yet agreed","promotion":72,"promotion_label":"On track"},
-  "bg": {"sql":8,"sql_target":8,"ytd_pct":100,"tofu":38,"mofu":14,"bofu":5,"pulse":9,"status":"On track","loop":"Deploy junior hire to BG — he is ready","coaching":"AE vs Manager path still undecided","promotion":65,"promotion_label":"On track"},
-  "vik": {"sql":6,"sql_target":8,"ytd_pct":75,"tofu":30,"mofu":10,"bofu":3,"pulse":10,"status":"On track","loop":"GC coaching sessions needed urgently","coaching":"GC conversations — Month 1 SQLs mostly TPs","promotion":60,"promotion_label":"On track"},
-  "pooja": {"pulse":7.5,"status":"Watch","loop":"Revisit the 2.5 gap — she couldn't name it","coaching":"2.5 gap still unexplored — must open Session 2 with this question"}
+  "ss": {
+    "sql": null,
+    "sql_target": null,
+    "ytd_pct": null,
+    "tofu": null,
+    "mofu": null,
+    "bofu": null,
+    "tofu_mofu_pct": null,
+    "mofu_bofu_pct": null,
+    "sub_sql": null,
+    "pulse": null,
+    "status": null,
+    "loop": null,
+    "coaching": null,
+    "promotion": null,
+    "promotion_label": null
+  },
+  "bg": {
+    "sql": null,
+    "sql_target": null,
+    "ytd_pct": null,
+    "tofu": null,
+    "mofu": null,
+    "bofu": null,
+    "tofu_mofu_pct": null,
+    "mofu_bofu_pct": null,
+    "sub_sql": null,
+    "pulse": null,
+    "status": null,
+    "loop": null,
+    "coaching": null,
+    "promotion": null,
+    "promotion_label": null
+  },
+  "vik": {
+    "sql": null,
+    "sql_target": null,
+    "ytd_pct": null,
+    "tofu": null,
+    "mofu": null,
+    "bofu": null,
+    "tofu_mofu_pct": null,
+    "mofu_bofu_pct": null,
+    "sub_sql": null,
+    "pulse": null,
+    "status": null,
+    "loop": null,
+    "coaching": null,
+    "promotion": null,
+    "promotion_label": null
+  },
+  "pooja": {
+    "pulse": null,
+    "status": null,
+    "loop": null,
+    "coaching": null
+  },
+  "last_updated": null
 }

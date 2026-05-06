@@ -1,6 +1,6 @@
 {
   "ss": {
-    "sql": null,
+    "sql": "99",
     "sql_target": null,
     "ytd_pct": null,
     "tofu": null,
@@ -9,7 +9,7 @@
     "tofu_mofu_pct": null,
     "mofu_bofu_pct": null,
     "sub_sql": null,
-    "pulse": null,
+    "pulse": "9",
     "status": null,
     "loop": null,
     "coaching": null,
@@ -56,5 +56,5 @@
     "loop": null,
     "coaching": null
   },
-  "last_updated": null
+  "last_updated": "07 May 2026"
 }

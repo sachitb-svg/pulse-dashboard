@@ -1,26 +1,26 @@
 {
-  "last_updated": "06 May 2026",
+  "last_updated": null,
   "ss": {
-    "sql": 10,
-    "pulse": 9,
-    "status": "Above target",
-    "loop": "Resolve US calling hours / time zone schedule"
+    "sql": null,
+    "pulse": null,
+    "status": null,
+    "loop": null
   },
   "bg": {
-    "sql": 8,
-    "pulse": 9,
-    "status": "On track",
-    "loop": "Deploy junior hire to BG — he is ready"
+    "sql": null,
+    "pulse": null,
+    "status": null,
+    "loop": null
   },
   "vik": {
-    "sql": 6,
-    "pulse": 10,
-    "status": "On track",
-    "loop": "GC coaching sessions needed"
+    "sql": null,
+    "pulse": null,
+    "status": null,
+    "loop": null
   },
   "pooja": {
-    "pulse": 7.5,
-    "status": "Watch",
-    "loop": "Revisit the 2.5 gap — she couldn't name it in Session 1"
+    "pulse": null,
+    "status": null,
+    "loop": null
   }
 }

@@ -491,7 +491,72 @@ function switchTab(tab,btn){
   if(tab==='agenda'){agSel='ss';renderAgenda();}
 }
 
-renderGrid();
+async function loadData(){
+  try{
+    const res=await fetch('data.json?t='+Date.now());
+    if(res.ok){
+      const d=await res.json();
+      const statusToPlabel={
+        'Above target':'Above target','On track':'On track',
+        'At risk':'At risk','Watch':'Watch'
+      };
+      const statusToPulse={
+        'Above target':'green','On track':'green',
+        'At risk':'amber','Watch':'amber'
+      };
+      const scoreToClass=s=>{
+        const n=parseFloat(s);
+        if(n>=10)return 'pscore-10';
+        if(n>=9)return 'pscore-9';
+        return 'pscore-75';
+      };
+      const ss=reps.find(r=>r.id==='ss');
+      if(ss&&d.ss){
+        ss.sql=parseInt(d.ss.sql)||ss.sql;
+        ss.score=String(d.ss.pulse)||ss.score;
+        ss.scoreClass=scoreToClass(d.ss.pulse);
+        ss.plabel=statusToPlabel[d.ss.status]||ss.plabel;
+        ss.pulse=statusToPulse[d.ss.status]||ss.pulse;
+        if(d.ss.loop)ss.loops[0]=d.ss.loop;
+      }
+      const bg=reps.find(r=>r.id==='bg');
+      if(bg&&d.bg){
+        bg.sql=parseInt(d.bg.sql)||bg.sql;
+        bg.score=String(d.bg.pulse)||bg.score;
+        bg.scoreClass=scoreToClass(d.bg.pulse);
+        bg.plabel=statusToPlabel[d.bg.status]||bg.plabel;
+        bg.pulse=statusToPulse[d.bg.status]||bg.pulse;
+        if(d.bg.loop)bg.loops[0]=d.bg.loop;
+      }
+      const vk=reps.find(r=>r.id==='vk');
+      if(vk&&d.vik){
+        vk.sql=parseInt(d.vik.sql)||vk.sql;
+        vk.score=String(d.vik.pulse)||vk.score;
+        vk.scoreClass=scoreToClass(d.vik.pulse);
+        vk.plabel=statusToPlabel[d.vik.status]||vk.plabel;
+        vk.pulse=statusToPulse[d.vik.status]||vk.pulse;
+        if(d.vik.loop)vk.loops[0]=d.vik.loop;
+      }
+      const ps=reps.find(r=>r.id==='ps');
+      if(ps&&d.pooja){
+        ps.score=String(d.pooja.pulse)||ps.score;
+        ps.scoreClass=scoreToClass(d.pooja.pulse);
+        ps.plabel=statusToPlabel[d.pooja.status]||ps.plabel;
+        ps.pulse=statusToPulse[d.pooja.status]||ps.pulse;
+        if(d.pooja.loop)ps.loops[0]=d.pooja.loop;
+      }
+      const totalSQL=reps.reduce((a,r)=>a+(r.sql||0),0);
+      const avgPulse=(reps.reduce((a,r)=>a+parseFloat(r.score),0)/reps.length).toFixed(1);
+      document.getElementById('s-sqls').textContent=totalSQL;
+      document.getElementById('s-pulse').textContent=avgPulse;
+      document.getElementById('s-sqls-note').textContent=reps.filter(r=>r.sql!==null).map(r=>`${r.initials} ${r.sql}`).join(' · ');
+      if(d.last_updated)document.querySelector('.updated').textContent='Last updated: '+d.last_updated;
+    }
+  }catch(e){console.log('Using default data',e);}
+  renderGrid();
+}
+
+loadData();
 </script>
 </body>
 </html>

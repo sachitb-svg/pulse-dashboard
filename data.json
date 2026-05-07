@@ -1,60 +1,220 @@
 {
+  "last_updated": "[DD Mon YYYY]",
+  "team": {
+    "avg_pulse": "[average pulse across all 4 reps]",
+    "total_sql": "[total SQLs across all 3 SDRs this cycle]",
+    "avg_ytd": "[team cumulative YTD% calculated fresh]",
+    "coaching_flags": "[number of active coaching flags]"
+  },
   "ss": {
-    "sql": null,
-    "sql_target": null,
-    "ytd_pct": null,
-    "tofu": null,
-    "mofu": null,
-    "bofu": null,
-    "tofu_mofu_pct": null,
-    "mofu_bofu_pct": null,
-    "sub_sql": null,
-    "pulse": null,
-    "status": null,
-    "loop": null,
-    "coaching": null,
-    "promotion": null,
-    "promotion_label": null
+    "sql": "[number]",
+    "sql_target": "[number]",
+    "ytd_pct": "[calculated fresh using defined method]",
+    "pulse": "[number or last known]",
+    "status": "[On track / Above target / At risk / Watch]",
+    "loop": "[most important open loop \u2014 current or last known]",
+    "coaching": "[most urgent coaching need \u2014 current or last known]",
+    "promotion": "[0-100 score]",
+    "promotion_label": "[Promotion ready / On track / Developing / Needs intervention]",
+    "tofu": "[number or last known]",
+    "mofu": "[number or last known]",
+    "bofu": "[number or last known]",
+    "tofu_mofu_pct": "[number or last known]",
+    "mofu_bofu_pct": "[number or last known]",
+    "agenda": [
+      {
+        "time": "[e.g. 0:00-3:00]",
+        "title": "[title]",
+        "detail": "[detail in one line]",
+        "q": "[specific question to ask]",
+        "badge": "[badge text or blank]"
+      },
+      {
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
+      },
+      {
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
+      },
+      {
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
+      },
+      {
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
+      }
+    ]
   },
   "bg": {
-    "sql": null,
-    "sql_target": null,
-    "ytd_pct": null,
-    "tofu": null,
-    "mofu": null,
-    "bofu": null,
-    "tofu_mofu_pct": null,
-    "mofu_bofu_pct": null,
-    "sub_sql": null,
-    "pulse": null,
-    "status": null,
-    "loop": null,
-    "coaching": null,
-    "promotion": null,
-    "promotion_label": null
+    "sql": "[number]",
+    "sql_target": "[number]",
+    "ytd_pct": "[calculated fresh]",
+    "pulse": "[number or last known]",
+    "status": "[On track / Above target / At risk / Watch]",
+    "loop": "[most important open loop \u2014 current or last known]",
+    "coaching": "[most urgent coaching need \u2014 current or last known]",
+    "promotion": "[0-100 score]",
+    "promotion_label": "[Promotion ready / On track / Developing / Needs intervention]",
+    "tofu": "[number or last known]",
+    "mofu": "[number or last known]",
+    "bofu": "[number or last known]",
+    "tofu_mofu_pct": "[number or last known]",
+    "mofu_bofu_pct": "[number or last known]",
+    "agenda": [
+      {
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
+      },
+      {
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
+      },
+      {
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
+      },
+      {
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
+      },
+      {
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
+      }
+    ]
   },
   "vik": {
-    "sql": null,
-    "sql_target": null,
-    "ytd_pct": null,
-    "tofu": null,
-    "mofu": null,
-    "bofu": null,
-    "tofu_mofu_pct": null,
-    "mofu_bofu_pct": null,
-    "sub_sql": null,
-    "pulse": null,
-    "status": null,
-    "loop": null,
-    "coaching": null,
-    "promotion": null,
-    "promotion_label": null
+    "sql": "[number]",
+    "sql_target": "[number]",
+    "ytd_pct": "[calculated fresh \u2014 exclude April ramp]",
+    "pulse": "[number or last known]",
+    "status": "[On track / Above target / At risk / Watch]",
+    "loop": "[most important open loop \u2014 current or last known]",
+    "coaching": "[most urgent coaching need \u2014 current or last known]",
+    "promotion": "[0-100 score]",
+    "promotion_label": "[Promotion ready / On track / Developing / Needs intervention]",
+    "tofu": "[number or last known]",
+    "mofu": "[number or last known]",
+    "bofu": "[number or last known]",
+    "tofu_mofu_pct": "[number or last known]",
+    "mofu_bofu_pct": "[number or last known]",
+    "agenda": [
+      {
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
+      },
+      {
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
+      },
+      {
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
+      },
+      {
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
+      },
+      {
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
+      }
+    ]
   },
   "pooja": {
-    "pulse": null,
-    "status": null,
-    "loop": null,
-    "coaching": null
+    "pulse": "[number or last known]",
+    "status": "[Watch / On track]",
+    "loop": "[most important open loop \u2014 current or last known]",
+    "coaching": "[most urgent coaching need \u2014 current or last known]",
+    "agenda": [
+      {
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
+      },
+      {
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
+      },
+      {
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
+      },
+      {
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
+      },
+      {
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
+      }
+    ]
   },
-  "last_updated": null
+  "manager": {
+    "insight1": "",
+    "insight2": "",
+    "insight3": "",
+    "insight4": "",
+    "priority1": "",
+    "priority2": "",
+    "priority3": ""
+  }
 }

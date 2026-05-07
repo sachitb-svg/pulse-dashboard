@@ -1,220 +1,60 @@
 {
-  "last_updated": "07 May 2026",
-  "team": {
-    "avg_pulse": "6.5",
-    "total_sql": "7",
-    "avg_ytd": "62.5",
-    "coaching_flags": "4"
-  },
   "ss": {
-    "sql": "7",
-    "sql_target": "8",
-    "ytd_pct": "106",
-    "pulse": "8",
-    "status": "On track",
-    "loop": "Time zone still unresolved across two cycles",
-    "coaching": "Flip the talk ratio \u2014 let her lead the next session",
-    "promotion": "61",
-    "promotion_label": "On track",
-    "tofu": "N/A",
-    "mofu": "N/A",
-    "bofu": "N/A",
-    "tofu_mofu_pct": "N/A",
-    "mofu_bofu_pct": "N/A",
-    "agenda": [
-      {
-        "time": "0:00-3:00",
-        "title": "Open with her wins",
-        "detail": "Acknowledge 7 SQLs in 12 days \u2014 second cycle above target",
-        "q": "What's working differently this cycle compared to April?",
-        "badge": "Win"
-      },
-      {
-        "time": "3:00-10:00",
-        "title": "Time zone resolution",
-        "detail": "Loop is two cycles old \u2014 close it today",
-        "q": "What time zone setup would actually let you do your best work?",
-        "badge": "Open loop"
-      },
-      {
-        "time": "10:00-18:00",
-        "title": "Leadership first step",
-        "detail": "She's earning leadership runway \u2014 make it concrete",
-        "q": "If you were leading a junior SDR next month, what's the first habit you'd install in them?",
-        "badge": "Leadership"
-      },
-      {
-        "time": "18:00-25:00",
-        "title": "DemandGen sprint + Nooks",
-        "detail": "Two commitments from last session never delivered",
-        "q": "Of these two, which would actually move your number this cycle?",
-        "badge": "Coaching"
-      },
-      {
-        "time": "25:00-30:00",
-        "title": "Listen more than talk",
-        "detail": "Last session ratio was inverted \u2014 fix it",
-        "q": "What's one thing you wish I'd ask you that I never do?",
-        "badge": ""
-      }
-    ]
+    "sql": null,
+    "sql_target": null,
+    "ytd_pct": null,
+    "tofu": null,
+    "mofu": null,
+    "bofu": null,
+    "tofu_mofu_pct": null,
+    "mofu_bofu_pct": null,
+    "sub_sql": null,
+    "pulse": null,
+    "status": null,
+    "loop": null,
+    "coaching": null,
+    "promotion": null,
+    "promotion_label": null
   },
   "bg": {
-    "sql": "0",
-    "sql_target": "8",
-    "ytd_pct": "50",
-    "pulse": "6",
-    "status": "At risk",
-    "loop": "Pipeline collapse from 8 to 0 \u2014 root cause unknown",
-    "coaching": "Diagnostic \u2014 not lecture. Quiet + zero is a dangerous mix",
-    "promotion": "38",
-    "promotion_label": "Needs intervention",
-    "tofu": "N/A",
-    "mofu": "N/A",
-    "bofu": "N/A",
-    "tofu_mofu_pct": "N/A",
-    "mofu_bofu_pct": "N/A",
-    "agenda": [
-      {
-        "time": "0:00-2:00",
-        "title": "Set the tone",
-        "detail": "Be warm \u2014 quietness is data, not defiance",
-        "q": "How are you actually feeling about this cycle?",
-        "badge": ""
-      },
-      {
-        "time": "2:00-12:00",
-        "title": "Diagnose the zero",
-        "detail": "April was 8/8 \u2014 what changed? Don't suggest answers",
-        "q": "Walk me through your last 10 outreach attempts \u2014 where do they stop converting?",
-        "badge": "At risk"
-      },
-      {
-        "time": "12:00-20:00",
-        "title": "AE vs Manager decision",
-        "detail": "Pending decision is sitting in his head \u2014 surface it",
-        "q": "When you imagine yourself a year from now, do you see yourself closing or coaching?",
-        "badge": "Career"
-      },
-      {
-        "time": "20:00-26:00",
-        "title": "Junior hire + Kiran",
-        "detail": "Two unresolved logistics blocking his leadership runway",
-        "q": "What's blocking you from pushing on these yourself?",
-        "badge": "Open loop"
-      },
-      {
-        "time": "26:00-30:00",
-        "title": "One concrete commit",
-        "detail": "Leave with one number-moving action by Friday",
-        "q": "What's one thing you'll do tomorrow that you didn't do today?",
-        "badge": ""
-      }
-    ]
+    "sql": null,
+    "sql_target": null,
+    "ytd_pct": null,
+    "tofu": null,
+    "mofu": null,
+    "bofu": null,
+    "tofu_mofu_pct": null,
+    "mofu_bofu_pct": null,
+    "sub_sql": null,
+    "pulse": null,
+    "status": null,
+    "loop": null,
+    "coaching": null,
+    "promotion": null,
+    "promotion_label": null
   },
   "vik": {
-    "sql": "0",
-    "sql_target": "8",
-    "ytd_pct": "0",
-    "pulse": "7",
-    "status": "At risk",
-    "loop": "GC coaching not delivered \u2014 now directly blocking output",
-    "coaching": "GC coaching this week \u2014 not next. Highest ceiling, lowest output is the worst signal",
-    "promotion": "24",
-    "promotion_label": "Needs intervention",
-    "tofu": "N/A",
-    "mofu": "N/A",
-    "bofu": "N/A",
-    "tofu_mofu_pct": "N/A",
-    "mofu_bofu_pct": "N/A",
-    "agenda": [
-      {
-        "time": "0:00-3:00",
-        "title": "Acknowledge the gap",
-        "detail": "Don't pretend the zero isn't there \u2014 name it first",
-        "q": "First post-ramp cycle and you're at zero. What does that feel like?",
-        "badge": "At risk"
-      },
-      {
-        "time": "3:00-15:00",
-        "title": "GC coaching \u2014 live",
-        "detail": "Run a real GC objection-handling drill in the session itself",
-        "q": "Take me through your last GC call \u2014 where did it actually break?",
-        "badge": "Coaching"
-      },
-      {
-        "time": "15:00-22:00",
-        "title": "Cross-functional exposure",
-        "detail": "Loop from last session \u2014 make a concrete intro this week",
-        "q": "Which function would help you most right now \u2014 Marketing, Product, or CS?",
-        "badge": "Career"
-      },
-      {
-        "time": "22:00-27:00",
-        "title": "Junior hire as buddy",
-        "detail": "His ask \u2014 confirm timeline so it doesn't fade",
-        "q": "What would the buddy structure actually look like for you?",
-        "badge": "Open loop"
-      },
-      {
-        "time": "27:00-30:00",
-        "title": "Confidence reset",
-        "detail": "Reaffirm ceiling \u2014 zero week is data, not verdict",
-        "q": "What number do you actually believe you can hit by 25 May?",
-        "badge": ""
-      }
-    ]
+    "sql": null,
+    "sql_target": null,
+    "ytd_pct": null,
+    "tofu": null,
+    "mofu": null,
+    "bofu": null,
+    "tofu_mofu_pct": null,
+    "mofu_bofu_pct": null,
+    "sub_sql": null,
+    "pulse": null,
+    "status": null,
+    "loop": null,
+    "coaching": null,
+    "promotion": null,
+    "promotion_label": null
   },
   "pooja": {
-    "pulse": "5",
-    "status": "Watch",
-    "loop": "2.5 gap question still not asked \u2014 two cycles old",
-    "coaching": "Open Session 2 with the 2.5 gap question \u2014 verbatim",
-    "agenda": [
-      {
-        "time": "0:00-5:00",
-        "title": "2.5 gap \u2014 first thing",
-        "detail": "This cannot be the third session where it gets skipped",
-        "q": "Last time you said your pulse was 2.5 below where you wanted it. What's still missing?",
-        "badge": "Open loop"
-      },
-      {
-        "time": "5:00-12:00",
-        "title": "Task briefing redesign",
-        "detail": "Old process clearly not working \u2014 co-design new one",
-        "q": "If you could redesign how tasks come to you, what would change?",
-        "badge": "Coaching"
-      },
-      {
-        "time": "12:00-20:00",
-        "title": "MRA hire pipeline",
-        "detail": "Hire is pending \u2014 check if this is weighing on her workload",
-        "q": "Is the missing MRA hire affecting how you're pacing your work?",
-        "badge": "Open loop"
-      },
-      {
-        "time": "20:00-25:00",
-        "title": "Career path clarity",
-        "detail": "Lowest pulse on team \u2014 part of this is direction",
-        "q": "Where do you actually want to be in 12 months \u2014 and does this role build toward it?",
-        "badge": "Career"
-      },
-      {
-        "time": "25:00-30:00",
-        "title": "One thing I owe her",
-        "detail": "End with what Sachit will do \u2014 not what she will",
-        "q": "What's one thing I should change in how I manage you?",
-        "badge": ""
-      }
-    ]
+    "pulse": null,
+    "status": null,
+    "loop": null,
+    "coaching": null
   },
-  "manager": {
-    "insight1": "",
-    "insight2": "",
-    "insight3": "",
-    "insight4": "",
-    "priority1": "",
-    "priority2": "",
-    "priority3": ""
-  }
+  "last_updated": null
 }

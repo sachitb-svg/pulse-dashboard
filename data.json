@@ -1,210 +1,210 @@
 {
-  "last_updated": "[DD Mon YYYY]",
+  "last_updated": "07 May 2026",
   "team": {
-    "avg_pulse": "[average pulse across all 4 reps]",
-    "total_sql": "[total SQLs across all 3 SDRs this cycle]",
-    "avg_ytd": "[team cumulative YTD% calculated fresh]",
-    "coaching_flags": "[number of active coaching flags]"
+    "avg_pulse": "6.75",
+    "total_sql": "7",
+    "avg_ytd": "63",
+    "coaching_flags": "8"
   },
   "ss": {
-    "sql": "[number]",
-    "sql_target": "[number]",
-    "ytd_pct": "[calculated fresh using defined method]",
-    "pulse": "[number or last known]",
-    "status": "[On track / Above target / At risk / Watch]",
-    "loop": "[most important open loop \u2014 current or last known]",
-    "coaching": "[most urgent coaching need \u2014 current or last known]",
-    "promotion": "[0-100 score]",
-    "promotion_label": "[Promotion ready / On track / Developing / Needs intervention]",
-    "tofu": "[number or last known]",
-    "mofu": "[number or last known]",
-    "bofu": "[number or last known]",
-    "tofu_mofu_pct": "[number or last known]",
-    "mofu_bofu_pct": "[number or last known]",
+    "sql": "7",
+    "sql_target": "8",
+    "ytd_pct": "106",
+    "pulse": "7.5",
+    "status": "On track",
+    "loop": "Time zone unresolved + DemandGen sprint not shared + Nooks coaching not agreed + leadership first step not delivered",
+    "coaching": "Flip talk ratio in 1:1s \u2014 she should drive 70%, you 30%",
+    "promotion": "73",
+    "promotion_label": "On track",
+    "tofu": "N/A",
+    "mofu": "N/A",
+    "bofu": "N/A",
+    "tofu_mofu_pct": "N/A",
+    "mofu_bofu_pct": "N/A",
     "agenda": [
       {
-        "time": "[e.g. 0:00-3:00]",
-        "title": "[title]",
-        "detail": "[detail in one line]",
-        "q": "[specific question to ask]",
-        "badge": "[badge text or blank]"
+        "time": "0:00-9:00",
+        "title": "Open loop sweep",
+        "detail": "Resolve four loops carrying from last session \u2014 time zone, sprint, Nooks, leadership first step",
+        "q": "Of these four, which one is actually blocking you right now and which were just nice-to-haves?",
+        "badge": "Loops"
       },
       {
-        "time": "[time]",
-        "title": "[title]",
-        "detail": "[detail]",
-        "q": "[question]",
-        "badge": "[badge or blank]"
+        "time": "9:00-19:00",
+        "title": "SQL pacing \u2014 the 7 deals",
+        "detail": "7 SQLs in 12 days is strong. Validate quality of the 6 in Discovery + 1 Demonstration before celebrating",
+        "q": "Of your 7 SQLs this cycle, which 2 are most likely to push to Demonstration this week and which 2 are softest?",
+        "badge": "KRA 1"
       },
       {
-        "time": "[time]",
-        "title": "[title]",
-        "detail": "[detail]",
-        "q": "[question]",
-        "badge": "[badge or blank]"
+        "time": "19:00-25:00",
+        "title": "Leadership first step",
+        "detail": "Junior hire is still pending org-wide. Until then she needs one tangible leadership rep \u2014 peer-coaching or sprint-leading",
+        "q": "Pick one \u2014 would you rather lead next week's pipeline review, or run a 30-min outreach teardown for BG and Vik?",
+        "badge": "KRA 3"
       },
       {
-        "time": "[time]",
-        "title": "[title]",
-        "detail": "[detail]",
-        "q": "[question]",
-        "badge": "[badge or blank]"
+        "time": "25:00-28:00",
+        "title": "Talk ratio",
+        "detail": "Pattern across last sessions \u2014 Sachit talks more than her. Today she drives the agenda",
+        "q": "What's one thing you wanted to bring up in our last 1:1 but didn't get the airtime for?",
+        "badge": "Pattern"
       },
       {
-        "time": "[time]",
-        "title": "[title]",
-        "detail": "[detail]",
-        "q": "[question]",
-        "badge": "[badge or blank]"
+        "time": "28:00-30:00",
+        "title": "Commitments out",
+        "detail": "Close on time-zone decision + Nooks coaching schedule + leadership task assignment",
+        "q": "What's one commitment you want from me before we meet next week?",
+        "badge": ""
       }
     ]
   },
   "bg": {
-    "sql": "[number]",
-    "sql_target": "[number]",
-    "ytd_pct": "[calculated fresh]",
-    "pulse": "[number or last known]",
-    "status": "[On track / Above target / At risk / Watch]",
-    "loop": "[most important open loop \u2014 current or last known]",
-    "coaching": "[most urgent coaching need \u2014 current or last known]",
-    "promotion": "[0-100 score]",
-    "promotion_label": "[Promotion ready / On track / Developing / Needs intervention]",
-    "tofu": "[number or last known]",
-    "mofu": "[number or last known]",
-    "bofu": "[number or last known]",
-    "tofu_mofu_pct": "[number or last known]",
-    "mofu_bofu_pct": "[number or last known]",
+    "sql": "0",
+    "sql_target": "8",
+    "ytd_pct": "50",
+    "pulse": "7.0",
+    "status": "At risk",
+    "loop": "Junior hire not assigned + Kiran connect not scheduled + AE vs Manager career decision pending",
+    "coaching": "Pipeline activation \u2014 went from 8 SQLs in April to 0 in 12 days. Diagnose drop-off",
+    "promotion": "52",
+    "promotion_label": "Developing",
+    "tofu": "N/A",
+    "mofu": "N/A",
+    "bofu": "N/A",
+    "tofu_mofu_pct": "N/A",
+    "mofu_bofu_pct": "N/A",
     "agenda": [
       {
-        "time": "[time]",
-        "title": "[title]",
-        "detail": "[detail]",
-        "q": "[question]",
-        "badge": "[badge or blank]"
+        "time": "0:00-10:00",
+        "title": "Why zero",
+        "detail": "0 SQLs in 12 days vs 8 in April. This is the only thing that matters today. Diagnose honestly",
+        "q": "What changed between April and now \u2014 your prospecting quality, ICP focus, or activity volume?",
+        "badge": "Critical"
       },
       {
-        "time": "[time]",
-        "title": "[title]",
-        "detail": "[detail]",
-        "q": "[question]",
-        "badge": "[badge or blank]"
+        "time": "10:00-18:00",
+        "title": "Activity audit",
+        "detail": "Walk through last 5 working days hour-by-hour. Where is the time going if SQLs aren't coming",
+        "q": "If I shadowed you for one hour tomorrow, what would I see \u2014 calls, research, sequences, or admin?",
+        "badge": "KRA 1"
       },
       {
-        "time": "[time]",
-        "title": "[title]",
-        "detail": "[detail]",
-        "q": "[question]",
-        "badge": "[badge or blank]"
+        "time": "18:00-24:00",
+        "title": "AE vs Manager track",
+        "detail": "This decision has been parked too long. He's the quietest rep \u2014 won't volunteer. Force the conversation",
+        "q": "A year from today, do you see yourself running discovery calls or running a team? Be honest",
+        "badge": "KRA 5"
       },
       {
-        "time": "[time]",
-        "title": "[title]",
-        "detail": "[detail]",
-        "q": "[question]",
-        "badge": "[badge or blank]"
+        "time": "24:00-28:00",
+        "title": "Kiran connect",
+        "detail": "Promised intro to Kiran has slipped two sessions. Schedule it on the call this time",
+        "q": "When would you actually want to meet Kiran \u2014 this week or after the cycle closes?",
+        "badge": "Loops"
       },
       {
-        "time": "[time]",
-        "title": "[title]",
-        "detail": "[detail]",
-        "q": "[question]",
-        "badge": "[badge or blank]"
+        "time": "28:00-30:00",
+        "title": "Comeback plan",
+        "detail": "18 days left. Need at minimum 4 SQLs to hit 50% target. Concrete daily plan",
+        "q": "What's the one specific account you'll have in Discovery by next Friday?",
+        "badge": ""
       }
     ]
   },
   "vik": {
-    "sql": "[number]",
-    "sql_target": "[number]",
-    "ytd_pct": "[calculated fresh \u2014 exclude April ramp]",
-    "pulse": "[number or last known]",
-    "status": "[On track / Above target / At risk / Watch]",
-    "loop": "[most important open loop \u2014 current or last known]",
-    "coaching": "[most urgent coaching need \u2014 current or last known]",
-    "promotion": "[0-100 score]",
-    "promotion_label": "[Promotion ready / On track / Developing / Needs intervention]",
-    "tofu": "[number or last known]",
-    "mofu": "[number or last known]",
-    "bofu": "[number or last known]",
-    "tofu_mofu_pct": "[number or last known]",
-    "mofu_bofu_pct": "[number or last known]",
+    "sql": "0",
+    "sql_target": "8",
+    "ytd_pct": "0",
+    "pulse": "7.5",
+    "status": "At risk",
+    "loop": "GC coaching needed urgently + junior hire as buddy + cross-functional exposure requested",
+    "coaching": "First post-ramp month \u2014 GC vertical coaching is overdue. He's the highest ceiling rep, do not neglect",
+    "promotion": "36",
+    "promotion_label": "Needs intervention",
+    "tofu": "N/A",
+    "mofu": "N/A",
+    "bofu": "N/A",
+    "tofu_mofu_pct": "N/A",
+    "mofu_bofu_pct": "N/A",
     "agenda": [
       {
-        "time": "[time]",
-        "title": "[title]",
-        "detail": "[detail]",
-        "q": "[question]",
-        "badge": "[badge or blank]"
+        "time": "0:00-8:00",
+        "title": "Post-ramp reality check",
+        "detail": "First month with target live. 0 SQLs in 12 days. Has the shift from ramp to target landed for him",
+        "q": "Does this cycle feel different from April \u2014 are you carrying the same intensity or has something shifted?",
+        "badge": "Critical"
       },
       {
-        "time": "[time]",
-        "title": "[title]",
-        "detail": "[detail]",
-        "q": "[question]",
-        "badge": "[badge or blank]"
+        "time": "8:00-16:00",
+        "title": "GC coaching session",
+        "detail": "Stop deferring this. Block 90 minutes this week to walk through GC vertical playbook with him",
+        "q": "What's the one objection from GC prospects you can't get past right now?",
+        "badge": "KRA 4"
       },
       {
-        "time": "[time]",
-        "title": "[title]",
-        "detail": "[detail]",
-        "q": "[question]",
-        "badge": "[badge or blank]"
+        "time": "16:00-22:00",
+        "title": "Pipeline triage",
+        "detail": "Look at his current top 10 accounts together. Identify the 3 most likely to convert in next 18 days",
+        "q": "Of your top 10, which 3 would you bet your bonus on and which 3 are you holding onto out of hope?",
+        "badge": "KRA 1"
       },
       {
-        "time": "[time]",
-        "title": "[title]",
-        "detail": "[detail]",
-        "q": "[question]",
-        "badge": "[badge or blank]"
+        "time": "22:00-27:00",
+        "title": "Cross-functional exposure",
+        "detail": "He asked for it. Pair him with Marketing or Product for a 1:1 this cycle as a leadership signal",
+        "q": "Marketing or Product \u2014 which conversation would teach you more right now?",
+        "badge": "KRA 3"
       },
       {
-        "time": "[time]",
-        "title": "[title]",
-        "detail": "[detail]",
-        "q": "[question]",
-        "badge": "[badge or blank]"
+        "time": "27:00-30:00",
+        "title": "Energy and morale",
+        "detail": "Pulse score has been steady but he's quiet about how post-ramp pressure feels. Ask directly",
+        "q": "On a scale of 1 to 10 how energized do you feel about this cycle, and what would move it up by 2?",
+        "badge": ""
       }
     ]
   },
   "pooja": {
-    "pulse": "[number or last known]",
-    "status": "[Watch / On track]",
-    "loop": "[most important open loop \u2014 current or last known]",
-    "coaching": "[most urgent coaching need \u2014 current or last known]",
+    "pulse": "5.0",
+    "status": "Watch",
+    "loop": "2.5 gap unresolved + task briefing must change + MRA hire pending",
+    "coaching": "Open every session with the 2.5 gap question until she names what's missing",
     "agenda": [
       {
-        "time": "[time]",
-        "title": "[title]",
-        "detail": "[detail]",
-        "q": "[question]",
-        "badge": "[badge or blank]"
+        "time": "0:00-10:00",
+        "title": "The 2.5 gap",
+        "detail": "Cannot be deferred again. This is session two opener until it closes",
+        "q": "What is the 2.5 \u2014 is it the work, the team, the role, or me as a manager? Pick one",
+        "badge": "Critical"
       },
       {
-        "time": "[time]",
-        "title": "[title]",
-        "detail": "[detail]",
-        "q": "[question]",
-        "badge": "[badge or blank]"
+        "time": "10:00-17:00",
+        "title": "Task briefing reset",
+        "detail": "She has flagged that current briefing format isn't working. Co-design the new one on the call",
+        "q": "Walk me through the last task I gave you \u2014 at what point did it become unclear what success looked like?",
+        "badge": "KRA 4"
       },
       {
-        "time": "[time]",
-        "title": "[title]",
-        "detail": "[detail]",
-        "q": "[question]",
-        "badge": "[badge or blank]"
+        "time": "17:00-23:00",
+        "title": "MRA hire status",
+        "detail": "She is operating solo. Give her a real timeline or explain why there isn't one yet",
+        "q": "If the MRA hire slips another month, what's the one thing on your plate that breaks first?",
+        "badge": "Loops"
       },
       {
-        "time": "[time]",
-        "title": "[title]",
-        "detail": "[detail]",
-        "q": "[question]",
-        "badge": "[badge or blank]"
+        "time": "23:00-28:00",
+        "title": "Wins from this cycle",
+        "detail": "She rarely brings up wins. Pull two out of her \u2014 protects against pulse drift",
+        "q": "What's one thing this cycle you actually felt good about, however small?",
+        "badge": ""
       },
       {
-        "time": "[time]",
-        "title": "[title]",
-        "detail": "[detail]",
-        "q": "[question]",
-        "badge": "[badge or blank]"
+        "time": "28:00-30:00",
+        "title": "One ask from me",
+        "detail": "She defers her own needs. End every session with a forced ask",
+        "q": "One thing you need from me in the next 7 days \u2014 what is it?",
+        "badge": ""
       }
     ]
   },

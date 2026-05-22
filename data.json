@@ -1,60 +1,220 @@
 {
+  "last_updated": "22 May 2026",
+  "team": {
+    "avg_pulse": "8.1",
+    "total_sql": "17",
+    "avg_ytd": "88",
+    "coaching_flags": "6"
+  },
   "ss": {
-    "sql": null,
-    "sql_target": null,
-    "ytd_pct": null,
-    "tofu": null,
-    "mofu": null,
-    "bofu": null,
-    "tofu_mofu_pct": null,
-    "mofu_bofu_pct": null,
-    "sub_sql": null,
-    "pulse": null,
-    "status": null,
-    "loop": null,
-    "coaching": null,
-    "promotion": null,
-    "promotion_label": null
+    "sql": "11",
+    "sql_target": "8",
+    "ytd_pct": "131",
+    "pulse": "8.0",
+    "status": "Above target",
+    "loop": "300% stretch (24 SQLs) \u2014 landing at ~13-15 not 24. Reset expectation vs reality + Junior SDR onboarding plan as hires roll in + Title analysis output to BG and Vik still pending",
+    "coaching": "She's clearly the strongest performer. The question is no longer SQL volume \u2014 it's developing her into a manager. Junior onboarding prep starts now, not when the junior joins",
+    "promotion": "76",
+    "promotion_label": "On track",
+    "tofu": "N/A",
+    "mofu": "N/A",
+    "bofu": "N/A",
+    "tofu_mofu_pct": "N/A",
+    "mofu_bofu_pct": "N/A",
+    "agenda": [
+      {
+        "time": "0:00-7:00",
+        "title": "11 SQLs \u2014 name what worked",
+        "detail": "She added 3 in 10 days. Lock in the specific behaviour \u2014 ENR focus + ABM method + early-week scheduling. Don't let it stay tacit",
+        "q": "Of your 11 SQLs this cycle, which 3 came from a method you could teach BG and Vik tomorrow?",
+        "badge": "KRA 1"
+      },
+      {
+        "time": "7:00-15:00",
+        "title": "300% stretch \u2014 honest landing zone",
+        "detail": "She committed to 24 (300%). She'll likely land 13-15. That's still 165-185%. Don't let her feel she failed \u2014 recalibrate together",
+        "q": "If you land at 14 instead of 24, what does that mean about your June target?",
+        "badge": "KRA 5"
+      },
+      {
+        "time": "15:00-22:00",
+        "title": "Junior SDR onboarding \u2014 week 1 plan",
+        "detail": "Hires approved. Junior could land in weeks. She's never managed. Build the first-30-day plan with her on this call",
+        "q": "Walk me through Day 1 with your junior \u2014 what do they do before lunch?",
+        "badge": "KRA 3"
+      },
+      {
+        "time": "22:00-27:00",
+        "title": "ABM teardown for BG and Vik",
+        "detail": "Carrying from last session. Title analysis still not shared. Schedule a 30-min teardown this week, lock the date",
+        "q": "Tuesday or Wednesday \u2014 which works to run the teardown for BG and Vik?",
+        "badge": "KRA 3"
+      },
+      {
+        "time": "27:00-30:00",
+        "title": "Talk ratio \u2014 did today's session flip it",
+        "detail": "When transcript comes in tomorrow, check whether Sachit talked or she did. If still Sachit-heavy, this is now a pattern Sachit owns",
+        "q": "Honest read \u2014 did today's session feel like yours or mine?",
+        "badge": "Pattern"
+      }
+    ]
   },
   "bg": {
-    "sql": null,
-    "sql_target": null,
-    "ytd_pct": null,
-    "tofu": null,
-    "mofu": null,
-    "bofu": null,
-    "tofu_mofu_pct": null,
-    "mofu_bofu_pct": null,
-    "sub_sql": null,
-    "pulse": null,
-    "status": null,
-    "loop": null,
-    "coaching": null,
-    "promotion": null,
-    "promotion_label": null
+    "sql": "2",
+    "sql_target": "8",
+    "ytd_pct": "63",
+    "pulse": "7.0",
+    "status": "At risk",
+    "loop": "Buffalo activated via Rob's relationship not BG's discovery skills + only 1 new SQL in 13 days since Landry/French + career track (AE vs Manager) STILL deferred \u2014 now four sessions running + Kiran connect still slipped",
+    "coaching": "The conversion-on-the-call issue is unresolved. Landry/French (8 May) and Buffalo (Rob-sourced) don't prove the diagnostic. BG's net cold-outreach output since 8 May is essentially zero. This needs to be the next session's first agenda item",
+    "promotion": "57",
+    "promotion_label": "Developing",
+    "tofu": "N/A",
+    "mofu": "N/A",
+    "bofu": "N/A",
+    "tofu_mofu_pct": "N/A",
+    "mofu_bofu_pct": "N/A",
+    "agenda": [
+      {
+        "time": "0:00-10:00",
+        "title": "2 SQLs in 27 days \u2014 the honest math",
+        "detail": "Landry/French + Buffalo = 2. Buffalo was Rob's deal. Net new from BG's cold motion: 1 SQL in 27 days. Don't let momentum narrative hide it",
+        "q": "Of your 2 SQLs, which one came from your own prospecting from scratch?",
+        "badge": "Critical"
+      },
+      {
+        "time": "10:00-18:00",
+        "title": "Listen to a failed call together \u2014 finally",
+        "detail": "This was PRIORITY 1 on 11 May. Has it happened? If not, that's the entire intervention. Block 60 minutes this week",
+        "q": "When are we listening to one of your discovery calls together \u2014 Monday, Tuesday, or Wednesday?",
+        "badge": "Loops"
+      },
+      {
+        "time": "18:00-23:00",
+        "title": "AE vs Manager \u2014 fourth time asking",
+        "detail": "Carried four sessions. He won't volunteer. Ask the question, then stay silent for 10 seconds. Don't fill the gap",
+        "q": "A year from now \u2014 discovery calls or running a team? One word",
+        "badge": "KRA 5"
+      },
+      {
+        "time": "23:00-27:00",
+        "title": "June target \u2014 does he believe 8 is real",
+        "detail": "He'll start June at 0 again. If he doesn't believe 8 is reachable, target itself becomes meaningless. Surface it",
+        "q": "Looking at June with everything you know now \u2014 is 8 SQLs your honest forecast or your assigned number?",
+        "badge": "KRA 1"
+      },
+      {
+        "time": "27:00-30:00",
+        "title": "Pulse honesty",
+        "detail": "He was 6.5 on 8 May. SQL momentum may have lifted it but 1 SQL in 13 days might have brought it back down. Verify",
+        "q": "Honest number \u2014 where's your pulse today vs the 6.5 from two weeks ago?",
+        "badge": ""
+      }
+    ]
   },
   "vik": {
-    "sql": null,
-    "sql_target": null,
-    "ytd_pct": null,
-    "tofu": null,
-    "mofu": null,
-    "bofu": null,
-    "tofu_mofu_pct": null,
-    "mofu_bofu_pct": null,
-    "sub_sql": null,
-    "pulse": null,
-    "status": null,
-    "loop": null,
-    "coaching": null,
-    "promotion": null,
-    "promotion_label": null
+    "sql": "4",
+    "sql_target": "8",
+    "ytd_pct": "50",
+    "pulse": "9.5",
+    "status": "Watch",
+    "loop": "Frank M Booth at PROPOSAL stage \u2014 first proposal-level SQL of the cycle. Don't let it drift + cross-functional exposure still deferred + ABC Rob post-event follow-up status pending + Junior hire as buddy still pending",
+    "coaching": "The 9.5 pulse with 0 SQLs was a forecast not denial. He delivered. Recognise this directly. Past coaching narrative was wrong \u2014 say so. Now the question is whether he can repeat in June not whether he can perform",
+    "promotion": "58",
+    "promotion_label": "Developing",
+    "tofu": "N/A",
+    "mofu": "N/A",
+    "bofu": "N/A",
+    "tofu_mofu_pct": "N/A",
+    "mofu_bofu_pct": "N/A",
+    "agenda": [
+      {
+        "time": "0:00-7:00",
+        "title": "4 SQLs in 14 days \u2014 acknowledge directly",
+        "detail": "He went from highest-risk to second-most productive. Last cycle's narrative was wrong. Say so out loud \u2014 that's the leadership move",
+        "q": "Two weeks ago I was worried you were in denial. You delivered. What did I get wrong?",
+        "badge": "Pattern"
+      },
+      {
+        "time": "7:00-15:00",
+        "title": "Frank M Booth \u2014 Proposal stage",
+        "detail": "First proposal-stage SQL of the cycle from anyone. Treat as priority deal. Validate sales handoff to AE is clean",
+        "q": "Who owns Frank M Booth from here, and what's the next step you committed to with the AE?",
+        "badge": "KRA 1"
+      },
+      {
+        "time": "15:00-22:00",
+        "title": "Cross-functional \u2014 make good",
+        "detail": "Three sessions deferred. He didn't bring it up today, but stop waiting. Commit to Marketing or Product before 30 May",
+        "q": "I owe you this. 30 mins with Rangarajan in PMM, or 30 mins with Product \u2014 which one before 30 May?",
+        "badge": "KRA 3"
+      },
+      {
+        "time": "22:00-27:00",
+        "title": "June target \u2014 set the bar",
+        "detail": "4 SQLs in 14 days. June target is 8. He's earned the right to set his own stretch. Ask him",
+        "q": "For June \u2014 what's the SQL number you'd be proud of, and what's the number you'd be disappointed below?",
+        "badge": "KRA 5"
+      },
+      {
+        "time": "27:00-30:00",
+        "title": "Claude AI method \u2014 write it up",
+        "detail": "Last cycle this was an agenda item that never landed. Now there's proof the method works. Have him document it for BG",
+        "q": "Will you write up your project-proximity Claude method as a 5-bullet Slack post for the team this week?",
+        "badge": "KRA 3"
+      }
+    ]
   },
   "pooja": {
-    "pulse": null,
-    "status": null,
-    "loop": null,
-    "coaching": null
+    "pulse": "8.0",
+    "status": "On track",
+    "loop": "Five-stream load not pressure-tested in two weeks + MRA hire onboarding plan not reviewed + AI agent use case still abstract \u2014 no specific one picked + Tim from CS reports access status unknown",
+    "coaching": "Two weeks since the 2.5 gap closure. Verify it's still closed. The 8.0 pulse on 8 May was post-relief \u2014 could easily drift back if briefings slipped during cycle close pressure",
+    "agenda": [
+      {
+        "time": "0:00-8:00",
+        "title": "2.5 gap \u2014 still closed",
+        "detail": "Two weeks since resolution. Verify it didn't reopen quietly during cycle close. She defers so won't volunteer if it did",
+        "q": "Honest number \u2014 where's your pulse today vs the 8 from two weeks ago, and what moved it either way?",
+        "badge": "Critical"
+      },
+      {
+        "time": "8:00-16:00",
+        "title": "Five-stream load check",
+        "detail": "SmartLead + HubSpot ops + MRA + AI + training new hire. Two weeks of running this. What's slipping",
+        "q": "Of your five streams, which two are you behind on and what's the cost of staying behind?",
+        "badge": "KRA 4"
+      },
+      {
+        "time": "16:00-22:00",
+        "title": "AI agent \u2014 pick one concrete task",
+        "detail": "Sachit asked her on 8 May. Two weeks later still abstract. Pick on this call, build it next week",
+        "q": "Of every manual task you did this week, which one took the longest and was the most repetitive?",
+        "badge": "KRA 5"
+      },
+      {
+        "time": "22:00-27:00",
+        "title": "MRA hire \u2014 onboarding plan in writing",
+        "detail": "First leadership rep. She mentioned a plan two weeks ago. Have her share the written version on this call",
+        "q": "Can you screen-share the onboarding doc you've written for the new hire, or do we need to write it together right now?",
+        "badge": "KRA 3"
+      },
+      {
+        "time": "27:00-30:00",
+        "title": "One ask from me",
+        "detail": "Permanent agenda item. She defers. Keep forcing",
+        "q": "One thing you need from me in the next 7 days \u2014 what is it?",
+        "badge": ""
+      }
+    ]
   },
-  "last_updated": null
+  "manager": {
+    "insight1": "",
+    "insight2": "",
+    "insight3": "",
+    "insight4": "",
+    "priority1": "",
+    "priority2": "",
+    "priority3": ""
+  }
 }

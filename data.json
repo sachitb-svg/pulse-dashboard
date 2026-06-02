@@ -1,20 +1,20 @@
 {
-  "last_updated": "25 May 2026",
+  "last_updated": "02 June 2026",
   "team": {
     "avg_pulse": "8.1",
-    "total_sql": "19",
-    "avg_ytd": "93",
-    "coaching_flags": "6"
+    "total_sql": "5",
+    "avg_ytd": "66",
+    "coaching_flags": "7"
   },
   "ss": {
-    "sql": "11",
+    "sql": "4",
     "sql_target": "8",
-    "ytd_pct": "131",
+    "ytd_pct": "104",
     "pulse": "8.5",
     "status": "Above target",
-    "loop": "Kivit deal still pending David approval + SDR backdating (becomes 12th SQL) \u2014 closes tonight + Gargi onboarding starts June 1 \u2014 first time managing + Swagatika consciously holding back strategies from BG + McCarthy lead pending + Highperformr LinkedIn-followers scrape via Pooja",
-    "coaching": "She privately told me BG is 'not able to think on those lines' but won't say it to BG. Real management test: kindly direct conversation. Plus 2:30 AM work pattern + 14-16 SQL stretch + Gargi onboarding = burnout setup if not paced",
-    "promotion": "78",
+    "loop": "Gargee (junior SDR) live in onboarding week 1 + Kivit deal never landed in May cycle. Swagatika carries 11 not 12 + 14-16 SQL stretch for June still verbal not written + BullPen mention in Kiran sync suggests new scope coming + Title analysis still not delivered to BG and Vik",
+    "coaching": "She is now managing Gargee AND pacing at 188 percent of target. Both wins simultaneously is also a burnout setup. Force a written weekly tracker. Plus the BG readiness conversation from last cycle still pending. Surface in next session",
+    "promotion": "79",
     "promotion_label": "On track",
     "tofu": "N/A",
     "mofu": "N/A",
@@ -24,50 +24,50 @@
     "agenda": [
       {
         "time": "0:00-7:00",
-        "title": "Kivit + 12th SQL \u2014 close before midnight",
-        "detail": "Cycle closes 23:59 IST tonight. David approval + SDR backdating not done yet. This is now urgent admin",
-        "q": "Did the David approval land and is the SDR backdate confirmed before tonight?",
-        "badge": "KRA 1"
+        "title": "Gargee Week 1 read",
+        "detail": "Her first management gig. 3 sessions logged with Gargee already. Verify she has a written plan and is not improvising",
+        "q": "Walk me through Gargee Week 1. What is she doing today that she was not doing day 1?",
+        "badge": "KRA 3"
       },
       {
         "time": "7:00-15:00",
-        "title": "Gargi onboarding plan \u2014 written",
-        "detail": "Junior joins June 1 \u2014 that's 6 days away. She has never managed. Plan must be written not verbal",
-        "q": "Can you screen-share the Gargi Week 1 plan or do we co-write it on this call?",
-        "badge": "KRA 3"
+        "title": "4 SQLs in 8 days name what worked",
+        "detail": "Strongest opening week of either cycle. HITT Data Center especially. Lock the playbook in her words",
+        "q": "Of your 4 SQLs this week, which was the easiest and what made it easy?",
+        "badge": "KRA 1"
       },
       {
         "time": "15:00-22:00",
-        "title": "BG readiness \u2014 say it out loud",
-        "detail": "She privately said BG isn't ready. Both peer and manager agree. BG should know \u2014 kindly and directly",
-        "q": "You told me Friday BG isn't thinking on those lines. What would it cost you to say it kindly \u2014 and directly \u2014 to him?",
-        "badge": "KRA 3"
+        "title": "Kivit lesson learned",
+        "detail": "David approval never landed. SDR backdate never happened. This is a cycle-1 admin loss. Diagnose so it does not repeat in June",
+        "q": "What slipped on the Kivit approval and what is your system to make sure no June SQL falls through the same way?",
+        "badge": "KRA 4"
       },
       {
         "time": "22:00-27:00",
-        "title": "2:30 AM pattern + sustainability",
-        "detail": "Pattern: midnight work, 2:30 AM nights coming. Resilience now, burnout later. Don't reward overwork by asking for more",
-        "q": "If you keep 2:30 AM nights through June, where do you crash \u2014 and what's my responsibility in preventing that?",
-        "badge": "Pattern"
+        "title": "BG readiness conversation",
+        "detail": "Carried from last cycle. She has formed the view privately but not said it. Now BG started cycle 2 better. Worth her giving him direct feedback now",
+        "q": "BG logged Johnson Mirmiran at Demo stage Day 2. Has your view of his readiness shifted, and would you say something now?",
+        "badge": "KRA 3"
       },
       {
         "time": "27:00-30:00",
-        "title": "June target \u2014 14 or 16 in writing",
-        "detail": "She named 16 for June. Landing at 12 this cycle (with Kivit). Lock commitment in writing not aspiration",
-        "q": "June target \u2014 14 or 16, and what's your weekly pacing breakdown?",
+        "title": "June commitment in writing",
+        "detail": "4 in 8 days extrapolates to 15. She named 14-16 verbally. Lock the number in writing today",
+        "q": "14 or 16 for June, and what weekly milestone tells us by 15 June whether you are on track?",
         "badge": "KRA 1"
       }
     ]
   },
   "bg": {
-    "sql": "2",
+    "sql": "1",
     "sql_target": "8",
-    "ytd_pct": "63",
+    "ytd_pct": "46",
     "pulse": "6.5",
     "status": "At risk",
-    "loop": "22 May transcript still processing 72hr+ post-meeting \u2014 signals retained from 08 May + Buffalo activated via Rob's relationship not BG's discovery skills + only 1 net new SQL in 30 days from his own cold motion + career track (AE vs Manager) deferred FIVE sessions running + Kiran connect slipped end-of-month \u2014 never happened",
-    "coaching": "Net new from BG's own cold motion = 1 SQL in 30 days (Landry/French). Buffalo was Rob's. Swagatika's private read aligns with manager read. The conversion-on-the-call diagnostic from 11 May still unresolved 14 days later",
-    "promotion": "52",
+    "loop": "Johnson Mirmiran at Demonstration stage is a quality signal not a Discovery filler + 08 May transcript fully extracted confirms BG diagnostic was call-conversion not pipeline volume + AE vs Manager decision still pending after FIVE sessions + Kiran connect still never scheduled + ENR-only focus from last cycle starting to pay off",
+    "coaching": "BG self-diagnosed clearly in 08 May session: 'if my calls start converting, then it is a boost.' The pivot to GC-only ENR is the right call. Johnson Mirmiran at Demo stage day 2 of cycle 2 validates the diagnostic. Now reinforce momentum. Listen to the Johnson Mirmiran call together next session",
+    "promotion": "48",
     "promotion_label": "Developing",
     "tofu": "N/A",
     "mofu": "N/A",
@@ -77,51 +77,51 @@
     "agenda": [
       {
         "time": "0:00-10:00",
-        "title": "2 SQLs in 30 days \u2014 the honest math",
-        "detail": "Landry/French + Buffalo = 2. Buffalo was Rob's. Net new from BG's cold motion: 1 SQL. Cycle close is the moment to face this",
-        "q": "Of your 2 SQLs, which one came from your own prospecting from scratch?",
-        "badge": "Critical"
+        "title": "Johnson Mirmiran at Demo stage. What worked",
+        "detail": "First Demo-stage deal of the year for BG. Quality signal. Diagnose what made this one convert when prior 10 calls did not",
+        "q": "Walk me through the Johnson Mirmiran discovery call. At what minute did you feel it landing?",
+        "badge": "Momentum"
       },
       {
         "time": "10:00-18:00",
-        "title": "Listen to a failed call together \u2014 finally",
-        "detail": "Priority 1 since 11 May (14 days). Unclear if it happened. Block 60 mins this week, audio over advice",
-        "q": "When are we listening to one of your failed discovery calls together \u2014 Monday, Tuesday, or Wednesday?",
+        "title": "Listen to the call together",
+        "detail": "This has been priority 1 for four weeks. Now use the Johnson Mirmiran success call. Audio over advice",
+        "q": "When are we sitting together to listen to the Johnson Mirmiran call recording? Today or Wednesday?",
         "badge": "Loops"
       },
       {
         "time": "18:00-23:00",
-        "title": "AE vs Manager \u2014 fifth session asking",
-        "detail": "Five sessions deferred. He won't volunteer. Ask, then 10 seconds of silence",
-        "q": "A year from now \u2014 discovery calls or running a team? One word",
+        "title": "AE vs Manager. Sixth time asking",
+        "detail": "Five sessions deferred. He told me in 08 May he wants to head one division. Now lock the direction in writing",
+        "q": "You said you want to head expansion or net new or ABM. Pick one today. Which one?",
         "badge": "KRA 5"
       },
       {
         "time": "23:00-27:00",
-        "title": "June target \u2014 believe in 8 or not",
-        "detail": "He starts June at 0 again. If he doesn't believe 8 is reachable, target is meaningless",
-        "q": "With everything you know now \u2014 is 8 SQLs your honest forecast for June or just your assigned number?",
-        "badge": "KRA 1"
+        "title": "Scott connect status",
+        "detail": "08 May Sachit promised to set up Scott connect Tuesday for ABC pipeline. Verify if that ever happened",
+        "q": "Did the Scott meeting happen? If not, when do we schedule it for this week?",
+        "badge": "Loops"
       },
       {
         "time": "27:00-30:00",
         "title": "Pulse honesty",
-        "detail": "6.5 on 8 May. Cycle ending at 2 SQLs vs 8 target. Verify without rescuing",
-        "q": "Where's your pulse today vs the 6.5 from two weeks ago?",
+        "detail": "6.5 confirmed in 08 May transcript. 1 SQL Day 8 of cycle 2 is better than 0 of last cycle but still 7 more needed",
+        "q": "Where is your pulse today vs the 6 or 7 you gave me at start of last cycle?",
         "badge": ""
       }
     ]
   },
   "vik": {
-    "sql": "6",
+    "sql": "0",
     "sql_target": "8",
-    "ytd_pct": "75",
+    "ytd_pct": "38",
     "pulse": "9.5",
-    "status": "Watch",
-    "loop": "22 May transcript still processing 72hr+ post-meeting \u2014 signals retained from 08 May + Central Ceilings at Contract Review stage (biggest pipeline win \u2014 counts as 6th SQL) + Frank M Booth at Proposal \u2014 only Proposal-stage SQL of cycle from anyone + ABC 28 May event = 6 potential June SQLs queued via Rob + Cross-functional exposure deferred 4 sessions running",
-    "coaching": "6 SQLs incl 1 Contract Review + 1 Proposal in 14 days. Biggest mover on team. Claude-AI project-proximity method paid off. The denial narrative from 11 May was wrong \u2014 he was forecasting accurately. Public recognition not delivered yet \u2014 this should have gone out by now",
-    "promotion": "68",
-    "promotion_label": "On track",
+    "status": "At risk",
+    "loop": "Zero deals of ANY stage in 8 days post-ABC-event + Rob 6 deals forecast from 28 May has not materialized in HubSpot + Cross-functional exposure still deferred 5 sessions running + Junior SDR hire pairing not happened + Claude AI method writeup never posted in team channel",
+    "coaching": "This is the recursion of the 11 May pattern. High pulse + zero output = forecasting gap. Last cycle delivered after the forecast. This cycle the test is whether he can repeat. Day 8 silence is enough for an unscheduled check-in. Do NOT wait for the next bi-weekly Pulse Check",
+    "promotion": "51",
+    "promotion_label": "Developing",
     "tofu": "N/A",
     "mofu": "N/A",
     "bofu": "N/A",
@@ -129,81 +129,81 @@
     "mofu_bofu_pct": "N/A",
     "agenda": [
       {
-        "time": "0:00-7:00",
-        "title": "6 SQLs + Central Ceilings Contract \u2014 name what worked",
-        "detail": "Biggest mover on team. Two cycles ago at zero. Lock the playbook in his words",
-        "q": "Walk me through your past two weeks \u2014 what specifically did you do differently from week 1?",
-        "badge": "Momentum"
+        "time": "0:00-8:00",
+        "title": "Unscheduled check-in this week",
+        "detail": "Zero deals of any stage in 8 days. The ABC event was 28 May. Get him in a 20-min unscheduled session before Friday",
+        "q": "Where are Rob 6 deals from ABC 28 May? How many have moved to discovery stage and what is blocking the rest?",
+        "badge": "Critical"
       },
       {
-        "time": "7:00-14:00",
-        "title": "ABC 28 May \u2014 Rob's 6 deals",
-        "detail": "Rob said next event gives 6 deals. Could be full June target from one source. Validate",
-        "q": "Of Rob's 6 promised deals, which 3 are you most confident on and what's your prep for the rest?",
-        "badge": "KRA 1"
+        "time": "8:00-15:00",
+        "title": "Forecasting accuracy test",
+        "detail": "Last cycle 9.5 pulse with 0 SQLs was a correct forecast. This cycle same setup. Probe whether the pattern repeats or breaks",
+        "q": "Day 8 of 30 with zero. What does Day 22 look like in your honest forecast, not optimistic forecast?",
+        "badge": "Pattern"
       },
       {
-        "time": "14:00-21:00",
-        "title": "Cross-functional \u2014 fourth deferral",
-        "detail": "Said 'too early' on 8 May. 17 days later still no schedule. End the pattern in this session",
-        "q": "I'm putting the invite in right now \u2014 Rangarajan or Product, before 30 May, which one?",
+        "time": "15:00-22:00",
+        "title": "Claude AI method writeup",
+        "detail": "Committed last cycle. Never posted. The method that drove 6 SQLs last cycle and now drove zero in 8 days. Either the method works or it does not. Force the writeup",
+        "q": "Post the Claude method in team Slack before Friday. Yes or no. If no, what is actually stopping you?",
         "badge": "KRA 3"
       },
       {
-        "time": "21:00-26:00",
-        "title": "Claude AI method \u2014 Slack writeup this week",
-        "detail": "Proof method works. 5-bullet team Slack out this week. Leadership signal + helps BG",
-        "q": "Will you post your Claude project-proximity method in the team channel before Friday \u2014 yes or no?",
+        "time": "22:00-27:00",
+        "title": "Cross-functional. Finally schedule it",
+        "detail": "Five sessions deferred. Put the invite in the calendar during this call. Stop talking about it",
+        "q": "Rangarajan PMM or Product. Pick one. I am sending the invite right now",
         "badge": "KRA 3"
       },
       {
-        "time": "26:00-30:00",
-        "title": "June target \u2014 he sets the bar",
-        "detail": "He earned the right. Don't assign \u2014 ask",
-        "q": "For June \u2014 what's the SQL number you'd be proud of, and what's the number you'd be disappointed below?",
-        "badge": "KRA 5"
+        "time": "27:00-30:00",
+        "title": "Pulse honesty",
+        "detail": "9.5 with zero output again. Last cycle this was resilience. Verify if it is the same this cycle or denial creeping",
+        "q": "If you land at 3 SQLs this cycle instead of 8, what does your pulse look like on 25 June honestly?",
+        "badge": ""
       }
     ]
   },
   "pooja": {
     "pulse": "8.0",
     "status": "On track",
-    "loop": "22 May transcript still processing 72hr+ post-meeting \u2014 signals retained from 08 May + Five-stream load not pressure-tested in two weeks + MRA hire onboarding plan not reviewed + AI agent use case still abstract \u2014 no specific one picked + Tim from CS reports access still pending",
-    "coaching": "Two weeks since 2.5 gap closure. Verify still closed. 8.0 was post-relief \u2014 could drift quietly if briefings slipped during cycle close",
+    "loop": "2.5 gap confirmed resolved in 08 May transcript (task briefing fix) + Pooja role expanded to 5 streams confirmed + Tim CS connect for reports still not happened + MRA hire onboarding plan never reviewed in writing + AI agent use case still abstract no first task picked",
+    "coaching": "08 May transcript confirms her direct quote: 'Maybe a meeting of 8 now, 8 now.' Pulse moved 7.5 to 8 because task briefing fixed. This is real. But role has expanded since. Verify she still rates 8 with new load",
     "agenda": [
       {
         "time": "0:00-8:00",
-        "title": "2.5 gap \u2014 still closed",
-        "detail": "Two weeks since resolution. Verify it didn't reopen quietly. She defers so won't volunteer if it did",
-        "q": "Honest number \u2014 where's your pulse today vs the 8 from two weeks ago, and what moved it either way?",
+        "title": "2.5 gap closure verified. Now verify load",
+        "detail": "Task briefing fix landed. Now 5 streams running parallel. Test if pulse holds at 8 or drifts",
+        "q": "Where is your pulse today, four weeks after the 2.5 gap closed?",
         "badge": "Critical"
       },
       {
         "time": "8:00-16:00",
-        "title": "Five-stream load check",
-        "detail": "SmartLead + HubSpot ops + MRA + AI + training new hire. Two weeks running. What's slipping",
-        "q": "Of your five streams, which two are you behind on and what's the cost of staying behind?",
+        "title": "5-stream load check",
+        "detail": "SmartLead plus HubSpot ops plus MRA work plus AI agents plus MRA hire training. Three weeks running. What is slipping",
+        "q": "Of your 5 streams which two are you behind on and what breaks if you stay behind?",
         "badge": "KRA 4"
       },
       {
         "time": "16:00-22:00",
-        "title": "AI agent \u2014 pick one concrete task",
-        "detail": "Asked her on 8 May. 17 days later still abstract. Pick on this call, build it next week",
-        "q": "Of every manual task you did this week, which one took the longest and was the most repetitive?",
+        "title": "AI agent. Pick the first one today",
+        "detail": "Asked her 8 May. Three weeks later still abstract. She has Gemini access. Pick the manual task on this call",
+        "q": "Of every manual task you did this week which one took the longest and was the most repetitive?",
         "badge": "KRA 5"
       },
       {
         "time": "22:00-27:00",
-        "title": "MRA hire \u2014 onboarding plan in writing",
-        "detail": "First leadership rep. Plan mentioned 2 weeks ago. Have her share the written version on this call",
-        "q": "Can you screen-share the onboarding doc, or do we write it together right now?",
+        "title": "MRA hire onboarding doc",
+        "detail": "First leadership rep. Plan mentioned weeks ago. Have her share the written version on this call",
+        "q": "Can you screen-share the onboarding doc or do we write it together right now?",
         "badge": "KRA 3"
       },
       {
         "time": "27:00-30:00",
         "title": "One ask from me",
         "detail": "Permanent agenda item. She defers. Keep forcing",
-        "q": "One thing you need from me in the next 7 days \u2014 what is it?",
+        "q": "One thing you need from me in the next 7 days. What is it?",
         "badge": ""
       }
     ]

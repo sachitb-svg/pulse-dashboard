@@ -1,210 +1,210 @@
 {
-  "last_updated": "02 June 2026",
+  "last_updated": "[DD Mon YYYY]",
   "team": {
-    "avg_pulse": "8.1",
-    "total_sql": "5",
-    "avg_ytd": "66",
-    "coaching_flags": "7"
+    "avg_pulse": "[average pulse across all 4 reps]",
+    "total_sql": "[total SQLs across all 3 SDRs this cycle]",
+    "avg_ytd": "[team cumulative YTD% calculated fresh]",
+    "coaching_flags": "[number of active coaching flags]"
   },
   "ss": {
-    "sql": "4",
-    "sql_target": "8",
-    "ytd_pct": "104",
-    "pulse": "8.5",
-    "status": "Above target",
-    "loop": "Gargee (junior SDR) live in onboarding week 1 + Kivit deal never landed in May cycle. Swagatika carries 11 not 12 + 14-16 SQL stretch for June still verbal not written + BullPen mention in Kiran sync suggests new scope coming + Title analysis still not delivered to BG and Vik",
-    "coaching": "She is now managing Gargee AND pacing at 188 percent of target. Both wins simultaneously is also a burnout setup. Force a written weekly tracker. Plus the BG readiness conversation from last cycle still pending. Surface in next session",
-    "promotion": "79",
-    "promotion_label": "On track",
-    "tofu": "N/A",
-    "mofu": "N/A",
-    "bofu": "N/A",
-    "tofu_mofu_pct": "N/A",
-    "mofu_bofu_pct": "N/A",
+    "sql": "[number]",
+    "sql_target": "[number]",
+    "ytd_pct": "[calculated fresh using defined method]",
+    "pulse": "[number or last known]",
+    "status": "[On track / Above target / At risk / Watch]",
+    "loop": "[most important open loop \u2014 current or last known]",
+    "coaching": "[most urgent coaching need \u2014 current or last known]",
+    "promotion": "[0-100 score]",
+    "promotion_label": "[Promotion ready / On track / Developing / Needs intervention]",
+    "tofu": "[number or last known]",
+    "mofu": "[number or last known]",
+    "bofu": "[number or last known]",
+    "tofu_mofu_pct": "[number or last known]",
+    "mofu_bofu_pct": "[number or last known]",
     "agenda": [
       {
-        "time": "0:00-7:00",
-        "title": "Gargee Week 1 read",
-        "detail": "Her first management gig. 3 sessions logged with Gargee already. Verify she has a written plan and is not improvising",
-        "q": "Walk me through Gargee Week 1. What is she doing today that she was not doing day 1?",
-        "badge": "KRA 3"
+        "time": "[e.g. 0:00-3:00]",
+        "title": "[title]",
+        "detail": "[detail in one line]",
+        "q": "[specific question to ask]",
+        "badge": "[badge text or blank]"
       },
       {
-        "time": "7:00-15:00",
-        "title": "4 SQLs in 8 days name what worked",
-        "detail": "Strongest opening week of either cycle. HITT Data Center especially. Lock the playbook in her words",
-        "q": "Of your 4 SQLs this week, which was the easiest and what made it easy?",
-        "badge": "KRA 1"
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
       },
       {
-        "time": "15:00-22:00",
-        "title": "Kivit lesson learned",
-        "detail": "David approval never landed. SDR backdate never happened. This is a cycle-1 admin loss. Diagnose so it does not repeat in June",
-        "q": "What slipped on the Kivit approval and what is your system to make sure no June SQL falls through the same way?",
-        "badge": "KRA 4"
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
       },
       {
-        "time": "22:00-27:00",
-        "title": "BG readiness conversation",
-        "detail": "Carried from last cycle. She has formed the view privately but not said it. Now BG started cycle 2 better. Worth her giving him direct feedback now",
-        "q": "BG logged Johnson Mirmiran at Demo stage Day 2. Has your view of his readiness shifted, and would you say something now?",
-        "badge": "KRA 3"
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
       },
       {
-        "time": "27:00-30:00",
-        "title": "June commitment in writing",
-        "detail": "4 in 8 days extrapolates to 15. She named 14-16 verbally. Lock the number in writing today",
-        "q": "14 or 16 for June, and what weekly milestone tells us by 15 June whether you are on track?",
-        "badge": "KRA 1"
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
       }
     ]
   },
   "bg": {
-    "sql": "1",
-    "sql_target": "8",
-    "ytd_pct": "46",
-    "pulse": "6.5",
-    "status": "At risk",
-    "loop": "Johnson Mirmiran at Demonstration stage is a quality signal not a Discovery filler + 08 May transcript fully extracted confirms BG diagnostic was call-conversion not pipeline volume + AE vs Manager decision still pending after FIVE sessions + Kiran connect still never scheduled + ENR-only focus from last cycle starting to pay off",
-    "coaching": "BG self-diagnosed clearly in 08 May session: 'if my calls start converting, then it is a boost.' The pivot to GC-only ENR is the right call. Johnson Mirmiran at Demo stage day 2 of cycle 2 validates the diagnostic. Now reinforce momentum. Listen to the Johnson Mirmiran call together next session",
-    "promotion": "48",
-    "promotion_label": "Developing",
-    "tofu": "N/A",
-    "mofu": "N/A",
-    "bofu": "N/A",
-    "tofu_mofu_pct": "N/A",
-    "mofu_bofu_pct": "N/A",
+    "sql": "[number]",
+    "sql_target": "[number]",
+    "ytd_pct": "[calculated fresh]",
+    "pulse": "[number or last known]",
+    "status": "[On track / Above target / At risk / Watch]",
+    "loop": "[most important open loop \u2014 current or last known]",
+    "coaching": "[most urgent coaching need \u2014 current or last known]",
+    "promotion": "[0-100 score]",
+    "promotion_label": "[Promotion ready / On track / Developing / Needs intervention]",
+    "tofu": "[number or last known]",
+    "mofu": "[number or last known]",
+    "bofu": "[number or last known]",
+    "tofu_mofu_pct": "[number or last known]",
+    "mofu_bofu_pct": "[number or last known]",
     "agenda": [
       {
-        "time": "0:00-10:00",
-        "title": "Johnson Mirmiran at Demo stage. What worked",
-        "detail": "First Demo-stage deal of the year for BG. Quality signal. Diagnose what made this one convert when prior 10 calls did not",
-        "q": "Walk me through the Johnson Mirmiran discovery call. At what minute did you feel it landing?",
-        "badge": "Momentum"
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
       },
       {
-        "time": "10:00-18:00",
-        "title": "Listen to the call together",
-        "detail": "This has been priority 1 for four weeks. Now use the Johnson Mirmiran success call. Audio over advice",
-        "q": "When are we sitting together to listen to the Johnson Mirmiran call recording? Today or Wednesday?",
-        "badge": "Loops"
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
       },
       {
-        "time": "18:00-23:00",
-        "title": "AE vs Manager. Sixth time asking",
-        "detail": "Five sessions deferred. He told me in 08 May he wants to head one division. Now lock the direction in writing",
-        "q": "You said you want to head expansion or net new or ABM. Pick one today. Which one?",
-        "badge": "KRA 5"
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
       },
       {
-        "time": "23:00-27:00",
-        "title": "Scott connect status",
-        "detail": "08 May Sachit promised to set up Scott connect Tuesday for ABC pipeline. Verify if that ever happened",
-        "q": "Did the Scott meeting happen? If not, when do we schedule it for this week?",
-        "badge": "Loops"
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
       },
       {
-        "time": "27:00-30:00",
-        "title": "Pulse honesty",
-        "detail": "6.5 confirmed in 08 May transcript. 1 SQL Day 8 of cycle 2 is better than 0 of last cycle but still 7 more needed",
-        "q": "Where is your pulse today vs the 6 or 7 you gave me at start of last cycle?",
-        "badge": ""
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
       }
     ]
   },
   "vik": {
-    "sql": "0",
-    "sql_target": "8",
-    "ytd_pct": "38",
-    "pulse": "9.5",
-    "status": "At risk",
-    "loop": "Zero deals of ANY stage in 8 days post-ABC-event + Rob 6 deals forecast from 28 May has not materialized in HubSpot + Cross-functional exposure still deferred 5 sessions running + Junior SDR hire pairing not happened + Claude AI method writeup never posted in team channel",
-    "coaching": "This is the recursion of the 11 May pattern. High pulse + zero output = forecasting gap. Last cycle delivered after the forecast. This cycle the test is whether he can repeat. Day 8 silence is enough for an unscheduled check-in. Do NOT wait for the next bi-weekly Pulse Check",
-    "promotion": "51",
-    "promotion_label": "Developing",
-    "tofu": "N/A",
-    "mofu": "N/A",
-    "bofu": "N/A",
-    "tofu_mofu_pct": "N/A",
-    "mofu_bofu_pct": "N/A",
+    "sql": "[number]",
+    "sql_target": "[number]",
+    "ytd_pct": "[calculated fresh \u2014 exclude April ramp]",
+    "pulse": "[number or last known]",
+    "status": "[On track / Above target / At risk / Watch]",
+    "loop": "[most important open loop \u2014 current or last known]",
+    "coaching": "[most urgent coaching need \u2014 current or last known]",
+    "promotion": "[0-100 score]",
+    "promotion_label": "[Promotion ready / On track / Developing / Needs intervention]",
+    "tofu": "[number or last known]",
+    "mofu": "[number or last known]",
+    "bofu": "[number or last known]",
+    "tofu_mofu_pct": "[number or last known]",
+    "mofu_bofu_pct": "[number or last known]",
     "agenda": [
       {
-        "time": "0:00-8:00",
-        "title": "Unscheduled check-in this week",
-        "detail": "Zero deals of any stage in 8 days. The ABC event was 28 May. Get him in a 20-min unscheduled session before Friday",
-        "q": "Where are Rob 6 deals from ABC 28 May? How many have moved to discovery stage and what is blocking the rest?",
-        "badge": "Critical"
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
       },
       {
-        "time": "8:00-15:00",
-        "title": "Forecasting accuracy test",
-        "detail": "Last cycle 9.5 pulse with 0 SQLs was a correct forecast. This cycle same setup. Probe whether the pattern repeats or breaks",
-        "q": "Day 8 of 30 with zero. What does Day 22 look like in your honest forecast, not optimistic forecast?",
-        "badge": "Pattern"
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
       },
       {
-        "time": "15:00-22:00",
-        "title": "Claude AI method writeup",
-        "detail": "Committed last cycle. Never posted. The method that drove 6 SQLs last cycle and now drove zero in 8 days. Either the method works or it does not. Force the writeup",
-        "q": "Post the Claude method in team Slack before Friday. Yes or no. If no, what is actually stopping you?",
-        "badge": "KRA 3"
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
       },
       {
-        "time": "22:00-27:00",
-        "title": "Cross-functional. Finally schedule it",
-        "detail": "Five sessions deferred. Put the invite in the calendar during this call. Stop talking about it",
-        "q": "Rangarajan PMM or Product. Pick one. I am sending the invite right now",
-        "badge": "KRA 3"
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
       },
       {
-        "time": "27:00-30:00",
-        "title": "Pulse honesty",
-        "detail": "9.5 with zero output again. Last cycle this was resilience. Verify if it is the same this cycle or denial creeping",
-        "q": "If you land at 3 SQLs this cycle instead of 8, what does your pulse look like on 25 June honestly?",
-        "badge": ""
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
       }
     ]
   },
   "pooja": {
-    "pulse": "8.0",
-    "status": "On track",
-    "loop": "2.5 gap confirmed resolved in 08 May transcript (task briefing fix) + Pooja role expanded to 5 streams confirmed + Tim CS connect for reports still not happened + MRA hire onboarding plan never reviewed in writing + AI agent use case still abstract no first task picked",
-    "coaching": "08 May transcript confirms her direct quote: 'Maybe a meeting of 8 now, 8 now.' Pulse moved 7.5 to 8 because task briefing fixed. This is real. But role has expanded since. Verify she still rates 8 with new load",
+    "pulse": "[number or last known]",
+    "status": "[Watch / On track]",
+    "loop": "[most important open loop \u2014 current or last known]",
+    "coaching": "[most urgent coaching need \u2014 current or last known]",
     "agenda": [
       {
-        "time": "0:00-8:00",
-        "title": "2.5 gap closure verified. Now verify load",
-        "detail": "Task briefing fix landed. Now 5 streams running parallel. Test if pulse holds at 8 or drifts",
-        "q": "Where is your pulse today, four weeks after the 2.5 gap closed?",
-        "badge": "Critical"
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
       },
       {
-        "time": "8:00-16:00",
-        "title": "5-stream load check",
-        "detail": "SmartLead plus HubSpot ops plus MRA work plus AI agents plus MRA hire training. Three weeks running. What is slipping",
-        "q": "Of your 5 streams which two are you behind on and what breaks if you stay behind?",
-        "badge": "KRA 4"
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
       },
       {
-        "time": "16:00-22:00",
-        "title": "AI agent. Pick the first one today",
-        "detail": "Asked her 8 May. Three weeks later still abstract. She has Gemini access. Pick the manual task on this call",
-        "q": "Of every manual task you did this week which one took the longest and was the most repetitive?",
-        "badge": "KRA 5"
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
       },
       {
-        "time": "22:00-27:00",
-        "title": "MRA hire onboarding doc",
-        "detail": "First leadership rep. Plan mentioned weeks ago. Have her share the written version on this call",
-        "q": "Can you screen-share the onboarding doc or do we write it together right now?",
-        "badge": "KRA 3"
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
       },
       {
-        "time": "27:00-30:00",
-        "title": "One ask from me",
-        "detail": "Permanent agenda item. She defers. Keep forcing",
-        "q": "One thing you need from me in the next 7 days. What is it?",
-        "badge": ""
+        "time": "[time]",
+        "title": "[title]",
+        "detail": "[detail]",
+        "q": "[question]",
+        "badge": "[badge or blank]"
       }
     ]
   },
